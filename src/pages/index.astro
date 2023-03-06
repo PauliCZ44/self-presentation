@@ -2,21 +2,26 @@
 import Layout from '../layouts/Layout.astro'
 import SplitView from '../components/SplitView'
 const middleText = 'My job and passion at the same time is front end developement'
-import mozek from '../assets/mozog_bg.png'
+import mozek from '../images/mozog_bg.png'
 ---
 
 <Layout title="Welcome to Astro.">
 	<div class="h-full w-full overflow-hidden relative">
 		<SplitView client:load>
-			<div class="grid w-full grid-flow-col grid-cols-2 grid-rows-3 justify-items-center">
+			<div
+				class="grid w-full grid-flow-col grid-cols-2 grid-rows-3 justify-items-center"
+				style={{
+					gridTemplateRows: 'minmax(0, 5rem) minmax(0, 5fr) minmax(0, 5rem)',
+				}}
+			>
 				<!-- // left -->
 				<div>
 					<p class="typography">Hello there</p>
 				</div>
 				<img
-					src=""
+					src={mozek}
 					alt="mozog"
-					width={150}
+					width={1024 / 2}
 					height="150px"
 					class="bg-gradient-to-r from-cyan-500 to-blue-500"
 				/>

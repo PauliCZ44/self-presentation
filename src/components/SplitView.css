@@ -1,0 +1,53 @@
+.main {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.main.right {
+	background: var(--secondary);
+	left: calc(-1 * var(--spliter));
+	color: var(--text-light);
+}
+
+.main.left {
+	background: var(--primary);
+	color: var(--text-dark);
+}
+
+.main-wrapper {
+	width: var(--spliter);
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+}
+
+.main-wrapper.right {
+	left: var(--spliter);
+	width: 100vw;
+}
+
+.main.right {
+	--text-color: var(--text-light);
+	--text-bg: var(--primary);
+}
+
+.main.left {
+	--text-color: var(--secondary);
+	--text-bg: white;
+}
+
+.divider {
+	position: absolute;
+	left: calc(var(--spliter) - 1px);
+	height: 100vh;
+	width: 2px;
+}
