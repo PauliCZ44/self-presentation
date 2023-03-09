@@ -1,53 +1,26 @@
 .main {
-	width: 100vw;
-	height: 100vh;
-	position: absolute;
-	left: 0;
-	top: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 }
 
-.main.right {
-	background: var(--secondary);
-	left: calc(-1 * var(--spliter));
-	color: var(--text-light);
-}
-
-.main.left {
-	background: var(--primary);
-	color: var(--text-dark);
-}
-
-.main-wrapper {
-	width: var(--spliter);
-	height: 100vh;
-	position: absolute;
-	left: 0;
-	top: 0;
-	overflow: hidden;
-}
-
-.main-wrapper.right {
-	left: var(--spliter);
-	width: 100vw;
-}
-
-.main.right {
-	--text-color: var(--text-light);
-	--text-bg: var(--primary);
-}
-
-.main.left {
+.main {
 	--text-color: var(--secondary);
-	--text-bg: white;
+	--text-bg: rgba(255, 255, 255, 0.049);
+	background: linear-gradient(
+		to right,
+		var(--primary) var(--splitter),
+		var(--secondary) var(--splitter),
+		var(--secondary) 100%
+	);
+	color: var(--text-dark);
 }
 
 .divider {
 	position: absolute;
-	left: calc(var(--spliter) - 1px);
-	height: 100vh;
+	top: 0;
+	left: calc(var(--splitter) - 1px);
+	height: 100%;
 	width: 2px;
 }

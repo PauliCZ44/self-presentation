@@ -1,46 +1,71 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import SplitView from '../components/SplitView'
-const middleText = 'My job and passion at the same time is front end developement'
-import mozek from '../images/mozog_bg.png'
+const middleText = 'Take a look around and see some of my recent projects below'
+import mozek from '../images/mozog_bg2.png'
+import me from '../images/me.png'
+import smoke from '../images/smoke.png'
+import '../global.css'
+import ReactLogo from '../components/ReactLogo.astro'
 ---
 
 <Layout title="Welcome to Astro.">
-	<div class="h-full w-full overflow-hidden relative">
+	<div class="h-full w-full relative">
 		<SplitView client:load>
-			<div
-				class="grid w-full grid-flow-col grid-cols-2 grid-rows-3 justify-items-center"
-				style={{
-					gridTemplateRows: 'minmax(0, 5rem) minmax(0, 5fr) minmax(0, 5rem)',
-				}}
-			>
-				<!-- // left -->
-				<div>
-					<p class="typography">Hello there</p>
-				</div>
-				<img
-					src={mozek}
-					alt="mozog"
-					width={1024 / 2}
-					height="150px"
-					class="bg-gradient-to-r from-cyan-500 to-blue-500"
-				/>
-				<!-- only for layout -->
-				<div></div>
+			<div class="main-layout">
 				<!-- // right -->
-				<div>
-					<p class="typography">Thats a me mario!</p>
-					<p class="typography">Hello mario!</p>
+				<div class="sliced-bg-3 text-7xl">
+					<p class="typography">Hello there!</p>
+					<p class="typography">I'm Pavel.</p>
 				</div>
-				<img
-					src=""
-					alt="me"
-					width={150}
-					height="150px"
-					class="bg-gradient-to-r from-sky-300 to-blue-700"
-				/>
-				<!-- only for layout -->
-				<div></div>
+				<div
+					class="special-hover rounded-full bg-center bg-no-repeat inset mt-10"
+					style={{
+						'--size': (1024 / 2) * 0.7 + 'px',
+						backgroundColor: '#a6a6a6',
+						backgroundImage: `url(${smoke})`,
+						backgroundSize: 'calc(120% * 1 / var(--f))',
+						height: 'var(--size)',
+						outline: '6px solid black',
+						outlineOffset: '-3px',
+					}}
+				>
+					<img
+						src={me}
+						alt="me"
+						width={(1024 / 2) * 0.7}
+						height={(1024 / 2) * 0.7}
+						class="avatar pt-10 -mt-10"
+					/>
+				</div>
+				<div>
+					<img
+						src={mozek}
+						alt="mozog"
+						width={1024 / 2}
+						class="pt-10"
+						style={{
+							mixBlendMode: 'lighten',
+							filter: 'grayscale(0.1)',
+						}}
+					/>
+				</div>
+				<div class="sliced-bg-3 text-4xl text-color-2">
+					<p class="typography">
+						I'am a front-end developer with a keen eye for design and a love for clean, semantic and
+						high-quality code.
+					</p>
+				</div>
+
+				<div class="sliced-bg-3 text-4xl text-color-3">
+					<p class="typography">
+						My specialization is React. Typescript is a must. And I'm Always curious about new
+						technologies.
+					</p>
+				</div>
+				<div class="w-96 h-96">
+					<ReactLogo />
+				</div>
 			</div>
 			<p class="typography self-center">{middleText}</p>
 		</SplitView>
@@ -61,18 +86,6 @@ import mozek from '../images/mozog_bg.png'
 		--text-light: #fafafa;
 		--bg-secondary: #0a223e;
 		--bg-primary: #0c1217;
-		--spliter: 50vw;
-	}
-
-	:where(.typography) {
-		color: var(--text-color);
-		background-color: var(--text-bg);
-		align-self: flex-start;
-		padding: 0.125rem 0.25rem;
-		width: fit-content;
-	}
-
-	.typography + .typography {
-		margin-top: 2px;
+		--splitter: 50vw;
 	}
 </style>

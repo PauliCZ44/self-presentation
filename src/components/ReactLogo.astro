@@ -1,0 +1,201 @@
+<div class="container" style="--animationPlayState: play">
+	<span class="point-shadow"></span>
+
+	<div class="box">
+		<span class="point"></span>
+		<span class="logo-ring-1"></span>
+		<span class="logo-ring-2"></span>
+		<span class="logo-ring-3"></span>
+	</div>
+</div>
+
+<style lang="scss">
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		border-radius: 50%;
+		position: relative;
+		padding: 2.5rem;
+		transform: scale(0);
+		animation: scale-container 0.75s ease 1s forwards;
+		animation-play-state: var(--animationPlayState);
+		box-shadow: rgba(0, 0, 0, 0.6) 0px 30px 90px, inset rgba(0, 0, 0, 0.6) 0px 30px 90px;
+	}
+
+	.box {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		animation: box-animate 30s linear infinite;
+		animation-play-state: var(--animationPlayState);
+	}
+	.point-shadow {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 15%;
+		height: 15%;
+		border-radius: 50%;
+		transform: translate(-50%, -50%) scale(0);
+		background-color: transparent;
+		box-shadow: rgba(0, 0, 0, 0.85) 15px 60px 40px -7px;
+		animation: point-animate 0.75s ease 1s forwards;
+		animation-play-state: var(--animationPlayState);
+	}
+	.point {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 15%;
+		height: 15%;
+		border-radius: 50%;
+		background-color: #61dafb;
+		background: radial-gradient(circle at 15% 15%, #61dafb, #3294af);
+
+		transform: translate(-50%, -50%) scale(0);
+		animation: point-animate 0.75s ease 1s forwards;
+		animation-play-state: var(--animationPlayState);
+	}
+
+	[class^='logo-ring-'] {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		border-radius: 50%;
+		border: 14px solid transparent;
+	}
+
+	.logo-ring-1 {
+		animation: r1 1.5s ease 1.75s forwards;
+		animation-play-state: var(--animationPlayState);
+	}
+	.logo-ring-2 {
+		animation: r2 1.5s ease 1.85s forwards;
+		animation-play-state: var(--animationPlayState);
+	}
+	.logo-ring-3 {
+		animation: r3 1.5s ease 2s forwards;
+		animation-play-state: var(--animationPlayState);
+	}
+
+	@keyframes box-animate {
+		0% {
+			transform: rotateZ(0);
+		}
+		100% {
+			transform: rotateZ(1turn);
+		}
+	}
+
+	// keyframe scale 0 to 1;
+
+	@keyframes scale-container {
+		0% {
+			transform: scale(0);
+			opacity: 0;
+		}
+		70% {
+			transform: scale(1.1);
+			opacity: 0.5;
+		}
+		100% {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+
+	@keyframes point-animate {
+		0% {
+			transform: translate(-50%, -50%) scale(0);
+		}
+		50% {
+			transform: translate(-50%, -50%) scale(1.2);
+		}
+		100% {
+			transform: translate(-50%, -50%) scale(1);
+		}
+	}
+
+	@keyframes r1 {
+		0% {
+			width: 0;
+			height: 0;
+			opacity: 0;
+			transform: translate(-50%, -50%);
+			border-color: transparent;
+		}
+
+		40%,
+		60% {
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			border-color: #61dafb;
+			transform: translate(-50%, -50%);
+		}
+
+		100% {
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			border-color: #61dafb;
+			transform: translate(-50%, -50%) rotateZ(30deg) rotateY(70deg);
+		}
+	}
+	@keyframes r2 {
+		0% {
+			width: 0;
+			height: 0;
+			opacity: 0;
+			transform: translate(-50%, -50%);
+			border-color: transparent;
+		}
+
+		40%,
+		60% {
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			border-color: #61dafb;
+			transform: translate(-50%, -50%);
+		}
+
+		100% {
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			border-color: #61dafb;
+			transform: translate(-50%, -50%) rotateZ(90deg) rotateY(70deg);
+		}
+	}
+	@keyframes r3 {
+		0% {
+			width: 0;
+			height: 0;
+			opacity: 0;
+			transform: translate(-50%, -50%);
+			border-color: transparent;
+		}
+
+		40%,
+		60% {
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			border-color: #61dafb;
+			transform: translate(-50%, -50%);
+		}
+
+		100% {
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			border-color: #61dafb;
+			transform: translate(-50%, -50%) rotateZ(150deg) rotateY(70deg);
+		}
+	}
+</style>
