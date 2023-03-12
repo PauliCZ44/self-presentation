@@ -1,0 +1,46 @@
+---
+export interface Props {
+	/*
+	 * The color of the shadow - aplied to he background property
+	 */
+	shadowColor?: string
+}
+
+const { shadowColor } = Astro.props
+---
+
+<!-- main Atropos container (required), add your custom class here -->
+<div class="atropos atropos-initializer" style={`--shadowColorAtropos:${shadowColor || '#000'}`}>
+	<!-- scale container (required) -->
+	<div class="atropos-scale">
+		<!-- rotate container (required) -->
+		<div class="atropos-rotate">
+			<!-- inner container (required) -->
+			<div class="atropos-inner">
+				<!-- put your custom content here -->
+			</div>
+			<slot />
+		</div>
+	</div>
+</div>
+
+<script>
+	// import Atropos library
+	import Atropos from 'atropos'
+
+	// Initialize
+	const myAtropos = Atropos({
+		el: '.atropos-initializer',
+		// rest of parameters
+		activeOffset: 10,
+		shadowScale: 1.05,
+		rotateXMax: 5,
+		rotateYMax: 5,
+	})
+</script>
+
+<style is:global>
+	.atropos .atropos-shadow {
+		background: var(--shadowColorAtropos);
+	}
+</style>
