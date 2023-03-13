@@ -7,8 +7,11 @@ specifiers:
   '@preact/signals': ^1.1.3
   astro: ^2.0.4
   atropos: ^1.0.2
+  lax.js: ^2.0.3
+  lax.ts: ^2.0.3
   preact: ^10.6.5
   sass: ^1.58.3
+  simplex-noise: ^4.0.1
   svelte: ^3.54.0
   tailwindcss: ^3.0.24
 
@@ -19,7 +22,10 @@ dependencies:
   '@preact/signals': 1.1.3_preact@10.12.1
   astro: 2.0.10_sass@1.58.3
   atropos: 1.0.2
+  lax.js: 2.0.3
+  lax.ts: 2.0.3
   preact: 10.12.1
+  simplex-noise: 4.0.1
   svelte: 3.55.1
   tailwindcss: 3.2.6
 
@@ -1828,6 +1834,14 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  /lax.js/2.0.3:
+    resolution: {integrity: sha512-q2q0jVRwruvFdQZeeE3OwIszRIkey6CItPmB+BcTUFPgHd2R8LI+bntAI7d2GJEjheu79mzQ++MROkODuZoXlA==}
+    dev: false
+
+  /lax.ts/2.0.3:
+    resolution: {integrity: sha512-M2zsUwAwk+lY8RY8xyAb0KvgcS9muwM3F7Av8ebb/l73TVXAhVXFOpJGcddWkAl1xIkLKS50gU02E5Banq1a4Q==}
+    dev: false
+
   /lilconfig/2.0.6:
     resolution: {integrity: sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==}
     engines: {node: '>=10'}
@@ -2949,6 +2963,10 @@ packages:
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+    dev: false
+
+  /simplex-noise/4.0.1:
+    resolution: {integrity: sha512-zl/+bdSqW7HJOQ0oDbxrNYaF4F5ik0i7M6YOYmEoIJNtg16NpvWaTTM1Y7oV/7T0jFljawLgYPS81Uu2rsfo1A==}
     dev: false
 
   /sisteransi/1.0.5:

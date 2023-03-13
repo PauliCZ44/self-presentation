@@ -12,17 +12,53 @@ import 'atropos/css'
 		href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap"
 		rel="stylesheet"
 	/>
+	<script async src="https://cdn.jsdelivr.net/npm/lax.js"></script>
+	<script src="../scripts/swirl.js"></script>
 	<div class="relative w-full h-full">
 		<div class="content--canvas"></div>
 		<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
-			<AtroposWrapper shadowColor="#00000055">
-				<PavelOnCard />
-			</AtroposWrapper>
+			<div
+				class="transition-transform ease-linear duration-[50ms] rounded-md"
+				style={{ transform: 'translateY(calc(var(--scrollY) * -0.33px)' }}
+			>
+				<AtroposWrapper shadowColor="#00000055">
+					<PavelOnCard />
+				</AtroposWrapper>
+			</div>
 		</div>
 	</div>
 
-	<div class="w-full h-full flex items-center justify-center text-cyan-100">Some text about me</div>
+	<div class="w-full h-full flex items-center justify-center text-cyan-100 gradient-bg">
+		<div class="max-w-prose text-xl font-medium grid gap-8 place-items-center">
+			<p>I'm passionate Front-end developer, mainly focused on developing React applications.</p>
+			<p>
+				My main goal is to create a great user experience and make make the apps accessible,
+				efficient, and user-friendly.
+			</p>
+			<p>
+				I write clean, readable, and maintainable code that adheres to the best industry standards.
+			</p>
+			<p>
+				I am constantly learning and staying up-to-date with the latest technologies and trends to
+				ensure that my work is always up to date.
+			</p>
+		</div>
+	</div>
 </Layout>
+
+<script>
+	function doOnScroll(e: Event) {
+		document.body.style.setProperty('--scrollY', `${e?.target?.scrollTop}`)
+	}
+
+	function handleScroll(e: Event) {
+		// use requestAnimationFrame to throttle scroll callbacks
+		window.requestAnimationFrame(() => doOnScroll(e))
+	}
+	document.body.addEventListener('scroll', function (e) {
+		handleScroll(e)
+	})
+</script>
 
 <style is:global>
 	html,
@@ -40,6 +76,42 @@ import 'atropos/css'
 		transform: translateY(0px) scale(1.05);
 		filter: sepia(40%) contrast(130%) brightness(95%) grayscale(20%);
 	}
-</style>
 
-<script src="../scripts/swirl.js"></script>
+	@keyframes pan-overlay {
+		from {
+			background-position: 0% 0%;
+		}
+
+		to {
+			background-position: 0% -100%;
+		}
+	}
+
+	.gradient-bg {
+		background: repeating-linear-gradient(
+				213deg,
+				rgb(0, 0, 0) 0px,
+				rgb(0, 0, 0) 23px,
+				transparent 23px,
+				transparent 25px
+			),
+			repeating-linear-gradient(
+				164deg,
+				rgb(0, 0, 0) 0px,
+				rgb(0, 0, 0) 23px,
+				transparent 23px,
+				transparent 25px
+			),
+			repeating-linear-gradient(
+				430deg,
+				rgb(0, 0, 0) 0px,
+				rgb(0, 0, 0) 23px,
+				transparent 23px,
+				transparent 25px
+			),
+			linear-gradient(190deg, rgb(131, 86, 251), rgb(72, 127, 246));
+		transition: all 1000ms ease;
+		background-size: 100% 100vw;
+		animation: pan-overlay 32s infinite linear;
+	}
+</style>

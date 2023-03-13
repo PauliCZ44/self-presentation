@@ -4,7 +4,6 @@ import { useEffect } from 'preact/hooks'
 function SplitView({ children }: any) {
 	useEffect(() => {
 		window.addEventListener('click', (e) => {
-			console.log(e)
 			window.document.body.style.setProperty('--splitter', e.clientX + 'px')
 		})
 		return () => {

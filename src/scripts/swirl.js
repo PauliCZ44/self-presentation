@@ -1,12 +1,11 @@
-'use strict'
-import SimplexNoise from 'https://cdn.skypack.dev/simplex-noise@3.0.1'
+import { createNoise3D } from 'simplex-noise'
 
-const { PI, cos, sin, abs, sqrt, pow, round, random, atan2 } = Math
+const { PI, cos, sin, abs, sqrt, pow, round, atan2 } = Math
 const HALF_PI = 0.5 * PI
 const TAU = 2 * PI
 const TO_RAD = PI / 180
 const floor = (n) => n | 0
-const rand = (n) => n * random()
+const rand = (n) => n * Math.random()
 const randIn = (min, max) => rand(max - min) + min
 const randRange = (n) => n - rand(2 * n)
 const fadeIn = (t, m) => t / m
@@ -19,10 +18,11 @@ const dist = (x1, y1, x2, y2) => sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2))
 const angle = (x1, y1, x2, y2) => atan2(y2 - y1, x2 - x1)
 const lerp = (n1, n2, speed) => (1 - speed) * n1 + speed * n2
 
-let particleCount = 500 + window.innerHeight * 0.25 + window.innerWidth * 0.5
-const particlePropCount = 99
+const getParticleCount = () => 200 + parseInt(window.innerWidth * 0.2)
+let particleCount = getParticleCount()
+const particlePropCount = 9
 const particlePropsLength = particleCount * particlePropCount
-const rangeY = 150
+const rangeY = 125
 const baseTTL = 65
 const rangeTTL = 125
 const baseSpeed = 0.005
@@ -55,7 +55,7 @@ let ctx
 let center
 let gradient
 let tick
-let simplex
+let noise3D
 let particleProps
 let positions
 let velocities
@@ -73,11 +73,10 @@ function setup() {
 
 function initParticles() {
 	tick = 0
-	simplex = new SimplexNoise()
+	noise3D = createNoise3D()
 	particleProps = new Float32Array(particlePropsLength)
 
 	let i
-
 	for (i = 0; i < particlePropsLength; i += particlePropCount) {
 		initParticle(i)
 	}
@@ -118,7 +117,7 @@ function updateParticle(i) {
 
 	x = particleProps[i]
 	y = particleProps[i2]
-	n = simplex.noise3D(x * xOff, y * yOff, tick * zOff) * noiseSteps * TAU
+	n = noise3D(x * xOff, y * yOff, tick * zOff) * noiseSteps * TAU
 	vx = lerp(particleProps[i3], cos(n), 0.5)
 	vy = lerp(particleProps[i4], sin(n), 0.5)
 	life = particleProps[i5]
@@ -158,6 +157,10 @@ function checkBounds(x, y) {
 	return x > canvas.a.width || x < 0 || y > canvas.a.height || y < 0
 }
 
+function updateCircleXY(event) {}
+
+const lastMousePosition = { x: 0, y: 0 }
+
 function createCanvas() {
 	container = document.querySelector('.content--canvas')
 	canvas = {
@@ -173,23 +176,26 @@ function createCanvas() {
 	`
 	container.appendChild(canvas.b)
 	ctx = {
-		a: canvas.a.getContext('2d'),
-		b: canvas.b.getContext('2d'),
+		a: canvas.a.getContext('2d', { alpha: false }),
+		b: canvas.b.getContext('2d', { alpha: false }),
 	}
 	center = []
 
-	window.addEventListener('mousemove', function (event) {
+	window.addEventListener('mousemove', (event) => {
 		// Get mouse position relative to canvas
 		const rect = canvas.b.getBoundingClientRect()
-
 		circle.springX = event.clientX
-		circle.springY = event.clientY
+		circle.springY = event.clientY - rect.top
+		lastMousePosition.y = event.clientY
+	})
+	document.body.addEventListener('scroll', (event) => {
+		circle.springY = lastMousePosition.y + event.target.scrollTop
 	})
 }
 
 function resize() {
 	const { innerWidth, innerHeight } = window
-	particleCount = 500 + innerHeight * 0.25 + innerWidth * 0.5
+	particleCount = getParticleCount()
 	canvas.a.width = innerWidth
 	canvas.a.height = innerHeight
 
@@ -199,8 +205,8 @@ function resize() {
 	canvas.b.height = innerHeight
 
 	ctx.b.drawImage(canvas.a, 0, 0)
-	center[0] = 0.5 * canvas.a.width
-	center[1] = 0.5 * canvas.a.height
+	center[0] = parseInt(0.5 * canvas.a.width)
+	center[1] = parseInt(0.5 * canvas.a.height)
 
 	initParticles()
 }
@@ -212,11 +218,11 @@ function renderGlow() {
 	ctx.b.drawImage(canvas.a, 0, 0)
 	ctx.b.restore()
 
-	ctx.b.save()
-	ctx.b.filter = 'blur(4px) brightness(200%)'
-	ctx.b.globalCompositeOperation = 'lighter'
-	ctx.b.drawImage(canvas.a, 0, 0)
-	ctx.b.restore()
+	// ctx.b.save()
+	// ctx.b.filter = 'blur(4px) brightness(200%)'
+	// ctx.b.globalCompositeOperation = 'lighter'
+	// ctx.b.drawImage(canvas.a, 0, 0)
+	// ctx.b.restore()
 }
 
 function drawCursor() {
@@ -260,16 +266,14 @@ function renderToScreen() {
 
 function draw() {
 	tick++
-
 	ctx.a.clearRect(0, 0, canvas.a.width, canvas.a.height)
-
 	ctx.b.fillStyle = backgroundColor
 	ctx.b.fillRect(0, 0, canvas.a.width, canvas.a.height)
-
 	drawParticles()
 	renderGlow()
 	renderToScreen()
 	drawCursor()
+
 	window.requestAnimationFrame(draw)
 }
 

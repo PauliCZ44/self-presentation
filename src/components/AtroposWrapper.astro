@@ -9,17 +9,12 @@ export interface Props {
 const { shadowColor } = Astro.props
 ---
 
-<!-- main Atropos container (required), add your custom class here -->
 <div class="atropos atropos-initializer" style={`--shadowColorAtropos:${shadowColor || '#000'}`}>
-	<!-- scale container (required) -->
 	<div class="atropos-scale">
-		<!-- rotate container (required) -->
 		<div class="atropos-rotate">
-			<!-- inner container (required) -->
 			<div class="atropos-inner">
-				<!-- put your custom content here -->
+				<slot />
 			</div>
-			<slot />
 		</div>
 	</div>
 </div>
@@ -34,8 +29,9 @@ const { shadowColor } = Astro.props
 		// rest of parameters
 		activeOffset: 10,
 		shadowScale: 1.05,
-		rotateXMax: 5,
-		rotateYMax: 5,
+		rotateXMax: 10,
+		rotateYMax: 7,
+		highlight: false,
 	})
 </script>
 
