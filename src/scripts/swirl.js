@@ -65,6 +65,7 @@ let sizes
 let hues
 
 function setup() {
+	noise3D = createNoise3D()
 	createCanvas()
 	resize()
 	initParticles()
@@ -73,7 +74,6 @@ function setup() {
 
 function initParticles() {
 	tick = 0
-	noise3D = createNoise3D()
 	particleProps = new Float32Array(particlePropsLength)
 
 	let i
@@ -188,12 +188,25 @@ function createCanvas() {
 		circle.springY = event.clientY - rect.top
 		lastMousePosition.y = event.clientY
 	})
+
 	document.body.addEventListener('scroll', (event) => {
 		circle.springY = lastMousePosition.y + event.target.scrollTop
 	})
 }
 
+function debounce(cb, delay = 100) {
+	let timeout
+
+	return (...args) => {
+		clearTimeout(timeout)
+		timeout = setTimeout(() => {
+			cb(...args)
+		}, delay)
+	}
+}
+
 function resize() {
+	console.log('resize')
 	const { innerWidth, innerHeight } = window
 	particleCount = getParticleCount()
 	canvas.a.width = innerWidth
@@ -278,4 +291,4 @@ function draw() {
 }
 
 window.addEventListener('load', setup)
-window.addEventListener('resize', resize)
+window.addEventListener('resize', debounce(resize))

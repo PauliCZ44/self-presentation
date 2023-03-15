@@ -1,125 +1,79 @@
-/* https://css-tricks.com/a-fancy-hover-effect-for-your-avatar/ */
-.special-hover {
-	--s: var(--size, 250px); /* image size */
-	--b: 3px; /* border thickness */
-	--c: black; /* border color */
-	--cb: transparent; /* background color */
-	--f: 1; /* initial scale */
-
-	--_g: 50% / calc(100% / var(--f)) 100% no-repeat content-box;
-	--_o: calc((1 / var(--f) - 1) * var(--s) / 2 - var(--b));
-	--mask: linear-gradient(#000 0 0) no-repeat 50% calc(1px - var(--_o)) /
-			calc(100% / var(--f) - 2 * var(--b) - 2px) 50%,
-		radial-gradient(circle closest-side, #000 99%, #0000) var(--_g);
-
-	transition: background 0.2s ease-in;
-}
-
-.special-hover > .avatar {
-	box-sizing: content-box;
-	width: var(--s);
-	aspect-ratio: 1;
-	border-radius: 0 0 999px 999px;
-
-	outline: var(--b) solid var(--c);
-	outline-offset: var(--_o);
-	background: radial-gradient(
-			circle closest-side,
-			var(--cb) calc(100% - -1px - var(--b)),
-			var(--c) calc(100% - var(--b)) 100%,
-			#0000
-		)
-		var(--_g);
-
-	-webkit-mask: var(--mask);
-	transform: scale(var(--f));
-	transition: ease-in-out 0.2s;
-}
-
-.special-hover:hover {
-	--f: 1.1; /* hover scale */
-}
-
-.main-layout {
-	width: 100%;
-	height: 100%;
-	display: grid;
-	align-items: center;
-	justify-items: center;
-	gap: 2rem;
-	/* // Create 2 colums layout where every row is about 80% of page height, and third row is span acros two columns */
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 66vh 66vh 66vh 1fr;
-}
-
 :root {
-	--color-1: #186cb8;
-	--color-2: #2a9a9f;
-	--color-3: #f1b211;
-	--color-4: #e83611;
-	--color-5: #f9002f;
+	--color-1: #487ff6;
+	--color-2: #586afb;
+	--color-3: #8356fb;
+	--color-4: #4231b9;
+	--color-5: #f6f6f6;
+	--fs-sm: clamp(0.75rem, -0.07vw + 0.77rem, 0.71rem);
+	--fs-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+	--fs-md: clamp(1.33rem, 1.18vw + 1.04rem, 1.98rem);
+	--fs-lg: clamp(1.77rem, 2.78vw + 1.07rem, 3.3rem);
+	--fs-xl: clamp(2.35rem, 5.71vw + 0.93rem, 5.49rem);
+	--fs-xxl: clamp(3.13rem, 10.94vw + 0.39rem, 9.15rem);
+	--fs-xxxl: clamp(4.16rem, 20.14vw + -0.87rem, 15.24rem);
+	--accent: 124, 58, 237;
+	--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+
+	--shadow-color: 0deg 0% 3%;
+	--shadow-elevation-low: 0.4px 0.4px 0.6px hsl(var(--shadow-color) / 0.47),
+		0.7px 0.7px 1.1px -1.4px hsl(var(--shadow-color) / 0.44),
+		1.7px 1.7px 2.6px -2.8px hsl(var(--shadow-color) / 0.4);
+	--shadow-elevation-medium: 0.4px 0.4px 0.6px hsl(var(--shadow-color) / 0.5),
+		1.3px 1.3px 2px -0.9px hsl(var(--shadow-color) / 0.47),
+		3.5px 3.4px 5.3px -1.9px hsl(var(--shadow-color) / 0.44),
+		8.7px 8.4px 13.1px -2.8px hsl(var(--shadow-color) / 0.42);
+	--shadow-elevation-high: 0.4px 0.4px 0.6px hsl(var(--shadow-color) / 0.46),
+		2.4px 2.4px 3.7px -0.4px hsl(var(--shadow-color) / 0.45),
+		4.7px 4.5px 7px -0.8px hsl(var(--shadow-color) / 0.44),
+		8px 7.7px 12px -1.2px hsl(var(--shadow-color) / 0.42),
+		13.1px 12.7px 19.7px -1.6px hsl(var(--shadow-color) / 0.41),
+		20.9px 20.2px 31.4px -2px hsl(var(--shadow-color) / 0.4),
+		32.2px 31.2px 48.4px -2.4px hsl(var(--shadow-color) / 0.39),
+		47.9px 46.3px 71.9px -2.8px hsl(var(--shadow-color) / 0.37);
 }
 
-.sliced-bg {
-	font-size: 3rem;
-	font-weight: 900;
-	background: linear-gradient(
-		219deg,
-		var(--color-1) 19%,
-		transparent 19%,
-		transparent 20%,
-		var(--color-2) 20%,
-		var(--color-2) 39.7%,
-		transparent 39.7%,
-		transparent 40%,
-		var(--color-3) 40%,
-		var(--color-3) 59.7%,
-		transparent 59.7%,
-		transparent 60%,
-		var(--color-4) 60%,
-		var(--color-4) 79.7%,
-		transparent 79.7%,
-		transparent 80%,
-		var(--color-5) 80%
-	);
-	background-clip: text;
-	-webkit-background-clip: text;
-	color: transparent;
-}
-
-.sliced-bg-3 {
-	max-width: 33vw;
-	font-weight: 900;
-	background: linear-gradient(
-		242deg,
-		var(--color-1) 32.3%,
-		transparent 32.3%,
-		transparent 33%,
-		var(--color-2) 33%,
-		var(--color-2) 65.3%,
-		transparent 65.3%,
-		transparent 66%,
-		var(--color-3) 66%
-	);
-	background-clip: text;
-	-webkit-background-clip: text;
-	background-clip: text;
-	-webkit-background-clip: text;
-	color: transparent;
-}
-
-.sliced-bg-3[class*='text-color'] .typography {
-	/* mix-blend-mode: difference; */
-}
-
+/* Classes for pallette colors */
 .text-color-1 {
-	color: var(--color-3);
+	color: var(--color-1);
+}
+.text-color-2 {
+	color: var(--color-2);
 }
 
 .text-color-3 {
 	color: var(--color-3);
 }
 
-.text-color-2 {
-	color: var(--color-2);
+.text-color-4 {
+	color: var(--color-4);
+}
+
+/* Classes for font sizes */
+
+.fs-sm {
+	font-size: var(--fs-sm);
+}
+
+.fs-base {
+	font-size: var(--fs-base);
+}
+
+.fs-md {
+	font-size: var(--fs-md);
+}
+
+.fs-lg {
+	font-size: var(--fs-lg);
+}
+
+.fs-xl {
+	font-size: var(--fs-xl);
+}
+
+.fs-xxl {
+	font-size: var(--fs-xxl);
+}
+
+.fs-xxxl {
+	font-size: var(--fs-xxxl);
 }

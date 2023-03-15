@@ -3,6 +3,10 @@ import Layout from '../layouts/Layout.astro'
 import PavelOnCard from '../components/PavelOnCard.astro'
 import AtroposWrapper from '../components/AtroposWrapper.astro'
 import 'atropos/css'
+import '../global.css'
+const wrapperClass = ''
+const headingClasses =
+	'fs-lg mb-4 text-slate-400 group-hover:text-slate-200 font-thin uppercase text-center'
 ---
 
 <Layout title="Hello">
@@ -28,20 +32,51 @@ import 'atropos/css'
 		</div>
 	</div>
 
-	<div class="w-full h-full flex items-center justify-center text-cyan-100 gradient-bg">
-		<div class="max-w-prose text-xl font-medium grid gap-8 place-items-center">
-			<p>I'm passionate Front-end developer, mainly focused on developing React applications.</p>
-			<p>
-				My main goal is to create a great user experience and make make the apps accessible,
-				efficient, and user-friendly.
-			</p>
-			<p>
-				I write clean, readable, and maintainable code that adheres to the best industry standards.
-			</p>
-			<p>
-				I am constantly learning and staying up-to-date with the latest technologies and trends to
-				ensure that my work is always up to date.
-			</p>
+	<div class="w-full min-h-full flex items-center justify-center gradient-bg">
+		<div class="grid-wrapper-boxes h-full grid gap-8 leading-none">
+			<div class="screen-like-box group">
+				<div>
+					<h4 class={headingClasses}>React Enthusiast</h4>
+					<p
+						class="fs-base text-center text-slate-200 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
+					>
+						I'm passionate Front-end developer, mainly focused on developing React applications.
+					</p>
+				</div>
+			</div>
+			<div class="screen-like-box group">
+				<div>
+					<h4 class={headingClasses}>Quality driven</h4>
+					<div
+						class="fs-base text-center text-slate-200 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
+					>
+						My main goal is to create a great user experience and make make the apps accessible,
+						efficient, and user-friendly.
+					</div>
+				</div>
+			</div>
+			<div class="screen-like-box group">
+				<div>
+					<h4 class={headingClasses + 'scale-x-90'}>Professional</h4>
+					<div
+						class="fs-base text-center text-slate-200 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
+					>
+						I write clean, readable, and maintainable code that adheres to the best industry
+						standards.
+					</div>
+				</div>
+			</div>
+			<div class="screen-like-box group">
+				<div>
+					<h4 class={headingClasses}>Continuous learner</h4>
+					<div
+						class="fs-base text-center text-slate-200 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
+					>
+						I am constantly learning and staying up-to-date with the latest technologies and trends
+						to ensure that my work is always up to date.
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </Layout>
@@ -77,14 +112,87 @@ import 'atropos/css'
 		filter: sepia(40%) contrast(130%) brightness(95%) grayscale(20%);
 	}
 
+	/* // random like movement */
 	@keyframes pan-overlay {
-		from {
-			background-position: 0% 0%;
+		0% {
+			background-position: 50% 50%;
 		}
 
-		to {
-			background-position: 0% -100%;
+		20% {
+			background-position: 75% 60%;
 		}
+
+		40% {
+			background-position: 100% 80%;
+		}
+
+		60% {
+			background-position: 75% 70%;
+		}
+
+		80% {
+			background-position: 64% 62%;
+		}
+
+		100% {
+			background-position: 50% 50%;
+		}
+	}
+
+	.grid-wrapper-boxes {
+		max-width: 80vw;
+	}
+
+	.screen-like-box {
+		/* min-width: 577px;
+		width: min(600px, 80vw); */
+		border: 3px solid rgb(var(--primary-rgb) / 80%);
+		border-radius: 1rem;
+		background-color: rgb(var(--primary-rgb) / 15%);
+		overflow: hidden;
+		position: relative;
+		z-index: 10;
+		box-shadow: 0px 0px 8px 3px rgb(var(--primary-rgb) / 60%), var(--shadow-elevation-medium);
+		margin: 20px;
+	}
+
+	.screen-like-box * {
+		transition: all 0.4s ease-in-out;
+	}
+
+	.screen-like-box > div {
+		display: grid;
+		place-items: center;
+		padding-inline: calc(var(--fs-md) * 1);
+		padding-block: calc(var(--fs-md) * 0.75);
+		border: 1px solid rgb(var(--primary-rgb) / 50%);
+		border-radius: 0.6rem;
+		margin: 1rem;
+	}
+
+	.screen-like-box:after,
+	.screen-like-box:before {
+		content: '';
+		height: 3px;
+		position: absolute;
+		z-index: 4;
+		left: 50%;
+		translate: -50% 0%;
+		background-color: white;
+	}
+
+	.screen-like-box:before {
+		width: 20%;
+		top: 0;
+		border-bottom-left-radius: 1rem;
+		border-bottom-right-radius: 1rem;
+	}
+
+	.screen-like-box:after {
+		width: 30%;
+		bottom: 0;
+		border-top-left-radius: 1rem;
+		border-top-right-radius: 1rem;
 	}
 
 	.gradient-bg {
@@ -110,8 +218,7 @@ import 'atropos/css'
 				transparent 25px
 			),
 			linear-gradient(190deg, rgb(131, 86, 251), rgb(72, 127, 246));
-		transition: all 1000ms ease;
-		background-size: 100% 100vw;
+		background-size: 50vw 50vh;
 		animation: pan-overlay 32s infinite linear;
 	}
 </style>
