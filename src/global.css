@@ -3,7 +3,7 @@
 	--color-2: #586afb;
 	--color-3: #8356fb;
 	--color-4: #4231b9;
-	--color-5: #f6f6f6;
+	--color-5: #08d041;
 	--fs-sm: clamp(0.75rem, -0.07vw + 0.77rem, 0.71rem);
 	--fs-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
 	--fs-md: clamp(1.33rem, 1.18vw + 1.04rem, 1.98rem);
@@ -30,6 +30,32 @@
 		20.9px 20.2px 31.4px -2px hsl(var(--shadow-color) / 0.4),
 		32.2px 31.2px 48.4px -2.4px hsl(var(--shadow-color) / 0.39),
 		47.9px 46.3px 71.9px -2.8px hsl(var(--shadow-color) / 0.37);
+
+	--blue-rgb: 45 45 165;
+}
+
+@media (max-width: 640) {
+	html {
+		font-size: 15px;
+	}
+}
+
+html {
+	--primary-rgb: var(--blue-rgb);
+	/* // on screen bigger than 1440px make font size bigger */
+	font-size: 16px;
+}
+
+@media (min-width: 1440px) {
+	html {
+		font-size: 17px;
+	}
+}
+
+@media (min-width: 2400px) {
+	html {
+		font-size: 18px;
+	}
 }
 
 /* Classes for pallette colors */

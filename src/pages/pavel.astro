@@ -4,9 +4,8 @@ import PavelOnCard from '../components/PavelOnCard.astro'
 import AtroposWrapper from '../components/AtroposWrapper.astro'
 import 'atropos/css'
 import '../global.css'
+import SkillCard from '../components/SkillCard.astro'
 const wrapperClass = ''
-const headingClasses =
-	'fs-lg mb-4 text-slate-400 group-hover:text-slate-200 font-thin uppercase text-center'
 ---
 
 <Layout title="Hello">
@@ -18,8 +17,9 @@ const headingClasses =
 	/>
 	<script async src="https://cdn.jsdelivr.net/npm/lax.js"></script>
 	<script src="../scripts/swirl.js"></script>
-	<div class="relative w-full h-full">
+	<div class="relative w-full h-full min-h-[600px] sm:min-h-[1000px]">
 		<div class="content--canvas"></div>
+		<!-- // at small we want to have 60% of 1000 = 600 -->
 		<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
 			<div
 				class="transition-transform ease-linear duration-[50ms] rounded-md"
@@ -33,59 +33,40 @@ const headingClasses =
 	</div>
 
 	<div class="w-full min-h-full flex items-center justify-center gradient-bg">
-		<div class="grid-wrapper-boxes h-full grid gap-8 leading-none">
-			<div class="screen-like-box group">
-				<div>
-					<h4 class={headingClasses}>React Enthusiast</h4>
-					<p
-						class="fs-base text-center text-slate-200 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
-					>
-						I'm passionate Front-end developer, mainly focused on developing React applications.
-					</p>
-				</div>
-			</div>
-			<div class="screen-like-box group">
-				<div>
-					<h4 class={headingClasses}>Quality driven</h4>
-					<div
-						class="fs-base text-center text-slate-200 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
-					>
-						My main goal is to create a great user experience and make make the apps accessible,
-						efficient, and user-friendly.
-					</div>
-				</div>
-			</div>
-			<div class="screen-like-box group">
-				<div>
-					<h4 class={headingClasses + 'scale-x-90'}>Professional</h4>
-					<div
-						class="fs-base text-center text-slate-200 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
-					>
-						I write clean, readable, and maintainable code that adheres to the best industry
-						standards.
-					</div>
-				</div>
-			</div>
-			<div class="screen-like-box group">
-				<div>
-					<h4 class={headingClasses}>Continuous learner</h4>
-					<div
-						class="fs-base text-center text-slate-200 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
-					>
-						I am constantly learning and staying up-to-date with the latest technologies and trends
-						to ensure that my work is always up to date.
-					</div>
-				</div>
-			</div>
+		<div class="grid-wrapper-boxes h-full grid leading-none">
+			<SkillCard
+				id={1}
+				title={'React Enthusiast'}
+				description={"I'm passionate Front-end developer, mainly focused on developing React applications."}
+			/>
+
+			<SkillCard
+				id={2}
+				title={'Quality oriented'}
+				description={'My main goal is to create a great user experience and make make the apps accessible, efficient, and user-friendly.'}
+			/>
+
+			<SkillCard
+				id={3}
+				title={'Professional'}
+				description={'I write clean, readable, and maintainable code that adheres to the best industrystandards.'}
+			/>
+
+			<SkillCard
+				id={4}
+				title={'Continuous learner'}
+				description={'I am constantly learning and staying up-to-date with the latest technologies and trends to ensure that my work is always up to date.'}
+			/>
 		</div>
 	</div>
 </Layout>
 
 <script>
+	import Atropos from 'atropos'
+
 	function doOnScroll(e: Event) {
 		document.body.style.setProperty('--scrollY', `${e?.target?.scrollTop}`)
 	}
-
 	function handleScroll(e: Event) {
 		// use requestAnimationFrame to throttle scroll callbacks
 		window.requestAnimationFrame(() => doOnScroll(e))
@@ -93,6 +74,17 @@ const headingClasses =
 	document.body.addEventListener('scroll', function (e) {
 		handleScroll(e)
 	})
+
+	const cardCount = 4
+	for (let i = 0; i <= cardCount; i++) {
+		Atropos({
+			el: `.atropos-initializer-${i}`,
+			activeOffset: 10,
+			shadowScale: 1.05,
+			rotateXMax: 10,
+			rotateYMax: 10,
+		})
+	}
 </script>
 
 <style is:global>
@@ -140,59 +132,12 @@ const headingClasses =
 	}
 
 	.grid-wrapper-boxes {
-		max-width: 80vw;
-	}
-
-	.screen-like-box {
-		/* min-width: 577px;
-		width: min(600px, 80vw); */
-		border: 3px solid rgb(var(--primary-rgb) / 80%);
-		border-radius: 1rem;
-		background-color: rgb(var(--primary-rgb) / 15%);
-		overflow: hidden;
-		position: relative;
-		z-index: 10;
-		box-shadow: 0px 0px 8px 3px rgb(var(--primary-rgb) / 60%), var(--shadow-elevation-medium);
-		margin: 20px;
-	}
-
-	.screen-like-box * {
-		transition: all 0.4s ease-in-out;
-	}
-
-	.screen-like-box > div {
-		display: grid;
-		place-items: center;
-		padding-inline: calc(var(--fs-md) * 1);
-		padding-block: calc(var(--fs-md) * 0.75);
-		border: 1px solid rgb(var(--primary-rgb) / 50%);
-		border-radius: 0.6rem;
-		margin: 1rem;
-	}
-
-	.screen-like-box:after,
-	.screen-like-box:before {
-		content: '';
-		height: 3px;
-		position: absolute;
-		z-index: 4;
-		left: 50%;
-		translate: -50% 0%;
-		background-color: white;
-	}
-
-	.screen-like-box:before {
-		width: 20%;
-		top: 0;
-		border-bottom-left-radius: 1rem;
-		border-bottom-right-radius: 1rem;
-	}
-
-	.screen-like-box:after {
-		width: 30%;
-		bottom: 0;
-		border-top-left-radius: 1rem;
-		border-top-right-radius: 1rem;
+		max-width: min(90vw, 68rem);
+		min-height: min(75vh, 60rem);
+		grid-template: 1fr 1fr / 1fr 1fr;
+		gap: calc(var(--fs-md) * 1.5);
+		/* grid-template-columns: repeat(auto-fit, minmax(25vw, 28rem)); */
+		/* grid-auto-rows: minmax(25vh, 20rem); */
 	}
 
 	.gradient-bg {

@@ -1,0 +1,97 @@
+---
+export interface Props {
+	title: string
+	description: string
+	id: number
+}
+
+const { title, description, id } = Astro.props
+---
+
+<div
+	class={'atropos skill-card group atropos-initializer-' + id}
+	style={`--shadowColorAtropos: '#000'`}
+>
+	<div class="atropos-scale">
+		<div class="atropos-rotate">
+			<div class="atropos-inner">
+				<div class="screen-like-box">
+					<div class="grid">
+						<h4
+							class="fs-lg mb-4 text-slate-400 group-hover:text-slate-200 font-light uppercase text-center"
+						>
+							{title}
+						</h4>
+						<p
+							class="fs-base text-center text-slate-200 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
+						>
+							{description}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style is:global>
+	.skill-card .atropos-highlight {
+		background-image: radial-gradient(circle at 50%, rgb(var(--primary-rgb) / 5%), transparent 30%);
+	}
+
+	.screen-like-box {
+		/* min-width: 577px;
+		width: min(600px, 80vw); */
+		border: 3px solid rgb(var(--primary-rgb) / 80%);
+		border-radius: 1rem;
+		background-color: rgb(var(--primary-rgb) / 15%);
+		overflow: hidden;
+		position: relative;
+		z-index: 10;
+		box-shadow: 0px 0px 8px 3px rgb(var(--primary-rgb) / 60%), var(--shadow-elevation-medium);
+		margin: 20px;
+		height: calc(100% - 40px);
+		min-height: 20rem;
+	}
+
+	.screen-like-box * {
+		transition: all 0.4s ease-in-out;
+	}
+
+	.screen-like-box > div.grid {
+		display: grid;
+		align-content: space-evenly;
+		place-items: center;
+		padding-inline: calc(var(--fs-md) * 1);
+		padding-block: calc(var(--fs-md) * 0.75);
+		border: 1px solid rgb(var(--primary-rgb) / 50%);
+		border-radius: 0.6rem;
+		margin: 1rem;
+		height: calc(100% - 2rem);
+	}
+
+	.screen-like-box:after,
+	.screen-like-box:before {
+		content: '';
+		height: 3px;
+		position: absolute;
+		z-index: 4;
+		left: 50%;
+		translate: -50% 0%;
+		background-color: white;
+	}
+
+	.screen-like-box:before {
+		width: 20%;
+		top: 0;
+		border-bottom-left-radius: 1rem;
+		border-bottom-right-radius: 1rem;
+	}
+
+	.screen-like-box:after {
+		width: 30%;
+		bottom: 0;
+		border-top-left-radius: 1rem;
+		border-top-right-radius: 1rem;
+	}
+</style>

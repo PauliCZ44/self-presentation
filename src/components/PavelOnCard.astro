@@ -64,13 +64,9 @@ import me from '../images/me.png'
 </script>
 
 <style lang="scss">
-	:root {
-		--blue-rgb: 66 49 185;
-		--primary-rgb: var(--blue-rgb);
-	}
 	.screen {
-		min-width: 577px;
-		width: min(600px, 80vw);
+		min-width: 38rem;
+		width: min(38rem, 96vw);
 		display: flex;
 		border: 3px solid rgb(var(--primary-rgb) / 80%);
 		aspect-ratio: 3/4;
@@ -204,9 +200,10 @@ import me from '../images/me.png'
 		margin-top: 1.5rem;
 		line-height: 1.1;
 		position: relative;
-		font-size: 4.25rem;
+		font-size: 4.15rem;
 		font-weight: 400;
-		transform: scaleX(0.8);
+		transform: scaleX(0.9);
+		letter-spacing: -3px;
 	}
 
 	.screen > .screen-content > .screen-user > .name:before,
@@ -237,7 +234,7 @@ import me from '../images/me.png'
 		letter-spacing: 0.3rem;
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: 640px) {
 		.screen {
 			scale: 0.6;
 			margin-bottom: 0rem;

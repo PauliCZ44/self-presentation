@@ -1,4 +1,5 @@
 import { createNoise3D } from 'simplex-noise'
+import { debounce } from './utils'
 
 const { PI, cos, sin, abs, sqrt, pow, round, atan2 } = Math
 const HALF_PI = 0.5 * PI
@@ -192,17 +193,6 @@ function createCanvas() {
 	document.body.addEventListener('scroll', (event) => {
 		circle.springY = lastMousePosition.y + event.target.scrollTop
 	})
-}
-
-function debounce(cb, delay = 100) {
-	let timeout
-
-	return (...args) => {
-		clearTimeout(timeout)
-		timeout = setTimeout(() => {
-			cb(...args)
-		}, delay)
-	}
 }
 
 function resize() {
