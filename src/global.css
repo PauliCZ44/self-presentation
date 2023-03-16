@@ -42,6 +42,7 @@
 
 html {
 	--primary-rgb: var(--blue-rgb);
+	--primary: rgb(var(--primary-rgb));
 	/* // on screen bigger than 1440px make font size bigger */
 	font-size: 16px;
 }
