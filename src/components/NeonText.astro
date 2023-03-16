@@ -6,12 +6,18 @@
 <style>
 	.neonText {
 		--white: #5b58fa;
+		--c0: #2530fa;
+		--c1: #bcb9e76e;
+		--c2: #09006fa8;
 		transition: transform 0.125s ease;
 		transform: translateY(calc(3rem + var(--scrollY) * -0.1px));
 		color: var(--white);
-		text-shadow: 0 0 7px var(--white), 0 0 10px var(--white), 0 0 21px var(--white),
-			0 0 42px var(--primary), 0 0 82px var(--primary), 0 0 92px var(--primary),
-			0 0 102px var(--primary), 0 0 151px var(--primary);
+		text-shadow: 0 0 7px #ffffff40, 0 0 8px #a9a8fc, 0 0 10px var(--white), 0 0 21px var(--white),
+			0 0 42px var(--primary), 0 0 82px var(--primary), 0 0 92px var(--primary);
+		text-shadow: 0 0 5px var(--c1), 0 0 15px var(--c1), 0 0 20px var(--c1), 0 0 40px var(--c1),
+			0 0 60px var(--c2), 0 0 10px var(--c0), 0 0 98px var(--c2);
+		color: var(--c1);
+		filter: brightness(1.5);
 	}
 
 	h3.neonText {
