@@ -24,13 +24,15 @@ import ArrowButton from '../components/ArrowButton.astro'
 		<div class="content--canvas"></div>
 		<!-- // at small we want to have 60% of 1000 = 600 -->
 		<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
-			<div
-				class="transition-transform ease-linear duration-[50ms] rounded-md"
-				style={{ transform: 'translateY(calc(var(--scrollY) * -0.33px)' }}
-			>
-				<AtroposWrapper shadowColor="#00000055">
-					<PavelOnCard />
-				</AtroposWrapper>
+			<div class="xl:scale-105 2xl:scale-110">
+				<div
+					class="transition-transform ease-linear duration-[50ms] rounded-md"
+					style={{ transform: 'translateY(calc(var(--scrollY) * -0.33px)' }}
+				>
+					<AtroposWrapper shadowColor="#00000055">
+						<PavelOnCard />
+					</AtroposWrapper>
+				</div>
 			</div>
 		</div>
 
