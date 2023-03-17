@@ -3,15 +3,15 @@ import me from '../images/me.png'
 ---
 
 <div class="screen">
-	<div class="img-wrapper">
-		<img class="screen-image" src={me} />
+	<div class="img-wrapper" data-atropos-offset="1" data-atropos-opacity="1;0.8">
+		<img class="screen-image" src={me} alt="Pavel Šťastný image" width="700" height="700" />
 	</div>
 	<div class="screen-overlay"></div>
 	<div class="screen-content">
 		<div class="screen-user">
-			<span class="name" data-value="PAVEL ŠŤASTNÝ">P??EL Š?T?N?A</span>
-			<div class="divider"></div>
-			<p class="title">Front-end developer</p>
+			<span class="name" data-value="PAVEL ŠŤASTNÝ" data-atropos-offset="2">P??EL Š?T?N?A</span>
+			<div class="divider" data-atropos-offset="3"></div>
+			<p class="title" data-atropos-offset="2">Front-end developer</p>
 		</div>
 	</div>
 </div>
@@ -201,7 +201,7 @@ import me from '../images/me.png'
 		line-height: 1.1;
 		position: relative;
 		font-size: 4.15rem;
-		font-weight: 400;
+		font-weight: 500;
 		transform: scaleX(0.9);
 		letter-spacing: -3px;
 	}

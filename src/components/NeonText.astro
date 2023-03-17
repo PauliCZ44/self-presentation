@@ -1,7 +1,10 @@
 ---
 ---
 
-<h3 class="neonText fs-xl">ABOUT</h3>
+<div class="relative">
+	<h3 class="neonText fs-xl">ABOUT</h3>
+	<h3 class="neonText foreground text-white fs-xl">ABOUT</h3>
+</div>
 
 <style>
 	.neonText {
@@ -17,12 +20,20 @@
 		text-shadow: 0 0 5px var(--c1), 0 0 15px var(--c1), 0 0 20px var(--c1), 0 0 40px var(--c1),
 			0 0 60px var(--c2), 0 0 10px var(--c0), 0 0 98px var(--c2);
 		color: var(--c1);
-		filter: brightness(1.5);
+		filter: brightness(1.33);
+		filter: blur(4px);
+	}
+
+	.neonText.foreground {
+		position: absolute;
+		inset: 0;
+		filter: blur(0.5px);
+		color: rgba(255, 255, 255, 0.839);
 	}
 
 	h3.neonText {
 		text-align: center;
-		font-weight: 400;
+		font-weight: 500;
 
 		font-size: 6.2rem;
 		/* animation: pulsate 1.5s infinite alternate; */

@@ -1,0 +1,83 @@
+---
+// Inspiration taken from: https://codepen.io/kasigor555/pen/LYxrqRo
+---
+
+<div class="container">
+	<div class="arrow"></div>
+	<div class="arrow"></div>
+</div>
+
+<style>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	.container {
+		position: relative;
+		width: 28px;
+		height: 40px;
+	}
+
+	.arrow {
+		position: absolute;
+		width: 28px;
+		height: 8px;
+		opacity: 0;
+		transform: scale3d(0.5, 0.5, 0.5);
+		animation: move 5s ease-out infinite;
+	}
+
+	.arrow:first-child {
+		animation: move 5s ease-out 2.5s infinite;
+	}
+
+	.arrow:before,
+	.arrow:after {
+		content: ' ';
+		position: absolute;
+		top: 0;
+		background: #fff;
+		height: 100%;
+		width: 51%;
+	}
+
+	.arrow:before {
+		left: 0;
+		transform: skew(0deg, 30deg);
+	}
+
+	.arrow:after {
+		right: 0;
+		width: 50%;
+		transform: skew(0deg, -30deg);
+	}
+
+	@keyframes pulse {
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes move {
+		25% {
+			opacity: 1;
+		}
+
+		33% {
+			opacity: 1;
+			transform: translateY(10px);
+		}
+
+		67% {
+			opacity: 1;
+			transform: translateY(20px);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateY(30px) scale3d(0.5, 0.5, 0.5);
+		}
+	}
+</style>

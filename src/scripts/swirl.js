@@ -1,22 +1,15 @@
 import { createNoise3D } from 'simplex-noise'
 import { debounce } from './utils'
 
-const { PI, cos, sin, abs, sqrt, pow, round, atan2 } = Math
-const HALF_PI = 0.5 * PI
+const { PI, cos, sin, abs } = Math
 const TAU = 2 * PI
-const TO_RAD = PI / 180
-const floor = (n) => n | 0
+
 const rand = (n) => n * Math.random()
-const randIn = (min, max) => rand(max - min) + min
 const randRange = (n) => n - rand(2 * n)
-const fadeIn = (t, m) => t / m
-const fadeOut = (t, m) => (m - t) / m
 const fadeInOut = (t, m) => {
 	let hm = 0.5 * m
 	return abs(((t + hm) % m) - hm) / hm
 }
-const dist = (x1, y1, x2, y2) => sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2))
-const angle = (x1, y1, x2, y2) => atan2(y2 - y1, x2 - x1)
 const lerp = (n1, n2, speed) => (1 - speed) * n1 + speed * n2
 
 const getParticleCount = () => 200 + parseInt(window.innerWidth * 0.2)
@@ -54,16 +47,9 @@ let container
 let canvas
 let ctx
 let center
-let gradient
 let tick
 let noise3D
 let particleProps
-let positions
-let velocities
-let lifeSpans
-let speeds
-let sizes
-let hues
 
 function setup() {
 	noise3D = createNoise3D()
@@ -158,8 +144,6 @@ function checkBounds(x, y) {
 	return x > canvas.a.width || x < 0 || y > canvas.a.height || y < 0
 }
 
-function updateCircleXY(event) {}
-
 const lastMousePosition = { x: 0, y: 0 }
 
 function createCanvas() {
@@ -181,7 +165,6 @@ function createCanvas() {
 		b: canvas.b.getContext('2d', { alpha: false }),
 	}
 	center = []
-
 	window.addEventListener('mousemove', (event) => {
 		// Get mouse position relative to canvas
 		const rect = canvas.b.getBoundingClientRect()
@@ -189,7 +172,6 @@ function createCanvas() {
 		circle.springY = event.clientY - rect.top
 		lastMousePosition.y = event.clientY
 	})
-
 	document.body.addEventListener('scroll', (event) => {
 		circle.springY = lastMousePosition.y + event.target.scrollTop
 	})

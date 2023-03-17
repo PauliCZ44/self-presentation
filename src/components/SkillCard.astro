@@ -17,12 +17,16 @@ const { title, description, id } = Astro.props
 			<div class="atropos-inner">
 				<div class="screen-like-box">
 					<div class="grid">
-						<h4 class="fs-lg text-gray-50 group-hover:text-white font-light uppercase text-center">
+						<h4
+							class="fs-lg text-gray-50 group-hover:text-white font-medium uppercase text-center"
+							data-atropos-offset="1"
+						>
 							{title}
 						</h4>
 						<div class="divider"></div>
 						<p
-							class="fs-base text-center text-slate-300 font-medium opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
+							data-atropos-offset="-1"
+							class="fs-base text-center text-slate-300 font-normal opacity-80 mb-2 group-hover:opacity-90 group-hover:text-slate-100"
 						>
 							{description}
 						</p>
@@ -59,6 +63,7 @@ const { title, description, id } = Astro.props
 
 	.screen-like-box > div.grid {
 		display: grid;
+		gap: 1rem;
 		align-content: space-evenly;
 		place-items: center;
 		padding-inline: calc(var(--fs-md) * 1);

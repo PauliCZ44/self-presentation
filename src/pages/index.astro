@@ -7,7 +7,7 @@ import '../global.css'
 import SkillCard from '../components/SkillCard.astro'
 import Projects from '../components/Projects.astro'
 import NeonText from '../components/NeonText.astro'
-const wrapperClass = ''
+import ArrowButton from '../components/ArrowButton.astro'
 ---
 
 <Layout title="Hello">
@@ -20,7 +20,7 @@ const wrapperClass = ''
 	<script async src="https://cdn.jsdelivr.net/npm/lax.js"></script>
 	<script src="../scripts/swirl.js"></script>
 	<script src="../scripts/canvasCursor.js"></script>
-	<div class="relative w-full h-full min-h-[600px] sm:min-h-[1000px]">
+	<div class="relative w-full h-full min-h-[600px] sm:min-h-[1000px]" id="home">
 		<div class="content--canvas"></div>
 		<!-- // at small we want to have 60% of 1000 = 600 -->
 		<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
@@ -33,13 +33,20 @@ const wrapperClass = ''
 				</AtroposWrapper>
 			</div>
 		</div>
+
+		<!-- // Absoulute positinoed and center on the page -->
+		<div class="arrow-container-wrapper">
+			<button class="arrow-container" id="scroll-to-about" aria-label="scroll to about section">
+				<ArrowButton />
+			</button>
+		</div>
 	</div>
 
-	<div class="py-10 bg-transparent overflow-hidden">
+	<div class="pt-10 bg-transparent overflow-hidden" id="about">
 		<NeonText />
 	</div>
 
-	<div class="w-full min-h-full relative">
+	<div class="w-full min-h-full relative" id="skills">
 		<div class="bg-cursor"></div>
 		<div class="grid-wrapper-boxes leading-none">
 			<SkillCard
@@ -97,6 +104,13 @@ const wrapperClass = ''
 		document.body.style.setProperty('--innerWidth', `${window.innerWidth}`)
 	})
 
+	// selecet scroll-to-about button
+	const scrollToAboutButton = document.getElementById('scroll-to-about')
+	scrollToAboutButton?.addEventListener('click', function () {
+		const aboutSection = document.getElementById('about')
+		aboutSection?.scrollIntoView({ behavior: 'smooth' })
+	})
+
 	const cardCount = 4
 	for (let i = 0; i <= cardCount; i++) {
 		Atropos({
@@ -124,6 +138,36 @@ const wrapperClass = ''
 	.atropos:hover .screen-image {
 		transform: translateY(0px) scale(1.05);
 		filter: sepia(40%) contrast(130%) brightness(95%) grayscale(20%);
+	}
+
+	.arrow-container-wrapper {
+		transform: translateY(calc(var(--scrollY) * -0.15px + 2px));
+		transition: transform 50ms linear;
+	}
+
+	.arrow-container {
+		transition: transform 350ms ease-in-out;
+		z-index: 3;
+		padding-top: 5px;
+		opacity: 0.8;
+		position: absolute;
+		bottom: 1rem;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 56px;
+		height: 56px;
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		border: 1px solid rgba(255, 255, 255);
+		border-radius: 50%;
+	}
+
+	.arrow-container:hover,
+	.arrow-container:focus-visible {
+		opacity: 1;
+		transform: scale(1.04) translateX(-50%) translateY(-2px);
 	}
 
 	/* // random like movement */
