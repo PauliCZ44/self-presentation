@@ -1,5 +1,6 @@
-import { debounce } from './utils'
-const backgroundColor = 'hsla(267,52%,4%,1)'
+import { debounce, throttle } from './utils'
+// const backgroundColor = 'hsla(267,52%,7%,1)'
+const backgroundColor = 'hsla(232,52%,10%,1)'
 
 const circle = {
 	x: 0,
@@ -55,10 +56,11 @@ function createCanvas() {
 		lastMousePosition.y = event.clientY
 	})
 
-	document.body.addEventListener('scroll', (event) => {
-		console.log(event)
+	function updateCircleSpringY(event) {
 		circle.springY = lastMousePosition.y + event.target.scrollTop - window.innerHeight
-	})
+	}
+
+	document.body.addEventListener('scroll', throttle(updateCircleSpringY, 20))
 }
 
 function resize() {
@@ -134,4 +136,4 @@ function draw() {
 }
 
 window.addEventListener('load', setup)
-window.addEventListener('resize', debounce(resize))
+window.addEventListener('resize', debounce(resize, 750))

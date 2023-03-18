@@ -1,5 +1,5 @@
 import { createNoise3D } from 'simplex-noise'
-import { debounce } from './utils'
+import { debounce, throttle } from './utils'
 
 const { PI, cos, sin, abs } = Math
 const TAU = 2 * PI
@@ -12,7 +12,12 @@ const fadeInOut = (t, m) => {
 }
 const lerp = (n1, n2, speed) => (1 - speed) * n1 + speed * n2
 
-const getParticleCount = () => 200 + parseInt(window.innerWidth * 0.2)
+const getParticleCount = () => {
+	if (window.innerWidth < 768) {
+		return 150
+	}
+	return 200 + parseInt(window.innerWidth * 0.2)
+}
 let particleCount = getParticleCount()
 const particlePropCount = 9
 const particlePropsLength = particleCount * particlePropCount
@@ -52,7 +57,9 @@ let noise3D
 let particleProps
 
 function setup() {
-	noise3D = createNoise3D()
+	if (noise3D === undefined) {
+		noise3D = createNoise3D()
+	}
 	createCanvas()
 	resize()
 	initParticles()
@@ -172,22 +179,41 @@ function createCanvas() {
 		circle.springY = event.clientY - rect.top
 		lastMousePosition.y = event.clientY
 	})
-	document.body.addEventListener('scroll', (event) => {
-		circle.springY = lastMousePosition.y + event.target.scrollTop
-	})
+
+	function updateCircleSpringY(event) {
+		circle.springY = lastMousePosition.y + event.target.scrollTop - window.innerHeight
+	}
+
+	document.body.addEventListener('scroll', throttle(updateCircleSpringY, 20))
 }
 
+const lastSize = { width: 0, height: 0 }
 function resize() {
-	console.log('resize')
-	const { innerWidth, innerHeight } = window
+	const { width, height } = document.getElementById('home').getBoundingClientRect()
+	// round to avoid unnecessary resize
+	const current = {
+		width: Math.ceil(width),
+		height: Math.ceil(height),
+	}
+	// Avoid esize when size is the same or changed less than a pixel
+	if (lastSize.width === current.width && lastSize.height === current.height) return
+	lastSize.width = current.width
+	lastSize.height = current.height
+	console.log('"resize"', 'resize')
+	// const res = document.getElementById('resizer')
+	// const logger = document.getElementById('logger')
+	// res.textContent = parseInt(res.textContent) + 1
+	// get width and height of an elemetn with id "home"
+	// logger.textContent = `width: ${current.width}, height: ${current.height}, resizing ${resizing}`
+
 	particleCount = getParticleCount()
-	canvas.a.width = innerWidth
-	canvas.a.height = innerHeight
+	canvas.a.width = current.width
+	canvas.a.height = current.height
 
 	ctx.a.drawImage(canvas.b, 0, 0)
 
-	canvas.b.width = innerWidth
-	canvas.b.height = innerHeight
+	canvas.b.width = current.width
+	canvas.b.height = current.height
 
 	ctx.b.drawImage(canvas.a, 0, 0)
 	center[0] = parseInt(0.5 * canvas.a.width)
@@ -263,4 +289,4 @@ function draw() {
 }
 
 window.addEventListener('load', setup)
-window.addEventListener('resize', debounce(resize))
+window.addEventListener('resize', debounce(resize, 750))
