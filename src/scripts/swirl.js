@@ -14,9 +14,9 @@ const lerp = (n1, n2, speed) => (1 - speed) * n1 + speed * n2
 
 const getParticleCount = () => {
 	if (window.innerWidth < 768) {
-		return 150
+		return 75
 	}
-	return 200 + parseInt(window.innerWidth * 0.2)
+	return 300 + parseInt(window.innerWidth * 0.2)
 }
 let particleCount = getParticleCount()
 const particlePropCount = 9
@@ -41,7 +41,7 @@ const circle = {
 	y: 0,
 	radius: 200,
 	tension: 0.1,
-	friction: 0.4,
+	friction: 0.45,
 	springX: 0,
 	springY: 0,
 	velocityX: 0,
@@ -172,19 +172,35 @@ function createCanvas() {
 		b: canvas.b.getContext('2d', { alpha: false }),
 	}
 	center = []
-	window.addEventListener('mousemove', (event) => {
-		// Get mouse position relative to canvas
-		const rect = canvas.b.getBoundingClientRect()
-		circle.springX = event.clientX
-		circle.springY = event.clientY - rect.top
-		lastMousePosition.y = event.clientY
-	})
 
-	function updateCircleSpringY(event) {
-		circle.springY = lastMousePosition.y + event.target.scrollTop - window.innerHeight
+	function updateCircle(e) {
+		const rect = canvas.b.getBoundingClientRect()
+		circle.springX = e.clientX - rect.left
+		circle.springY = e.clientY - rect.top
+		lastMousePosition.y = e.clientY
 	}
 
-	document.body.addEventListener('scroll', throttle(updateCircleSpringY, 20))
+	window.addEventListener('pointermove', (e) => {
+		// Get mouse position relative to canvas
+		updateCircle(e)
+	})
+
+	window.addEventListener('pointerdown', (e) => {
+		// Get mouse position relative to canvas
+		updateCircle(e)
+	})
+
+	window.addEventListener('pointerup', (e) => {
+		setTimeout(() => {
+			updateCircle(e)
+		}, 10)
+	})
+
+	// function updateCircleSpringY(event) {
+	// 	circle.springY = lastMousePosition.y + event.target.scrollTop - window.innerHeight
+	// }
+
+	// document.body.addEventListener('scroll', throttle(updateCircleSpringY, 20))
 }
 
 const lastSize = { width: 0, height: 0 }
@@ -259,9 +275,9 @@ function drawCursor() {
 	ctx.b.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2)
 
 	const gradient = ctx.b.createLinearGradient(0, 0, canvas.b.width, canvas.b.height)
-	gradient.addColorStop(0, 'hsla(220, 100%, 50%, 0.2)')
-	gradient.addColorStop(0.5, 'hsla(240, 100%, 50%, 0.2)')
-	gradient.addColorStop(1, 'hsla(290, 100%, 50%, 0.2)')
+	gradient.addColorStop(0, 'hsla(235, 100%, 50%, 0.25)')
+	gradient.addColorStop(0.5, 'hsla(260, 100%, 50%, 0.3)')
+	gradient.addColorStop(1, 'hsla(290, 100%, 50%, 0.25)')
 
 	ctx.b.fillStyle = gradient
 	ctx.b.fill()

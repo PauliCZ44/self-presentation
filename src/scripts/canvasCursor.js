@@ -7,7 +7,7 @@ const circle = {
 	y: 0,
 	radius: 200,
 	tension: 0.1,
-	friction: 0.4,
+	friction: 0.45,
 	springX: 0,
 	springY: 0,
 	velocityX: 0,
@@ -48,19 +48,39 @@ function createCanvas() {
 	}
 	center = []
 
-	window.addEventListener('mousemove', (event) => {
+	window.addEventListener('pointermove', (event) => {
 		// Get mouse position relative to canvas
+		const rect = canvas.b.getBoundingClientRect()
+		circle.springX = event.clientX - rect.left
+		circle.springY = event.clientY - rect.top
+		lastMousePosition.y = event.clientY
+	})
+
+	window.addEventListener('pointerdown', (event) => {
+		// Get mouse position relative to canvas
+
 		const rect = canvas.b.getBoundingClientRect()
 		circle.springX = event.clientX
 		circle.springY = event.clientY - rect.top
 		lastMousePosition.y = event.clientY
 	})
 
-	function updateCircleSpringY(event) {
-		circle.springY = lastMousePosition.y + event.target.scrollTop - window.innerHeight
-	}
+	window.addEventListener('pointerup', (event) => {
+		console.log(event, 'pointerup')
+		// Get mouse position relative to canvas
+		setTimeout(() => {
+			const rect = canvas.b.getBoundingClientRect()
+			circle.springX = event.clientX
+			circle.springY = event.clientY - rect.top
+			lastMousePosition.y = event.clientY
+		}, 10)
+	})
 
-	document.body.addEventListener('scroll', throttle(updateCircleSpringY, 20))
+	// function updateCircleSpringY(event) {
+	// 	circle.springY = lastMousePosition.y + event.target.scrollTop - window.innerHeight
+	// }
+
+	// document.body.addEventListener('scroll', throttle(updateCircleSpringY, 20))
 }
 
 function resize() {
