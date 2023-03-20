@@ -1,5 +1,6 @@
 import { createNoise3D } from 'simplex-noise'
 import { debounce, throttle } from './utils'
+import { CONFIG } from '../constants'
 
 const { PI, cos, sin, abs } = Math
 const TAU = 2 * PI
@@ -34,7 +35,7 @@ const noiseSteps = 20
 const xOff = 0.00125
 const yOff = 0.00125
 const zOff = 0.00025
-const backgroundColor = 'hsla(260,40%,5%,1)'
+const backgroundColor = 'hsla(' + (CONFIG.baseHue + 30) + ',52%,10%,1)'
 
 const circle = {
 	x: 0,

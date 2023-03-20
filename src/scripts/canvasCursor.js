@@ -1,6 +1,7 @@
 import { debounce, throttle } from './utils'
+import { CONFIG } from '../constants'
 // const backgroundColor = 'hsla(267,52%,7%,1)'
-const backgroundColor = 'hsla(232,52%,10%,1)'
+const backgroundColor = 'hsla(' + CONFIG.baseHue + ',52%,10%,1)'
 
 const circle = {
 	x: 0,
@@ -48,39 +49,28 @@ function createCanvas() {
 	}
 	center = []
 
-	window.addEventListener('pointermove', (event) => {
-		// Get mouse position relative to canvas
+	function updateCircle(e) {
 		const rect = canvas.b.getBoundingClientRect()
-		circle.springX = event.clientX - rect.left
-		circle.springY = event.clientY - rect.top
-		lastMousePosition.y = event.clientY
+		circle.springX = e.clientX - rect.left
+		circle.springY = e.clientY - rect.top
+		lastMousePosition.y = e.clientY
+	}
+
+	window.addEventListener('pointermove', (e) => {
+		// Get mouse position relative to canvas
+		updateCircle(e)
 	})
 
-	window.addEventListener('pointerdown', (event) => {
+	window.addEventListener('pointerdown', (e) => {
 		// Get mouse position relative to canvas
-
-		const rect = canvas.b.getBoundingClientRect()
-		circle.springX = event.clientX
-		circle.springY = event.clientY - rect.top
-		lastMousePosition.y = event.clientY
+		updateCircle(e)
 	})
 
-	window.addEventListener('pointerup', (event) => {
-		console.log(event, 'pointerup')
-		// Get mouse position relative to canvas
+	window.addEventListener('pointerup', (e) => {
 		setTimeout(() => {
-			const rect = canvas.b.getBoundingClientRect()
-			circle.springX = event.clientX
-			circle.springY = event.clientY - rect.top
-			lastMousePosition.y = event.clientY
+			updateCircle(e)
 		}, 10)
 	})
-
-	// function updateCircleSpringY(event) {
-	// 	circle.springY = lastMousePosition.y + event.target.scrollTop - window.innerHeight
-	// }
-
-	// document.body.addEventListener('scroll', throttle(updateCircleSpringY, 20))
 }
 
 function resize() {

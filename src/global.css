@@ -1,9 +1,4 @@
 :root {
-	--color-1: #487ff6;
-	--color-2: #586afb;
-	--color-3: #8356fb;
-	--color-4: #4231b9;
-	--color-5: #08d041;
 	--fs-sm: clamp(0.75rem, -0.07vw + 0.77rem, 0.71rem);
 	--fs-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
 	--fs-md: clamp(1.33rem, 1.18vw + 1.04rem, 1.98rem);
@@ -67,22 +62,6 @@ h6 {
 	html {
 		font-size: 18px;
 	}
-}
-
-/* Classes for pallette colors */
-.text-color-1 {
-	color: var(--color-1);
-}
-.text-color-2 {
-	color: var(--color-2);
-}
-
-.text-color-3 {
-	color: var(--color-3);
-}
-
-.text-color-4 {
-	color: var(--color-4);
 }
 
 /* Classes for font sizes */
