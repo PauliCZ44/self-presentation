@@ -1,3 +1,3 @@
 export const CONFIG = {
-	baseHue: '230deg',
+	baseHue: 210,
 } as const

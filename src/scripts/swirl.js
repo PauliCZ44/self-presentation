@@ -29,13 +29,13 @@ const baseSpeed = 0.005
 const rangeSpeed = 0.25
 const baseRadius = 1
 const rangeRadius = 4
-const baseHue = 220
-const rangeHue = 100
+let baseHue = CONFIG.baseHue - 10
+const rangeHue = 110
 const noiseSteps = 20
 const xOff = 0.00125
 const yOff = 0.00125
 const zOff = 0.00025
-const backgroundColor = 'hsla(' + (CONFIG.baseHue + 30) + ',52%,10%,1)'
+const backgroundColor = 'hsla(' + (baseHue + 30) + ',52%,10%,1)'
 
 const circle = {
 	x: 0,
@@ -65,6 +65,23 @@ function setup() {
 	resize()
 	initParticles()
 	draw()
+
+	const htmlElement = window.document.querySelector('html')
+	baseHue = htmlElement.style.getPropertyValue('--baseHue')
+
+	const styleObserver = new MutationObserver((mutations) => {
+		const currentValue = mutations[0].target.style.getPropertyValue('--baseHue')
+
+		if (currentValue !== baseHue) {
+			baseHue = currentValue
+			resize()
+		}
+	})
+
+	styleObserver.observe(htmlElement, {
+		attributes: true,
+		attributeFilter: ['style'],
+	})
 }
 
 function initParticles() {
@@ -216,7 +233,6 @@ function resize() {
 	if (lastSize.width === current.width && lastSize.height === current.height) return
 	lastSize.width = current.width
 	lastSize.height = current.height
-	console.log('"resize"', 'resize')
 	// const res = document.getElementById('resizer')
 	// const logger = document.getElementById('logger')
 	// res.textContent = parseInt(res.textContent) + 1
@@ -276,9 +292,9 @@ function drawCursor() {
 	ctx.b.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2)
 
 	const gradient = ctx.b.createLinearGradient(0, 0, canvas.b.width, canvas.b.height)
-	gradient.addColorStop(0, 'hsla(235, 100%, 50%, 0.25)')
-	gradient.addColorStop(0.5, 'hsla(260, 100%, 50%, 0.3)')
-	gradient.addColorStop(1, 'hsla(290, 100%, 50%, 0.25)')
+	gradient.addColorStop(0, `hsla(${baseHue || 0}, 100%, 50%, 0.25)`)
+	gradient.addColorStop(0.5, `hsla(${baseHue || 0 + 30}, 100%, 50%, 0.3)`)
+	gradient.addColorStop(1, `hsla(${baseHue || 0 + 60}, 100%, 50%, 0.25)`)
 
 	ctx.b.fillStyle = gradient
 	ctx.b.fill()

@@ -121,6 +121,27 @@ import ArrowButton from '../components/ArrowButton.astro'
 			rotateTouch: 'scroll-y',
 		})
 	}
+	let css = 'font-size: 1.25rem;'
+	console.log('%cHello there! 👋', css)
+	console.log(
+		'%cI am Pavel Šťastný, a Front-end developer ⚛ from Czech Republic.',
+		'font-weight: bold; font-size: 1.33rem;'
+	)
+	console.log('%cYou can look at the source code of this website', css)
+	console.log(
+		'%cPage is made with astro framework. Some of the UI elements were inspired by Hyperplexed coepepens.',
+		'font-size: 1.1rem;'
+	)
+	// Make color red
+	console.log('%cI hope you like it! 🤩', css)
+	console.log(
+		'%cFeel free to change baseHue variable at the html element to see changes',
+		'color: hotpink; font-size: 1.5rem;'
+	)
+	console.log(
+		'%cIf you want to contact me, you can find my contact details on the bottom of the page. 📧',
+		css
+	)
 </script>
 
 <style is:global>

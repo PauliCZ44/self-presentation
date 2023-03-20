@@ -68,14 +68,14 @@ import me from '../images/me.png'
 		min-width: 38rem;
 		width: min(38rem, 96vw);
 		display: flex;
-		border: 3px solid rgb(var(--primary-rgb) / 80%);
+		border: 3px solid hsl(var(--primary-hsl) / 80%);
 		aspect-ratio: 3/4;
 		border-radius: 1rem;
-		background-color: rgb(var(--primary-rgb) / 15%);
+		background-color: hsl(var(--primary-hsl) / 15%);
 		overflow: hidden;
 		position: relative;
 		z-index: 10;
-		box-shadow: 0px 0px 8px 3px rgb(var(--primary-rgb) / 60%), var(--shadow-elevation-high);
+		box-shadow: 0px 0px 8px 3px hsl(var(--primary-hsl) / 60%), var(--shadow-elevation-medium);
 		margin: 100px;
 	}
 
@@ -116,8 +116,8 @@ import me from '../images/me.png'
 
 	.screen-overlay {
 		background: linear-gradient(
-			rgb(var(--primary-rgb) / 0.15),
-			rgb(var(--primary-rgb) / 0.15) 3px,
+			hsl(var(--primary-hsl) / 0.15),
+			hsl(var(--primary-hsl) / 0.15) 3px,
 			transparent 3px,
 			transparent 9px
 		);
@@ -162,7 +162,7 @@ import me from '../images/me.png'
 		z-index: 3;
 		margin: 1rem;
 		padding-bottom: 6rem;
-		border: 1px solid rgb(var(--primary-rgb) / 50%);
+		border: 1px solid hsl(var(--primary-hsl) / 50%);
 		border-radius: 0.6rem;
 	}
 
@@ -183,9 +183,9 @@ import me from '../images/me.png'
 	.screen > .screen-content .divider {
 		height: 3px;
 		width: 33%;
-		background-color: rgb(var(--primary-rgb));
+		background-color: hsl(var(--primary-hsl));
 		border-radius: 1rem;
-		box-shadow: 0px 0px 8px 3px rgb(var(--primary-rgb) / 60%);
+		box-shadow: 0px 0px 8px 3px hsl(var(--primary-hsl) / 60%);
 		height: 2px;
 	}
 

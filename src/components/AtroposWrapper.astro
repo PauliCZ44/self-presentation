@@ -23,7 +23,7 @@ const { shadowColor } = Astro.props
 	// import Atropos library
 	import Atropos from 'atropos'
 	// Initialize
-	const myAtropos2 = Atropos({
+	Atropos({
 		el: '.atropos-initializer',
 		// rest of parameters
 		activeOffset: 10,
@@ -32,6 +32,7 @@ const { shadowColor } = Astro.props
 		rotateYMax: 7,
 		highlight: false,
 		rotateTouch: 'scroll-y',
+		shadow: false,
 	})
 </script>
 

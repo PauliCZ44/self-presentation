@@ -1,7 +1,10 @@
 import { debounce, throttle } from './utils'
 import { CONFIG } from '../constants'
 // const backgroundColor = 'hsla(267,52%,7%,1)'
-const backgroundColor = 'hsla(' + CONFIG.baseHue + ',52%,10%,1)'
+
+let baseHue = CONFIG.baseHue - 10
+
+const backgroundColor = 'hsla(' + (baseHue + 30) + ',52%,10%,1)'
 
 const circle = {
 	x: 0,
@@ -25,6 +28,23 @@ function setup() {
 	createCanvas()
 	resize()
 	draw()
+
+	const htmlElement = window.document.querySelector('html')
+	baseHue = htmlElement.style.getPropertyValue('--baseHue')
+
+	const styleObserver = new MutationObserver((mutations) => {
+		const currentValue = mutations[0].target.style.getPropertyValue('--baseHue')
+
+		if (currentValue !== baseHue) {
+			baseHue = currentValue
+			resize()
+		}
+	})
+
+	styleObserver.observe(htmlElement, {
+		attributes: true,
+		attributeFilter: ['style'],
+	})
 }
 
 const lastMousePosition = { x: 0, y: 0 }
@@ -125,9 +145,9 @@ function drawCursor() {
 	ctx.b.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2)
 
 	const gradient = ctx.b.createLinearGradient(-15, -30, canvas.b.width, canvas.b.height)
-	gradient.addColorStop(0, 'hsla(210, 100%, 50%, 0.15)')
-	gradient.addColorStop(0.5, 'hsla(230, 100%, 50%, 0.15)')
-	gradient.addColorStop(1, 'hsla(270, 100%, 50%, 0.15)')
+	gradient.addColorStop(0, `hsla(${baseHue || 0}, 100%, 50%, 0.15)`)
+	gradient.addColorStop(0.6, `hsla(${baseHue || 0 + 20}, 100%, 50%, 0.2)`)
+	gradient.addColorStop(1, `hsla(${baseHue || 0 + 60}, 100%, 50%, 0.15)`)
 
 	ctx.b.fillStyle = gradient
 	ctx.b.fill()
