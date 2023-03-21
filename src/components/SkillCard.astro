@@ -16,6 +16,7 @@ const { title, description, id } = Astro.props
 		<div class="atropos-rotate">
 			<div class="atropos-inner">
 				<div class="screen-like-box">
+					<div class="box-overlay bg-gradient-custom group-hover:brightness-90"></div>
 					<div class="grid">
 						<h4
 							class="fs-lg text-gray-50 group-hover:text-white font-medium uppercase text-center"
@@ -38,6 +39,15 @@ const { title, description, id } = Astro.props
 </div>
 
 <style is:global>
+	.box-overlay {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		z-index: 0;
+		left: 0px;
+		top: 0px;
+	}
+
 	.skill-card .atropos-highlight {
 		background-image: radial-gradient(circle at 50%, hsl(var(--primary-hsl) / 5%), transparent 30%);
 	}
@@ -57,12 +67,14 @@ const { title, description, id } = Astro.props
 	}
 
 	.screen-like-box * {
+		/* Not best practice but will do */
 		transition: all 0.4s ease-in-out;
 	}
 
 	.screen-like-box > div.grid {
 		display: grid;
 		gap: 2rem;
+		position: relative;
 		align-content: space-evenly;
 		place-items: center;
 		padding-inline: calc(var(--fs-md) * 1);

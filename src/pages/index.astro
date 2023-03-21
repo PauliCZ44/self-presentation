@@ -6,20 +6,19 @@ import 'atropos/css'
 import '../global.css'
 import SkillCard from '../components/SkillCard.astro'
 import Projects from '../components/Projects.astro'
-import NeonText from '../components/NeonText.astro'
+import SectionHeader from '../components/SectionHeader.astro'
 import ArrowButton from '../components/ArrowButton.astro'
 ---
 
 <Layout title="Pavel Šťastný Portfolio">
 	<script src="../scripts/swirl.js"></script>
 	<script src="../scripts/canvasCursor.js"></script>
-	<div class="home-warpper relative w-full h-full min-h-[600px] sm:min-h-[1000px]" id="home">
+	<div class="home-warpper relative w-full h-full min-h-[600px] sm:min-h-[63rem]" id="home">
 		<div class="content--canvas"></div>
-		<!-- // at small we want to have 60% of 1000 = 600 -->
 		<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
 			<!-- <p class="fs-ms text-white fixed top-4 left-4" id="resizer">0</p>
 			<p class="fs-ms text-white fixed top-8 left-4" id="logger"></p> -->
-			<div class="scale-[0.45] sm:scale-60 md:scale-100 xl:scale-105 2xl:scale-110">
+			<div class="scale-[0.6] sm:scale-90 md:scale-100 xl:scale-105 2xl:scale-110">
 				<div
 					class="transition-transform ease-linear duration-[50ms] rounded-md"
 					style={{ transform: 'translateY(calc(var(--scrollY) * -0.33px)' }}
@@ -39,8 +38,8 @@ import ArrowButton from '../components/ArrowButton.astro'
 		</div>
 	</div>
 
-	<div class="pt-10 bg-transparent overflow-hidden" id="about">
-		<NeonText />
+	<div class="py-5 bg-gradient-custom overflow-hidden" id="about">
+		<SectionHeader title={'ABOUT'} />
 	</div>
 
 	<div class="w-full relative" id="skills">
@@ -70,177 +69,203 @@ import ArrowButton from '../components/ArrowButton.astro'
 				description={'I am constantly learning and staying up-to-date with the latest technologies and trends to ensure that my work is always up to date.'}
 			/>
 		</div>
+
+		<div class="pt-4 pb-8 relative">
+			<h4 class="fs-md text-slate-200 text-center tech-stack">My tech stack</h4>
+
+			<section class="fs-base font-mono mb-2 text-slate-300 max-w-[70rem] px-6 mx-auto">
+				<div>
+					<h6 class="font-medium font-mono pt-6 pb-2 fs-base">Main stack</h6>
+					<p>
+						React, Typescript, CSS/SCSS <span class="fs-sm">(Bootstrap 4/5, Tailwind)</span>, REST
+						API, Cypress, Storybook, Vite.
+					</p>
+				</div>
+
+				<div>
+					<h6 class="font-medium font-mono pt-6 pb-2 fs-base">Worked with</h6>
+					<p>
+						Blazor, Python, C, JQuery, Express, Node.js, MongoDB, webpack, Svelte, SQL, Angular <span
+							class="fs-sm">(not interested)</span
+						>, Next.js, Jest, MapBox, Mantine.
+					</p>
+				</div>
+				<div>
+					<h6 class="font-medium font-mono pt-6 pb-2 fs-base">Other interests</h6>
+					<p>
+						Git, GitLab, Figma, T3Stack, Remix, Sveltekit, Styled Components, Prettier, ESLitn,
+						Backend developement.
+					</p>
+				</div>
+				<div>
+					<h6 class="font-medium font-mono pt-6 pb-2 fs-base">IDE</h6>
+					<p>VS Code (95%) Visual Studio (5%).</p>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<div class="py-5 bg-gradient-custom overflow-hidden" id="about">
+		<SectionHeader title={'PROJECTS'} />
 	</div>
 
 	<Projects />
-</Layout>
 
-<script>
-	import Atropos from 'atropos'
-	import { debounce } from '../scripts/utils'
+	<script>
+		import Atropos from 'atropos'
+		import { debounce } from '../scripts/utils'
+		import { welcomeInConsole } from '../scripts/welcomeInConsole'
+		let arrowButton = document.getElementById('scroll-to-about')
 
-	function doOnScroll(e: Event) {
-		document.body.style.setProperty('--scrollY', `${e?.target?.scrollTop}`)
-	}
-	function handleScroll(e: Event) {
-		// use requestAnimationFrame to throttle scroll callbacks
-		window.requestAnimationFrame(() => doOnScroll(e))
-	}
-	document.body.addEventListener('scroll', function (e) {
-		handleScroll(e)
-	})
+		function doOnScroll(e: Event) {
+			document.body.style.setProperty('--scrollY', `${e?.target?.scrollTop}`)
+		}
+		function handleScroll(e: Event) {
+			// use requestAnimationFrame to throttle scroll callbacks
+			window.requestAnimationFrame(() => doOnScroll(e))
+		}
 
-	document.addEventListener('DOMContentLoaded', function () {
-		document.body.style.setProperty('--scrollY', '0')
-		document.body.style.setProperty('--windowHeight', `${window.innerHeight}`)
-		document.body.style.setProperty('--windowWidth', `${window.innerWidth}`)
-	})
+		document.body.addEventListener('scroll', function (e) {
+			handleScroll(e)
+			// if scrolled 100px from top, hide arrow button
+			if (e?.target?.scrollTop > 200) {
+				arrowButton?.classList.add('invisible')
+			} else {
+				arrowButton?.classList.remove('invisible')
+			}
+		})
 
-	window.addEventListener('resize', function (e) {
-		debounce(() => {
+		document.addEventListener('DOMContentLoaded', function () {
+			welcomeInConsole()
+			arrowButton = document.getElementById('scroll-to-about')
+			document.body.style.setProperty('--scrollY', '0')
 			document.body.style.setProperty('--windowHeight', `${window.innerHeight}`)
 			document.body.style.setProperty('--windowWidth', `${window.innerWidth}`)
-		}, 100)
-	})
-
-	// selecet scroll-to-about button
-	const scrollToAboutButton = document.getElementById('scroll-to-about')
-	scrollToAboutButton?.addEventListener('click', function () {
-		const aboutSection = document.getElementById('about')
-		aboutSection?.scrollIntoView({ behavior: 'smooth' })
-	})
-
-	const cardCount = 4
-	for (let i = 0; i <= cardCount; i++) {
-		Atropos({
-			el: `.atropos-initializer-${i}`,
-			activeOffset: 10,
-			shadowScale: 1.05,
-			rotateXMax: 10,
-			rotateYMax: 10,
-			rotateTouch: 'scroll-y',
 		})
-	}
-	let css = 'font-size: 1.25rem;'
-	console.log('%cHello there! 👋', css)
-	console.log(
-		'%cI am Pavel Šťastný, a Front-end developer ⚛ from Czech Republic.',
-		'font-weight: bold; font-size: 1.33rem;'
-	)
-	console.log('%cYou can look at the source code of this website', css)
-	console.log(
-		'%cPage is made with astro framework. Some of the UI elements were inspired by Hyperplexed coepepens.',
-		'font-size: 1.1rem;'
-	)
-	// Make color red
-	console.log('%cI hope you like it! 🤩', css)
-	console.log(
-		'%cFeel free to change baseHue variable at the html element to see changes',
-		'color: hotpink; font-size: 1.5rem;'
-	)
-	console.log(
-		'%cIf you want to contact me, you can find my contact details on the bottom of the page. 📧',
-		css
-	)
-</script>
 
-<style is:global>
-	html,
-	body,
-	.content--canvas {
-		overflow-x: hidden;
-		overflow-y: auto;
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		background-color: black;
-	}
+		window.addEventListener('resize', function (e) {
+			debounce(() => {
+				document.body.style.setProperty('--windowHeight', `${window.innerHeight}`)
+				document.body.style.setProperty('--windowWidth', `${window.innerWidth}`)
+			}, 100)
+		})
 
-	.home-warpper {
-		height: 100vh;
-		height: 100svh;
-		height: 100%;
-	}
+		// selecet scroll-to-about button
+		const scrollToAboutButton = document.getElementById('scroll-to-about')
+		scrollToAboutButton?.addEventListener('click', function () {
+			const aboutSection = document.getElementById('about')
+			aboutSection?.scrollIntoView({ behavior: 'smooth' })
+		})
 
-	.atropos:hover .screen-image {
-		transform: translateY(0px) scale(1.05);
-		filter: sepia(40%) contrast(130%) brightness(95%) grayscale(20%);
-	}
+		const cardCount = 4
+		for (let i = 0; i <= cardCount; i++) {
+			Atropos({
+				el: `.atropos-initializer-${i}`,
+				activeOffset: 10,
+				shadowScale: 1.05,
+				rotateXMax: 10,
+				rotateYMax: 10,
+				rotateTouch: 'scroll-y',
+			})
+		}
+	</script>
 
-	.arrow-container-wrapper {
-		transform: translateY(calc(var(--scrollY) * -0.15px + 2px));
-		transition: transform 50ms linear;
-	}
-
-	.arrow-container {
-		opacity: calc(0.8 - var(--scrollY) * 0.025);
-		transition: transform 350ms ease-in-out, opacity 350ms ease-in-out;
-		z-index: 3;
-		padding-top: 5px;
-		position: absolute;
-		bottom: 1rem;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 56px;
-		height: 56px;
-		display: flex;
-		align-content: center;
-		justify-content: center;
-		flex-wrap: wrap;
-		border: 1px solid rgba(255, 255, 255);
-		border-radius: 50%;
-	}
-
-	.arrow-container:hover,
-	.arrow-container:focus-visible {
-		opacity: 1;
-		transform: scale(1.04) translateX(-50%) translateY(-2px);
-	}
-
-	/* // random like movement */
-	@keyframes pan-overlay {
-		0% {
-			background-position: 50% 50%;
+	<style is:global>
+		html,
+		body,
+		.content--canvas {
+			overflow-x: hidden;
+			overflow-y: auto;
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			background-color: black;
 		}
 
-		20% {
-			background-position: 75% 60%;
+		.home-warpper {
+			height: 100vh;
+			height: 100svh;
+			height: 100%;
 		}
 
-		40% {
-			background-position: 100% 80%;
+		.atropos:hover .screen-image {
+			transform: translateY(0px) scale(1.05);
+			filter: sepia(40%) contrast(130%) brightness(95%) grayscale(20%);
 		}
 
-		60% {
-			background-position: 75% 70%;
+		.arrow-container-wrapper {
+			transform: translateY(calc(var(--scrollY) * -0.15px + 2px))
+				scale(calc(1 - (var(--scrollY) * 0.0005)));
+			transition: transform 50ms linear;
 		}
 
-		80% {
-			background-position: 64% 62%;
+		.arrow-container {
+			opacity: calc(0.8 - var(--scrollY) * 0.025);
+			transition: transform 350ms ease-in-out, opacity 350ms ease-in-out;
+			z-index: 3;
+			padding-top: 5px;
+			position: absolute;
+			bottom: 1rem;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 56px;
+			height: 56px;
+			display: flex;
+			align-content: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			border: 1px solid rgba(255, 255, 255);
+			border-radius: 50%;
 		}
 
-		100% {
-			background-position: 50% 50%;
+		.arrow-container:hover,
+		.arrow-container:focus-visible {
+			opacity: 1;
+			transform: scale(1.04) translateX(-50%) translateY(-2px);
 		}
-	}
 
-	.grid-wrapper-boxes {
-		padding-block: 5rem;
-		display: grid;
-		height: 100%;
-		width: 100%;
-		/* max-width: min(90vw, 68rem); */
-		grid-template-columns: minmax(21rem, 35rem) minmax(21rem, 35rem);
-		gap: calc(var(--fs-md) * 1.5);
-		justify-content: center;
-		align-content: center;
-		/* grid-template-columns: repeat(auto-fit, minmax(25vw, 28rem)); */
-		/* grid-auto-rows: minmax(25vh, 20rem); */
-	}
+		/* // random like movement */
+		@keyframes pan-overlay {
+			0% {
+				background-position: 50% 50%;
+			}
 
-	@media (max-width: 768px) {
+			20% {
+				background-position: 75% 60%;
+			}
+
+			40% {
+				background-position: 100% 80%;
+			}
+
+			60% {
+				background-position: 75% 70%;
+			}
+
+			80% {
+				background-position: 64% 62%;
+			}
+
+			100% {
+				background-position: 50% 50%;
+			}
+		}
+
 		.grid-wrapper-boxes {
-			grid-template-columns: minmax(21rem, 35rem);
+			padding-block: 5rem;
+			display: grid;
+			height: 100%;
+			width: 100%;
+			grid-template-columns: minmax(21rem, 35rem) minmax(21rem, 35rem);
+			gap: calc(var(--fs-md) * 1.5);
+			justify-content: center;
+			align-content: center;
 		}
-	}
-</style>
+
+		@media (max-width: 768px) {
+			.grid-wrapper-boxes {
+				grid-template-columns: minmax(21rem, 35rem);
+			}
+		}
+	</style>
+</Layout>

@@ -95,13 +95,14 @@ function createCanvas() {
 
 function resize() {
 	const { innerWidth, innerHeight } = window
+	const skillsElement = document.querySelector('#skills').getBoundingClientRect()
 	canvas.a.width = innerWidth
-	canvas.a.height = innerHeight
+	canvas.a.height = skillsElement.height
 
 	ctx.a.drawImage(canvas.b, 0, 0)
 
 	canvas.b.width = innerWidth
-	canvas.b.height = innerHeight
+	canvas.b.height = skillsElement.height
 
 	ctx.b.drawImage(canvas.a, 0, 0)
 	center[0] = parseInt(0.5 * canvas.a.width)
