@@ -8,6 +8,30 @@ import SkillCard from '../components/SkillCard.astro'
 import Projects from '../components/Projects.astro'
 import SectionHeader from '../components/SectionHeader.astro'
 import ArrowButton from '../components/ArrowButton.astro'
+import TechStack from '../sections/TechStack.astro'
+
+const SkillCardsContent = [
+	{
+		title: 'React Enthusiast',
+		description:
+			"I'm passionate Front-end developer, mainly focused on developing React/Typescript applications.",
+	},
+	{
+		title: 'Quality oriented',
+		description:
+			'My main goal is to create a great user experience and make the apps accessible, efficient, and user-friendly.',
+	},
+	{
+		title: 'Professional',
+		description:
+			'I write clean, readable, and maintainable code that adheres to the best industry standards.',
+	},
+	{
+		title: 'Continuous learner',
+		description:
+			'I am constantly learning and staying up-to-date with the latest technologies and trends to ensure that my work is always up to date.',
+	},
+] as const
 ---
 
 <Layout title="Pavel Šťastný Portfolio">
@@ -45,62 +69,18 @@ import ArrowButton from '../components/ArrowButton.astro'
 	<div class="w-full relative" id="skills">
 		<div class="bg-cursor"></div>
 		<div class="grid-wrapper-boxes leading-none">
-			<SkillCard
-				id={1}
-				title={'React Enthusiast'}
-				description={"I'm passionate Front-end developer, mainly focused on developing React/Typescript applications."}
-			/>
-
-			<SkillCard
-				id={2}
-				title={'Quality oriented'}
-				description={'My main goal is to create a great user experience and make make the apps accessible, efficient, and user-friendly.'}
-			/>
-
-			<SkillCard
-				id={3}
-				title={'Professional'}
-				description={'I write clean, readable, and maintainable code that adheres to the best industry standards.'}
-			/>
-
-			<SkillCard
-				id={4}
-				title={'Continuous learner'}
-				description={'I am constantly learning and staying up-to-date with the latest technologies and trends to ensure that my work is always up to date.'}
-			/>
+			{
+				SkillCardsContent.map(({ title, description }, index) => (
+					<SkillCard id={index + 1} title={title} description={description} />
+				))
+			}
 		</div>
 
 		<div class="pt-4 pb-8 relative">
 			<h4 class="fs-md text-slate-200 text-center tech-stack">My tech stack</h4>
 
 			<section class="fs-base font-mono mb-2 text-slate-300 max-w-[70rem] px-6 mx-auto">
-				<div>
-					<h6 class="font-medium font-mono pt-6 pb-2 fs-base">Main stack</h6>
-					<p>
-						React, Typescript, CSS/SCSS <span class="fs-sm">(Bootstrap 4/5, Tailwind)</span>, REST
-						API, Cypress, Storybook, Vite.
-					</p>
-				</div>
-
-				<div>
-					<h6 class="font-medium font-mono pt-6 pb-2 fs-base">Worked with</h6>
-					<p>
-						Blazor, Python, C, JQuery, Express, Node.js, MongoDB, webpack, Svelte, SQL, Angular <span
-							class="fs-sm">(not interested)</span
-						>, Next.js, Jest, MapBox, Mantine.
-					</p>
-				</div>
-				<div>
-					<h6 class="font-medium font-mono pt-6 pb-2 fs-base">Other interests</h6>
-					<p>
-						Git, GitLab, Figma, T3Stack, Remix, Sveltekit, Styled Components, Prettier, ESLitn,
-						Backend developement.
-					</p>
-				</div>
-				<div>
-					<h6 class="font-medium font-mono pt-6 pb-2 fs-base">IDE</h6>
-					<p>VS Code (95%) Visual Studio (5%).</p>
-				</div>
+				<TechStack />
 			</section>
 		</div>
 	</div>

@@ -1,0 +1,61 @@
+---
+import SkillAndIcon from '../components/SkillAndIcon.astro'
+
+const mainSkills = [
+	{ skill: 'React', icon: 'logos:react' },
+	{ skill: 'Typescript', icon: 'logos:typescript-icon' },
+	{ skill: 'CSS/SCSS', icon: 'logos:css-3' },
+	{ skill: 'Tailwind', icon: 'logos:tailwindcss-icon' },
+	{ skill: 'Bootstrap', icon: 'logos:bootstrap' },
+	{ skill: 'Cypress', icon: 'logos:cypress' },
+	{ skill: 'Storybook', icon: 'logos:storybook-icon' },
+	{ skill: 'Vite', icon: 'logos:vitejs' },
+]
+// From this list generate key-pair values: Blazor, Python, C, JQuery, Express, Node.js, MongoDB, webpack, Svelte, SQL, Angular (not interested), Next.js, Jest, MapBox, Mantine.
+const workedWith = [
+	{ skill: 'Blazor', icon: 'logos:blazor', customIcon: 'BL' },
+	{ skill: 'Python', icon: 'logos:python' },
+	{ skill: 'C', icon: 'logos:c' },
+	{ skill: 'JQuery', icon: 'logos:jquery', customIcon: 'JQ' },
+	{ skill: 'Express', icon: 'logos:express', customIcon: 'EX' },
+	{ skill: 'Node.js', icon: 'logos:nodejs-icon' },
+	{ skill: 'MongoDB', icon: 'logos:mongodb-icon' },
+	{ skill: 'webpack', icon: 'logos:webpack' },
+	{ skill: 'Svelte', icon: 'logos:svelte-icon' },
+	{ skill: 'SQL', icon: 'logos:postgresql' },
+	{ skill: 'Angular', icon: 'logos:angular-icon' },
+	{ skill: 'Next.js', icon: 'logos:nextjs-icon' },
+	{ skill: 'Jest', icon: 'logos:jest' },
+	{ skill: 'MapBox', icon: 'logos:mapbox-icon' },
+	{ skill: 'Mantine', icon: 'logos:mantine-icon' },
+]
+---
+
+<div>
+	<h6 class="font-medium font-mono pt-6 pb-2 fs-base text-center">Main stack</h6>
+	<div class="flex flex-wrap gap-8 justify-center">
+		{mainSkills.map(({ skill, icon }) => <SkillAndIcon iconName={icon} skill={skill} />)}
+	</div>
+</div>
+
+<div>
+	<h6 class="font-medium font-mono pt-6 pb-2 fs-base text-center mt-8">Worked with</h6>
+	<div class="flex flex-wrap gap-8 justify-center">
+		{
+			workedWith.map(({ skill, icon, customIcon }) => (
+				<SkillAndIcon customIcon={customIcon} iconWidth="1.5rem" iconName={icon} skill={skill} />
+			))
+		}
+	</div>
+</div>
+<div>
+	<h6 class="font-medium font-mono pt-6 pb-2 fs-base">Other interests</h6>
+	<p>
+		Git, GitLab, Figma, T3Stack, Remix, Sveltekit, Styled Components, Prettier, ESLitn, Backend
+		developement.
+	</p>
+</div>
+<div>
+	<h6 class="font-medium font-mono pt-6 pb-2 fs-base">IDE</h6>
+	<p>VS Code (95%) Visual Studio (5%).</p>
+</div>
