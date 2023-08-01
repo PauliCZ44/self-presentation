@@ -1,9 +1,12 @@
 ---
 import SkillAndIcon from '../components/SkillAndIcon.astro'
+import blazor from '../icons/blazor.svg'
 
 const mainSkills = [
 	{ skill: 'React', icon: 'logos:react' },
 	{ skill: 'Typescript', icon: 'logos:typescript-icon' },
+	{ skill: 'MaterialUI', icon: 'logos:material-ui' },
+	{ skill: 'Javascript', icon: 'logos:javascript' },
 	{ skill: 'CSS/SCSS', icon: 'logos:css-3' },
 	{ skill: 'Tailwind', icon: 'logos:tailwindcss-icon' },
 	{ skill: 'Bootstrap', icon: 'logos:bootstrap' },
@@ -13,21 +16,34 @@ const mainSkills = [
 ]
 // From this list generate key-pair values: Blazor, Python, C, JQuery, Express, Node.js, MongoDB, webpack, Svelte, SQL, Angular (not interested), Next.js, Jest, MapBox, Mantine.
 const workedWith = [
-	{ skill: 'Blazor', icon: 'logos:blazor', customIcon: 'BL' },
+	{ skill: 'Blazor', icon: 'blazor' },
 	{ skill: 'Python', icon: 'logos:python' },
 	{ skill: 'C', icon: 'logos:c' },
-	{ skill: 'JQuery', icon: 'logos:jquery', customIcon: 'JQ' },
-	{ skill: 'Express', icon: 'logos:express', customIcon: 'EX' },
+	// { skill: 'JQuery', icon: 'devicon:jquery' },
+	{ skill: 'Express', icon: 'express' },
 	{ skill: 'Node.js', icon: 'logos:nodejs-icon' },
-	{ skill: 'MongoDB', icon: 'logos:mongodb-icon' },
+	{ skill: 'MongoDB', icon: 'vscode-icons:file-type-mongo' },
 	{ skill: 'webpack', icon: 'logos:webpack' },
 	{ skill: 'Svelte', icon: 'logos:svelte-icon' },
 	{ skill: 'SQL', icon: 'logos:postgresql' },
 	{ skill: 'Angular', icon: 'logos:angular-icon' },
-	{ skill: 'Next.js', icon: 'logos:nextjs-icon' },
+	{ skill: 'Next.js', icon: 'next' },
 	{ skill: 'Jest', icon: 'logos:jest' },
 	{ skill: 'MapBox', icon: 'logos:mapbox-icon' },
-	{ skill: 'Mantine', icon: 'logos:mantine-icon' },
+	{ skill: 'Mantine', icon: 'mantine' },
+]
+
+// Git, GitLab, Figma, T3Stack, Remix, Sveltekit, Styled Components, Prettier, ESLitn, Backend
+// developement.
+const otherInterests = [
+	{ skill: 'Git', icon: 'logos:git-icon' },
+	{ skill: 'GitLab', icon: 'logos:gitlab' },
+	{ skill: 'Figma', icon: 'logos:figma' },
+	{ skill: 'T3Stack', icon: 't3' },
+	{ skill: 'Remix', icon: 'remix' },
+	{ skill: 'Sveltekit', icon: 'logos:svelte-icon' },
+	{ skill: 'Prettier', icon: 'logos:prettier' },
+	{ skill: 'ESLint', icon: 'logos:eslint' },
 ]
 ---
 
@@ -42,20 +58,21 @@ const workedWith = [
 	<h6 class="font-medium font-mono pt-6 pb-2 fs-base text-center mt-8">Worked with</h6>
 	<div class="flex flex-wrap gap-8 justify-center">
 		{
-			workedWith.map(({ skill, icon, customIcon }) => (
-				<SkillAndIcon customIcon={customIcon} iconWidth="1.5rem" iconName={icon} skill={skill} />
+			workedWith.map(({ skill, icon }) => (
+				<SkillAndIcon iconWidth="1.75rem" iconName={icon} skill={skill} />
 			))
 		}
 	</div>
 </div>
 <div>
-	<h6 class="font-medium font-mono pt-6 pb-2 fs-base">Other interests</h6>
-	<p>
-		Git, GitLab, Figma, T3Stack, Remix, Sveltekit, Styled Components, Prettier, ESLitn, Backend
-		developement.
-	</p>
-</div>
-<div>
-	<h6 class="font-medium font-mono pt-6 pb-2 fs-base">IDE</h6>
-	<p>VS Code (95%) Visual Studio (5%).</p>
+	<h6 class="font-medium font-mono pt-6 pb-2 fs-base text-center mt-8">
+		Other interests and tools
+	</h6>
+	<div class="flex flex-wrap gap-8 justify-center">
+		{
+			otherInterests.map(({ skill, icon }) => (
+				<SkillAndIcon iconWidth="1.5rem" iconName={icon} skill={skill} />
+			))
+		}
+	</div>
 </div>
