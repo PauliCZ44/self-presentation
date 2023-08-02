@@ -9,6 +9,7 @@ import Projects from '../components/Projects.astro'
 import SectionHeader from '../components/SectionHeader.astro'
 import ArrowButton from '../components/ArrowButton.astro'
 import TechStack from '../sections/TechStack.astro'
+import Footer from '../sections/Footer.astro'
 
 const SkillCardsContent = [
 	{
@@ -37,12 +38,12 @@ const SkillCardsContent = [
 <Layout title="Pavel Šťastný Portfolio">
 	<script src="../scripts/swirl.js"></script>
 	<script src="../scripts/canvasCursor.js"></script>
-	<div class="home-warpper relative w-full h-full min-h-[600px] sm:min-h-[63rem]" id="home">
+	<div class="home-warpper relative w-full min-h-[600px] lg:min-h-[63rem]" id="home">
 		<div class="content--canvas"></div>
 		<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
 			<!-- <p class="fs-ms text-white fixed top-4 left-4" id="resizer">0</p>
 			<p class="fs-ms text-white fixed top-8 left-4" id="logger"></p> -->
-			<div class="scale-[0.6] sm:scale-90 md:scale-100 xl:scale-105 2xl:scale-110">
+			<div class="scale-[0.5] sm:scale-75 md:scale-90 xl:scale-100 2xl:scale-105">
 				<div
 					class="transition-transform ease-linear duration-[50ms] rounded-md"
 					style={{ transform: 'translateY(calc(var(--scrollY) * -0.33px)' }}
@@ -90,6 +91,8 @@ const SkillCardsContent = [
 	</div>
 
 	<Projects />
+
+	<Footer />
 
 	<script>
 		import Atropos from 'atropos'

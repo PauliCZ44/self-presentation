@@ -129,3 +129,27 @@ h6 {
 .fs-xxxl {
 	font-size: var(--fs-xxxl);
 }
+
+.link,
+.group-link {
+	transition: color 150ms ease-in-out, filter 150ms ease-in-out;
+}
+
+.group-link:hover,
+.link:hover {
+	color: var(--primary);
+	filter: brightness(1.2);
+}
+
+.link:after {
+	display: block;
+	content: '';
+	border-bottom: solid 3px var(--primary);
+	transform: scaleX(0);
+	transition: transform 250ms ease-in-out;
+}
+
+.link:hover:after,
+.group-link:hover .link:after {
+	transform: scaleX(1);
+}
