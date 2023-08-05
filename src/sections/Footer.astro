@@ -54,91 +54,93 @@ const links = [
 					vanilla javascript.
 				</p>
 				<div class="mt-8">
-					<p>
-						My CV: <span class="ml-2"
-							><a
-								href="CV.pdf"
-								download="PavelŠťastný"
-								target="_blank"
-								class="btn btn-xs downloadBtn"
-								role="button"
-							>
-								DOWNLOAD!
-							</a>
-						</span><br />
-						<span class="glyphicon-envelope"></span>
-						stastnyp@seznam.cz
-					</p>
+					<div class="flex items-center leading-relaxed">
+						<span class="mb-0.5"> My CV:</span>
+						<a
+							href="CV.pdf"
+							download="PavelŠťastný"
+							target="_blank"
+							class="ml-2 flex items-center group-link"
+							role="button"
+						>
+							<span class="link"> DOWNLOAD!</span>
+							<Icon eight="1rem" width="1rem" class="ml-2" name="lucide:download" />
+						</a>
+					</div>
+					<div class="flex items-center mt-4">
+						<Icon height="1rem" width="1rem" class="mr-3 mt-0.5" name="lucide:mail" />
+						<span>stastnyp@seznam.cz</span>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="copyrights">
-		<div class="container">
-			<p class="text-right text-xs text-slate-600 opacity-90 p-3">
-				&copy; Copyright {new Date().getFullYear()} Pavel Šťastný. All Rights Reserved.
-			</p>
+		<div id="copyrights">
+			<div class="container">
+				<p class="text-right text-xs text-slate-600 opacity-90 p-3 pt-6 pr-0">
+					&copy; Copyright {new Date().getFullYear()} Pavel Šťastný. All Rights Reserved.
+				</p>
+			</div>
 		</div>
 	</div>
-</footer>
 
-<style>
-	footer {
-		background-color: #2f2f2f;
-		padding-top: 4rem;
-		padding-bottom: 1px;
-		background-image: linear-gradient(
-				17deg,
-				rgba(41, 41, 41, 0.02) 0%,
-				rgba(41, 41, 41, 0.02) 48%,
-				rgba(10, 10, 10, 0.02) 48%,
-				rgba(10, 10, 10, 0.02) 59%,
-				rgba(164, 164, 164, 0.02) 59%,
-				rgba(164, 164, 164, 0.02) 73%,
-				rgba(79, 79, 79, 0.02) 73%,
-				rgba(79, 79, 79, 0.02) 93%,
-				rgba(42, 42, 42, 0.02) 93%,
-				rgba(42, 42, 42, 0.02) 100%
-			),
-			linear-gradient(
-				42deg,
-				rgba(124, 124, 124, 0.02) 0%,
-				rgba(124, 124, 124, 0.02) 15%,
-				rgba(116, 116, 116, 0.02) 15%,
-				rgba(116, 116, 116, 0.02) 23%,
-				rgba(41, 41, 41, 0.02) 23%,
-				rgba(41, 41, 41, 0.02) 44%,
-				rgba(196, 196, 196, 0.02) 44%,
-				rgba(196, 196, 196, 0.02) 54%,
-				rgba(145, 145, 145, 0.02) 54%,
-				rgba(145, 145, 145, 0.02) 100%
-			),
-			linear-gradient(
-				151deg,
-				rgba(85, 85, 85, 0) 0%,
-				rgba(85, 85, 85, 0) 12%,
-				rgba(66, 66, 66, 0.1) 12%,
-				rgba(66, 66, 66, 0.1) 28%,
-				rgba(156, 156, 156, 0.02) 28%,
-				rgba(156, 156, 156, 0.02) 33%,
-				rgba(230, 230, 230, 0) 33%,
-				rgba(230, 230, 230, 0) 50%,
-				rgba(13, 13, 13, 0.02) 50%,
-				rgba(13, 13, 13, 0.02) 100%
-			),
-			linear-gradient(
-				76deg,
-				rgba(25, 25, 25, 0.02) 0%,
-				rgba(25, 25, 25, 0.02) 9%,
-				rgba(183, 183, 183, 0.01) 9%,
-				rgba(183, 183, 183, 0.01) 32%,
-				rgba(19, 19, 19, 0.15) 32%,
-				rgba(19, 19, 19, 0.15) 86%,
-				rgba(129, 129, 129, 0.02) 86%,
-				rgba(129, 129, 129, 0.02) 88%,
-				rgba(174, 174, 174, 0.06) 88%,
-				rgba(174, 174, 174, 0.06) 100%
-			),
-			linear-gradient(90deg, rgb(41, 41, 41), rgba(8, 8, 8, 0.9));
-	}
-</style>
+	<style>
+		footer {
+			background-color: #2f2f2f;
+			padding-top: 4rem;
+			padding-bottom: 1px;
+			background-image: linear-gradient(
+					17deg,
+					rgba(41, 41, 41, 0.02) 0%,
+					rgba(41, 41, 41, 0.02) 48%,
+					rgba(10, 10, 10, 0.02) 48%,
+					rgba(10, 10, 10, 0.02) 59%,
+					rgba(164, 164, 164, 0.02) 59%,
+					rgba(164, 164, 164, 0.02) 73%,
+					rgba(79, 79, 79, 0.02) 73%,
+					rgba(79, 79, 79, 0.02) 93%,
+					rgba(42, 42, 42, 0.02) 93%,
+					rgba(42, 42, 42, 0.02) 100%
+				),
+				linear-gradient(
+					42deg,
+					rgba(124, 124, 124, 0.02) 0%,
+					rgba(124, 124, 124, 0.02) 15%,
+					rgba(116, 116, 116, 0.02) 15%,
+					rgba(116, 116, 116, 0.02) 23%,
+					rgba(41, 41, 41, 0.02) 23%,
+					rgba(41, 41, 41, 0.02) 44%,
+					rgba(196, 196, 196, 0.02) 44%,
+					rgba(196, 196, 196, 0.02) 54%,
+					rgba(145, 145, 145, 0.02) 54%,
+					rgba(145, 145, 145, 0.02) 100%
+				),
+				linear-gradient(
+					151deg,
+					rgba(85, 85, 85, 0) 0%,
+					rgba(85, 85, 85, 0) 12%,
+					rgba(66, 66, 66, 0.1) 12%,
+					rgba(66, 66, 66, 0.1) 28%,
+					rgba(156, 156, 156, 0.02) 28%,
+					rgba(156, 156, 156, 0.02) 33%,
+					rgba(230, 230, 230, 0) 33%,
+					rgba(230, 230, 230, 0) 50%,
+					rgba(13, 13, 13, 0.02) 50%,
+					rgba(13, 13, 13, 0.02) 100%
+				),
+				linear-gradient(
+					76deg,
+					rgba(25, 25, 25, 0.02) 0%,
+					rgba(25, 25, 25, 0.02) 9%,
+					rgba(183, 183, 183, 0.01) 9%,
+					rgba(183, 183, 183, 0.01) 32%,
+					rgba(19, 19, 19, 0.15) 32%,
+					rgba(19, 19, 19, 0.15) 86%,
+					rgba(129, 129, 129, 0.02) 86%,
+					rgba(129, 129, 129, 0.02) 88%,
+					rgba(174, 174, 174, 0.06) 88%,
+					rgba(174, 174, 174, 0.06) 100%
+				),
+				linear-gradient(90deg, rgb(41, 41, 41), rgba(8, 8, 8, 0.9));
+		}
+	</style>
+</footer>
