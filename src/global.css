@@ -143,6 +143,10 @@ h6 {
 
 .link:after {
 	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
 	content: '';
 	border-bottom: solid 3px var(--primary);
 	transform: scaleX(0);
