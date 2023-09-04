@@ -15,18 +15,18 @@ const lerp = (n1, n2, speed) => (1 - speed) * n1 + speed * n2
 
 const getParticleCount = () => {
 	if (window.innerWidth < 768) {
-		return 75
+		return 50
 	}
-	return 300 + parseInt(window.innerWidth * 0.2)
+	return 150 + parseInt(window.innerWidth * 0.1)
 }
 let particleCount = getParticleCount()
 const particlePropCount = 9
 const particlePropsLength = particleCount * particlePropCount
 const rangeY = 125
-const baseTTL = 65
-const rangeTTL = 125
-const baseSpeed = 0.005
-const rangeSpeed = 0.25
+const baseTTL = 125
+const rangeTTL = 150
+const baseSpeed = 0.0033
+const rangeSpeed = 0.15
 const baseRadius = 1
 const rangeRadius = 4
 let baseHue = CONFIG.baseHue - 10
@@ -40,7 +40,7 @@ const backgroundColor = 'hsla(' + (baseHue + 30) + ',52%,10%,1)'
 const circle = {
 	x: 0,
 	y: 0,
-	radius: 200,
+	radius: 150,
 	tension: 0.1,
 	friction: 0.45,
 	springX: 0,

@@ -1,10 +1,11 @@
 ---
+import { Image } from 'astro:assets'
 import me from '../images/me.png'
 ---
 
 <div class="screen">
 	<div class="img-wrapper" data-atropos-offset="1" data-atropos-opacity="1;0.8">
-		<img class="screen-image" src={me} alt="Pavel Šťastný image" width="700" height="700" />
+		<Image class="screen-image" src={me} alt="Pavel Šťastný image" width="700" height="700" />
 	</div>
 	<div class="screen-overlay"></div>
 	<div class="screen-content">

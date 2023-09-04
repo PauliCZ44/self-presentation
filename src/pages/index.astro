@@ -5,7 +5,7 @@ import AtroposWrapper from '../components/AtroposWrapper.astro'
 import 'atropos/css'
 import '../global.css'
 import SkillCard from '../components/SkillCard.astro'
-import Projects from '../components/Projects.astro'
+import Projects from '../sections/Projects.astro'
 import SectionHeader from '../components/SectionHeader.astro'
 import ArrowButton from '../components/ArrowButton.astro'
 import TechStack from '../sections/TechStack.astro'
@@ -30,7 +30,7 @@ const SkillCardsContent = [
 	{
 		title: 'Continuous learner',
 		description:
-			'I am constantly learning and staying up-to-date with the latest technologies and trends to ensure that my work is always up to date.',
+			"I'm always learning and keeping up with the latest technologies and trends to make sure my work stays current.",
 	},
 ] as const
 ---
@@ -38,6 +38,7 @@ const SkillCardsContent = [
 <Layout title="Pavel Šťastný Portfolio">
 	<script src="../scripts/swirl.js"></script>
 	<script src="../scripts/canvasCursor.js"></script>
+
 	<div class="home-warpper relative w-full min-h-[600px] lg:min-h-[63rem]" id="home">
 		<div class="content--canvas"></div>
 		<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">

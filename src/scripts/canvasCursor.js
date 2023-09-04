@@ -9,7 +9,7 @@ const backgroundColor = 'hsla(' + (baseHue + 30) + ',52%,10%,1)'
 const circle = {
 	x: 0,
 	y: 0,
-	radius: 200,
+	radius: 150,
 	tension: 0.1,
 	friction: 0.45,
 	springX: 0,
@@ -111,13 +111,13 @@ function resize() {
 
 function renderGlow() {
 	ctx.b.save()
-	ctx.b.filter = 'blur(8px) brightness(200%)'
+	ctx.b.filter = 'blur(7px) brightness(200%)'
 	ctx.b.globalCompositeOperation = 'lighter'
 	ctx.b.drawImage(canvas.a, 0, 0)
 	ctx.b.restore()
 
 	ctx.b.save()
-	ctx.b.filter = 'blur(4px) brightness(200%)'
+	ctx.b.filter = 'blur(3px) brightness(200%)'
 	ctx.b.globalCompositeOperation = 'lighter'
 	ctx.b.drawImage(canvas.a, 0, 0)
 	ctx.b.restore()
