@@ -14,13 +14,13 @@ const projects = [
 				as starting location, destination, price per kilometer, etc. For distance calculation, it utilizes the MapBox
 				directions API, and for obtaining addresses, it uses the MapBox geocoding API.
 		`,
-		sourceCode: 'https://github.com/PauliCZ44/cestaky-app',
+		sourceCode: 'https://github.com/PauliCZ44/Bang-Calc',
 		tech: 'React, Bootstrap.',
 	},
 	{
 		img: cestaky,
 		title: 'Cesťáky',
-		href: 'https://bangcalc.netlify.app/',
+		href: 'https://cestaky-app.web.app/',
 		content: `
 			Web application in which you can calculate travel costs based on the data you enter, such as starting position and finishing position, price per km, etc. The application is created using react and firebase. MapBox directions API is used to calculate the distance. MapBox geocoding API is used to get the addresses.
 		`,
@@ -30,10 +30,10 @@ const projects = [
 ]
 ---
 
-<section class="text-white bg-gradient-custom pb-20">
+<section class="text-white bg-gradient-custom pb-20 pt-10">
 	<div class="row mt text-center">
 		<div class="w-10/12 sm:w-8/12 md:w-6/12 m-auto py-8">
-			<p>
+			<p class="text-sm text-content-secondary">
 				In this section, you can take a look at some of my projects. Some of them are practice
 				projects, while others can be considered 100% functional as intended. Some are older and may show signs of age. I can't actively update all of them, but they reflect part of my journey.
 			</p>
@@ -45,13 +45,13 @@ const projects = [
 				<div class="flex flex-col gap-3 items-start border-primary-opacity-50 border rounded max-w-md">
 					<a href={p.href}>
 						<Image
-							class="img-responsive portfolio-obrazek-work"
+							class="rounded-t"
 							src={p.img}
 							alt={'Image of application: ' + p.title}
 						/>
 					</a>
 					<h3 class="px-6 pt-2 font-mono text-xl font-bold">{p.title}</h3>
-					<p class="px-6 text-justify">
+					<p class="px-6 text-justify text-content">
 						<Fragment set:html={p.content} />
 					</p>
 					<div class="px-6">
@@ -61,12 +61,16 @@ const projects = [
 						</b>
 					</div>
 					<div class="px-6 pb-6 flex gap-6 justify-end self-end mt-auto">
-						<a class="link--btn link" href={p.sourceCode}>
-							<Icon name="simple-icons:github" height="1.5rem" width="2rem">
-						</a>
-						<a class="link--btn link" href={p.href}>
-							<Icon name="ic:outline-open-in-new" height="1.5rem" width="2rem">
-						</a>
+						<div data-wenk="Source code">
+							<a class="link--btn link" href={p.sourceCode}>
+								<Icon name="simple-icons:github" height="1.5rem" width="2rem">
+							</a>
+						</div>
+						<div data-wenk="Open demo">
+							<a class="link--btn link" href={p.href}>
+								<Icon name="ic:outline-open-in-new" height="1.5rem" width="2rem">
+							</a>
+						</div>
 					</div>
 				</div>
 			))
