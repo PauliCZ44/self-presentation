@@ -56,6 +56,7 @@ let center
 let tick
 let noise3D
 let particleProps
+let gradient 
 
 function setup() {
 	if (noise3D === undefined) {
@@ -191,6 +192,11 @@ function createCanvas() {
 	}
 	center = []
 
+	gradient = ctx.b.createLinearGradient(0, 0, canvas.b.width, canvas.b.height)
+	gradient.addColorStop(0, `hsla(${baseHue || 0}, 100%, 50%, 0.25)`)
+	gradient.addColorStop(0.5, `hsla(${baseHue || 0 + 30}, 100%, 50%, 0.3)`)
+	gradient.addColorStop(1, `hsla(${baseHue || 0 + 60}, 100%, 50%, 0.25)`)
+
 	function updateCircle(e) {
 		const rect = canvas.b.getBoundingClientRect()
 		circle.springX = e.clientX - rect.left
@@ -252,6 +258,11 @@ function resize() {
 	center[0] = parseInt(0.5 * canvas.a.width)
 	center[1] = parseInt(0.5 * canvas.a.height)
 
+	gradient = ctx.b.createLinearGradient(0, 0, canvas.b.width, canvas.b.height)
+	gradient.addColorStop(0, `hsla(${baseHue || 0}, 100%, 50%, 0.25)`)
+	gradient.addColorStop(0.5, `hsla(${baseHue || 0 + 30}, 100%, 50%, 0.3)`)
+	gradient.addColorStop(1, `hsla(${baseHue || 0 + 60}, 100%, 50%, 0.25)`)
+
 	initParticles()
 }
 
@@ -268,6 +279,7 @@ function renderGlow() {
 	// ctx.b.drawImage(canvas.a, 0, 0)
 	// ctx.b.restore()
 }
+
 
 function drawCursor() {
 	// Calculate spring force
@@ -291,10 +303,7 @@ function drawCursor() {
 	ctx.b.beginPath()
 	ctx.b.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2)
 
-	const gradient = ctx.b.createLinearGradient(0, 0, canvas.b.width, canvas.b.height)
-	gradient.addColorStop(0, `hsla(${baseHue || 0}, 100%, 50%, 0.25)`)
-	gradient.addColorStop(0.5, `hsla(${baseHue || 0 + 30}, 100%, 50%, 0.3)`)
-	gradient.addColorStop(1, `hsla(${baseHue || 0 + 60}, 100%, 50%, 0.25)`)
+
 
 	ctx.b.fillStyle = gradient
 	ctx.b.fill()

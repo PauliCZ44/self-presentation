@@ -23,6 +23,7 @@ let canvas
 let ctx
 let center
 let tick
+let gradient 
 
 function setup() {
 	createCanvas()
@@ -45,6 +46,12 @@ function setup() {
 		attributes: true,
 		attributeFilter: ['style'],
 	})
+
+	gradient = ctx.b.createLinearGradient(-15, -30, canvas.b.width, canvas.b.height)
+	gradient.addColorStop(0, `hsla(${baseHue || 0}, 100%, 50%, 0.15)`)
+	gradient.addColorStop(0.6, `hsla(${baseHue || 0 + 20}, 100%, 50%, 0.2)`)
+	gradient.addColorStop(1, `hsla(${baseHue || 0 + 60}, 100%, 50%, 0.15)`)
+
 }
 
 const lastMousePosition = { x: 0, y: 0 }
@@ -96,6 +103,9 @@ function createCanvas() {
 function resize() {
 	const { innerWidth, innerHeight } = window
 	const skillsElement = document.querySelector('#skills').getBoundingClientRect()
+	// canvas.a.width = innerWidth
+	// canvas.a.height = skillsElement.height
+
 	canvas.a.width = innerWidth
 	canvas.a.height = skillsElement.height
 
@@ -107,20 +117,11 @@ function resize() {
 	ctx.b.drawImage(canvas.a, 0, 0)
 	center[0] = parseInt(0.5 * canvas.a.width)
 	center[1] = parseInt(0.5 * canvas.a.height)
-}
 
-function renderGlow() {
-	ctx.b.save()
-	ctx.b.filter = 'blur(7px) brightness(200%)'
-	ctx.b.globalCompositeOperation = 'lighter'
-	ctx.b.drawImage(canvas.a, 0, 0)
-	ctx.b.restore()
-
-	ctx.b.save()
-	ctx.b.filter = 'blur(3px) brightness(200%)'
-	ctx.b.globalCompositeOperation = 'lighter'
-	ctx.b.drawImage(canvas.a, 0, 0)
-	ctx.b.restore()
+	gradient = ctx.b.createLinearGradient(-15, -30, canvas.b.width, canvas.b.height)
+	gradient.addColorStop(0, `hsla(${baseHue || 0}, 100%, 50%, 0.15)`)
+	gradient.addColorStop(0.6, `hsla(${baseHue || 0 + 20}, 100%, 50%, 0.2)`)
+	gradient.addColorStop(1, `hsla(${baseHue || 0 + 60}, 100%, 50%, 0.15)`)
 }
 
 function drawCursor() {
@@ -145,25 +146,31 @@ function drawCursor() {
 	ctx.b.beginPath()
 	ctx.b.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2)
 
-	const gradient = ctx.b.createLinearGradient(-15, -30, canvas.b.width, canvas.b.height)
-	gradient.addColorStop(0, `hsla(${baseHue || 0}, 100%, 50%, 0.15)`)
-	gradient.addColorStop(0.6, `hsla(${baseHue || 0 + 20}, 100%, 50%, 0.2)`)
-	gradient.addColorStop(1, `hsla(${baseHue || 0 + 60}, 100%, 50%, 0.15)`)
-
 	ctx.b.fillStyle = gradient
 	ctx.b.fill()
 	ctx.b.restore()
 }
 
+// function average(nums) {
+//     return nums.reduce((a, b) => (a + b)) / nums.length;
+// }
+
+// let times = []
+// let averageT = average(times.length > 0 ? times : [123])
+
 function draw() {
+	// var before = performance.now();
 	tick++
-	ctx.a.clearRect(0, 0, canvas.a.width, canvas.a.height)
+	// ctx.a.clearRect(0, 0, canvas.a.width, canvas.a.height)
 	ctx.b.fillStyle = backgroundColor
 	ctx.b.fillRect(0, 0, canvas.a.width, canvas.a.height)
-	renderGlow()
-	drawCursor()
 
+	drawCursor()
 	window.requestAnimationFrame(draw)
+	// var after = performance.now();
+	// // console.log("veryExpensiveFunction took " + averageT + "ms to execute.")
+	// // times.push(after - before)
+	// // averageT = average(times)
 }
 
 window.addEventListener('load', setup)
