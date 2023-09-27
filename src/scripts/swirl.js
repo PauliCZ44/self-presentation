@@ -17,23 +17,24 @@ const getParticleCount = () => {
 	if (window.innerWidth < 768) {
 		return 50
 	}
-	return 150 + parseInt(window.innerWidth * 0.1)
+	const scaled = 100 + parseInt(window.innerWidth * 0.05)
+	return scaled > 150 ? 150 : scaled
 }
 let particleCount = getParticleCount()
 const particlePropCount = 9
 const particlePropsLength = particleCount * particlePropCount
-const rangeY = 125
-const baseTTL = 125
+const rangeY = window.innerHeight * 0.2
+const baseTTL = 150
 const rangeTTL = 150
-const baseSpeed = 0.0033
-const rangeSpeed = 0.15
-const baseRadius = 1
-const rangeRadius = 4
+const baseSpeed = 0.07
+const rangeSpeed = 0.3
+const baseRadius = 4
+const rangeRadius = 3
 let baseHue = CONFIG.baseHue - 10
 const rangeHue = 110
-const noiseSteps = 20
-const xOff = 0.00125
-const yOff = 0.00125
+const noiseSteps = 25
+const xOff = 0.00225
+const yOff = 0.005
 const zOff = 0.00025
 const backgroundColor = 'hsla(' + (baseHue + 30) + ',52%,10%,1)'
 
@@ -99,7 +100,7 @@ function initParticle(i) {
 	let x, y, vx, vy, life, ttl, speed, radius, hue
 
 	x = rand(canvas.a.width)
-	y = center[1] + randRange(rangeY) + randRange(rangeY)
+	y = center[1] + randRange(canvas.a.height / 3)
 	vx = 0
 	vy = 0
 	life = 0
@@ -131,8 +132,8 @@ function updateParticle(i) {
 	x = particleProps[i]
 	y = particleProps[i2]
 	n = noise3D(x * xOff, y * yOff, tick * zOff) * noiseSteps * TAU
-	vx = lerp(particleProps[i3], cos(n), 0.5)
-	vy = lerp(particleProps[i4], sin(n), 0.5)
+	vx = lerp(particleProps[i3], cos(n), 1)
+	vy = lerp(particleProps[i4], sin(n), 1)
 	life = particleProps[i5]
 	ttl = particleProps[i6]
 	speed = particleProps[i7]
@@ -317,7 +318,18 @@ function renderToScreen() {
 	ctx.b.restore()
 }
 
-function draw() {
+var updateId,
+    previousDelta = 0,
+    fpsLimit = 30;
+
+function draw(currentDelta) {
+	updateId = window.requestAnimationFrame(draw)
+	var delta = currentDelta - previousDelta;
+
+    if (fpsLimit && delta < 1000 / fpsLimit) {
+        return;
+    }
+
 	tick++
 	ctx.a.clearRect(0, 0, canvas.a.width, canvas.a.height)
 	ctx.b.fillStyle = backgroundColor
@@ -327,7 +339,7 @@ function draw() {
 	renderToScreen()
 	drawCursor()
 
-	window.requestAnimationFrame(draw)
+	previousDelta = currentDelta;
 }
 
 window.addEventListener('load', setup)

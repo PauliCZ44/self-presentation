@@ -11,7 +11,6 @@ import ArrowButton from '../components/ArrowButton.astro'
 import TechStack from '../sections/TechStack.astro'
 import Footer from '../sections/Footer.astro'
 import WorkExperience from 'src/sections/WorkExperience.astro'
-
 const SkillCardsContent = [
 	{
 		title: 'React Enthusiast',
@@ -40,6 +39,8 @@ const SkillCardsContent = [
 	<script src="../scripts/swirl.js"></script>
 	<script src="../scripts/canvasCursor.js"></script>
 
+	<!-- <div class="absolute top-0 left-0 z-10 hidden">fps: <span id="fps"></span></div> -->
+
 	<div class="home-warpper relative w-full min-h-[600px] lg:min-h-[63rem]" id="home">
 		<div class="content--canvas"></div>
 		<div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
@@ -58,11 +59,11 @@ const SkillCardsContent = [
 		</div>
 
 		<!-- // Absoulute positinoed and center on the page -->
-		<div class="arrow-container-wrapper">
+		<!-- <div class="arrow-container-wrapper">
 			<button class="arrow-container" id="scroll-to-about" aria-label="scroll to about section">
 				<ArrowButton />
 			</button>
-		</div>
+		</div> -->
 	</div>
 
 	<SectionHeader title={'ABOUT ME'} id="about" />
@@ -120,10 +121,10 @@ const SkillCardsContent = [
 			arrowButton?.classList.remove('invisible')
 		}
 	})
-
+	let fpsElement: null | HTMLSpanElement = null
 	document.addEventListener('DOMContentLoaded', function () {
 		welcomeInConsole()
-		arrowButton = document.getElementById('scroll-to-about')
+		// arrowButton = document.getElementById('scroll-to-about')
 		document.body.style.setProperty('--scrollY', '0')
 		document.body.style.setProperty('--windowHeight', `${window.innerHeight}`)
 		document.body.style.setProperty('--windowWidth', `${window.innerWidth}`)
@@ -136,12 +137,12 @@ const SkillCardsContent = [
 		}, 100)
 	})
 
-	// selecet scroll-to-about button
-	const scrollToAboutButton = document.getElementById('scroll-to-about')
-	scrollToAboutButton?.addEventListener('click', function () {
-		const aboutSection = document.getElementById('about')
-		aboutSection?.scrollIntoView({ behavior: 'smooth' })
-	})
+		// // selecet scroll-to-about button
+		// const scrollToAboutButton = document.getElementById('scroll-to-about')
+		// scrollToAboutButton?.addEventListener('click', function () {
+		// 	const aboutSection = document.getElementById('about')
+		// 	aboutSection?.scrollIntoView({ behavior: 'smooth' })
+		// })
 
 	const cardCount = 4
 	for (let i = 0; i <= cardCount; i++) {
@@ -154,6 +155,27 @@ const SkillCardsContent = [
 			rotateTouch: 'scroll-y',
 		})
 	}
+
+	/**FPS METER */
+	// let then = Date.now() / 1000;  // get time in seconds
+
+	// let render = function() {
+	// 	let now = Date.now() / 1000;  // get time in seconds
+
+	// 	// compute time since last frame
+	// 	let elapsedTime = now - then;
+	// 	then = now;
+
+	// 	// compute fps
+	// 	let fps = 1 / elapsedTime;
+	// 	if (fpsElement) {
+	// 		fpsElement.innerText = fps.toFixed(2);
+	// 	}
+
+	// 	window.requestAnimationFrame(render);
+	// };
+	// render();
+
 </script>
 
 <style is:global>
@@ -179,13 +201,13 @@ const SkillCardsContent = [
 		filter: sepia(40%) contrast(130%) brightness(95%) grayscale(20%);
 	}
 
-	.arrow-container-wrapper {
+	/* .arrow-container-wrapper {
 		transform: translateY(calc(var(--scrollY) * -0.15px + 2px))
 			scale(calc(1 - (var(--scrollY) * 0.0005)));
 		transition: transform 50ms linear;
-	}
+	} */
 
-	.arrow-container {
+	/* .arrow-container {
 		opacity: calc(0.8 - var(--scrollY) * 0.025);
 		transition: transform 350ms ease-in-out, opacity 350ms ease-in-out;
 		z-index: 3;
@@ -202,13 +224,13 @@ const SkillCardsContent = [
 		flex-wrap: wrap;
 		border: 1px solid rgba(255, 255, 255);
 		border-radius: 50%;
-	}
+	} */
 
-	.arrow-container:hover,
+	/* .arrow-container:hover,
 	.arrow-container:focus-visible {
 		opacity: 1;
 		transform: scale(1.04) translateX(-50%) translateY(-2px);
-	}
+	} */
 
 	/* // random like movement */
 	@keyframes pan-overlay {
