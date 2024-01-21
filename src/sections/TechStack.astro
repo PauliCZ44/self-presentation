@@ -1,75 +1,144 @@
 ---
-import SkillAndIcon from '../components/SkillAndIcon.astro'
-import blazor from '../icons/blazor.svg'
+import SkillAndIcon from "../components/SkillAndIcon.astro";
+import blazor from "../icons/blazor.svg";
 
 const mainSkills = [
-	{ skill: 'React', icon: 'logos:react', href: 'https://reactjs.org/' },
-	{ skill: 'Typescript', icon: 'logos:typescript-icon', href: 'https://www.typescriptlang.org/' },
-	{ skill: 'MaterialUI', icon: 'logos:material-ui', href: 'https://material-ui.com/' },
-	{
-		skill: 'CSS/SCSS',
-		icon: 'logos:css-3',
-		href: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
-	},
-	{ skill: 'Tailwind', icon: 'logos:tailwindcss-icon', href: 'https://tailwindcss.com/' },
-	{ skill: 'Bootstrap', icon: 'logos:bootstrap', href: 'https://getbootstrap.com/' },
-	{ skill: 'Cypress', icon: 'logos:cypress', href: 'https://www.cypress.io/' },
-	{ skill: 'Storybook', icon: 'logos:storybook-icon', href: 'https://storybook.js.org/' },
-	{ skill: 'Vite', icon: 'logos:vitejs', href: 'https://vitejs.dev/' },
-]
+  { skill: "React", icon: "logos:react", href: "https://reactjs.org/" },
+  {
+    skill: "Typescript",
+    icon: "logos:typescript-icon",
+    href: "https://www.typescriptlang.org/",
+  },
+  {
+    skill: "MaterialUI",
+    icon: "logos:material-ui",
+    href: "https://material-ui.com/",
+  },
+  {
+    skill: "CSS/SCSS",
+    icon: "logos:css-3",
+    href: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+  },
+  {
+    skill: "Tailwind",
+    icon: "logos:tailwindcss-icon",
+    href: "https://tailwindcss.com/",
+  },
+  {
+    skill: "Bootstrap",
+    icon: "logos:bootstrap",
+    href: "https://getbootstrap.com/",
+  },
+  {
+    skill: "Storybook",
+    icon: "logos:storybook-icon",
+    href: "https://storybook.js.org/",
+  },
+  { skill: "Vite", icon: "logos:vitejs", href: "https://vitejs.dev/" },
+];
 // From this list generate key-pair values: Blazor, Python, C, JQuery, Express, Node.js, MongoDB, webpack, Svelte, SQL, Angular (not interested), Next.js, Jest, MapBox, Mantine.
 const workedWith = [
-	{ skill: 'Mantine', icon: 'mantine', href: 'https://mantine.dev/' },
-	{ skill: 'Next.js', icon: 'next', href: 'https://nextjs.org/' },
-	{ skill: 'Astro', icon: 'vscode-icons:file-type-astro', href: 'https://astro.build/' },
-	// { skill: 'JQuery', icon: 'devicon:jquery', href: 'https://jquery.com/' },
-	{ skill: 'Express', icon: 'express', href: 'https://expressjs.com/' },
-	{ skill: 'Node.js', icon: 'logos:nodejs-icon', href: 'https://nodejs.org/' },
-	{ skill: 'MongoDB', icon: 'vscode-icons:file-type-mongo', href: 'https://www.mongodb.com/' },
-	{ skill: 'webpack', icon: 'logos:webpack', href: 'https://webpack.js.org/' },
-	{ skill: 'SQL', icon: 'logos:postgresql', href: 'https://www.postgresql.org/' },
-	{ skill: 'Svelte', icon: 'logos:svelte-icon', href: 'https://svelte.dev/' },
-	{ skill: 'Angular', icon: 'logos:angular-icon', href: 'https://angular.io/' },
-	{
-		skill: 'Blazor',
-		icon: 'blazor',
-		href: 'https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor',
-	},
-	{ skill: 'Python', icon: 'logos:python', href: 'https://www.python.org/' },
-	{ skill: 'C', icon: 'logos:c', href: 'https://en.wikipedia.org/wiki/C_(programming_language)' },
-	{ skill: 'Jest', icon: 'logos:jest', href: 'https://jestjs.io/' },
-	{ skill: 'MapBox', icon: 'logos:mapbox-icon', href: 'https://www.mapbox.com/' },
-]
+  { skill: "Mantine", icon: "mantine", href: "https://mantine.dev/" },
+  { skill: "Next.js", icon: "next", href: "https://nextjs.org/" },
+  {
+    skill: "Astro",
+    icon: "vscode-icons:file-type-astro",
+    href: "https://astro.build/",
+  },
+  // { skill: 'JQuery', icon: 'devicon:jquery', href: 'https://jquery.com/' },
+  { skill: "Express", icon: "express", href: "https://expressjs.com/" },
+  { skill: "Node.js", icon: "logos:nodejs-icon", href: "https://nodejs.org/" },
+  {
+    skill: "MongoDB",
+    icon: "vscode-icons:file-type-mongo",
+    href: "https://www.mongodb.com/",
+  },
+  {
+    skill: "Cypress",
+    icon: "vscode-icons:file-type-light-cypress",
+    href: "https://www.cypress.io/",
+  },
+  {
+    skill: "Playwright",
+    icon: "logos:playwright",
+    href: "https://playwright.dev/",
+  },
+  { skill: "webpack", icon: "logos:webpack", href: "https://webpack.js.org/" },
+  {
+    skill: "SQL",
+    icon: "logos:postgresql",
+    href: "https://www.postgresql.org/",
+  },
+  { skill: "Svelte", icon: "logos:svelte-icon", href: "https://svelte.dev/" },
+  { skill: "Angular", icon: "logos:angular-icon", href: "https://angular.io/" },
+  {
+    skill: "Blazor",
+    icon: "blazor",
+    href: "https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor",
+  },
+  { skill: "Python", icon: "logos:python", href: "https://www.python.org/" },
+  {
+    skill: "C",
+    icon: "logos:c",
+    href: "https://en.wikipedia.org/wiki/C_(programming_language)",
+  },
+  { skill: "Jest", icon: "logos:jest", href: "https://jestjs.io/" },
+  {
+    skill: "MapBox",
+    icon: "logos:mapbox-icon",
+    href: "https://www.mapbox.com/",
+  },
+];
 
 // Git, GitLab, Figma, T3Stack, Remix, Sveltekit, Styled Components, Prettier, ESLitn, Backend
 // developement.
 const otherInterests = [
-	{ skill: 'Git', icon: 'logos:git-icon', href: 'https://git-scm.com/' },
-	{ skill: 'GitLab', icon: 'logos:gitlab', href: 'https://gitlab.com/' },
-	{ skill: 'Figma', icon: 'logos:figma', href: 'https://www.figma.com/' },
-	{ skill: 'T3Stack', icon: 't3', href: 'https://create.t3.gg/' },
-	{ skill: 'Remix', icon: 'remix', href: 'https://remix.run/' },
-	{ skill: 'Sveltekit', icon: 'logos:svelte-icon', href: 'https://kit.svelte.dev/' },
-	{ skill: 'VSCode', icon: 'logos:visual-studio-code', href: 'https://code.visualstudio.com/' },
-	{ skill: 'Prettier', icon: 'logos:prettier', href: 'https://prettier.io/' },
-	{ skill: 'ESLint', icon: 'logos:eslint', href: 'https://eslint.org/' },
-]
+  { skill: "Git", icon: "logos:git-icon", href: "https://git-scm.com/" },
+  { skill: "GitLab", icon: "logos:gitlab", href: "https://gitlab.com/" },
+  { skill: "Figma", icon: "logos:figma", href: "https://www.figma.com/" },
+  { skill: "T3Stack", icon: "t3", href: "https://create.t3.gg/" },
+  { skill: "Remix", icon: "remix", href: "https://remix.run/" },
+  {
+    skill: "Sveltekit",
+    icon: "logos:svelte-icon",
+    href: "https://kit.svelte.dev/",
+  },
+  {
+    skill: "VSCode",
+    icon: "logos:visual-studio-code",
+    href: "https://code.visualstudio.com/",
+  },
+  { skill: "Prettier", icon: "logos:prettier", href: "https://prettier.io/" },
+  { skill: "ESLint", icon: "logos:eslint", href: "https://eslint.org/" },
+];
 const allSkills = [
-	{ skills: mainSkills, title: 'Main stack', iconWidth: '2.5rem' },
-	{ skills: workedWith, title: 'Worked with', iconWidth: '1.75rem' },
-	{ skills: otherInterests, title: 'Other interests and tools', iconWidth: '1.75rem' },
-]
+  { skills: mainSkills, title: "Main stack", iconWidth: "2.5rem" },
+  { skills: workedWith, title: "Worked with", iconWidth: "1.75rem" },
+  {
+    skills: otherInterests,
+    title: "Other interests and tools",
+    iconWidth: "1.75rem",
+  },
+];
 ---
 
 {
-	allSkills.map(({ skills, title, iconWidth }) => (
-		<div>
-			<h6 class="font-medium font-mono pt-6 pb-2 fs-base text-center">{title}</h6>
-			<div class="flex flex-wrap gap-8 justify-center">
-				{skills.map(({ skill, icon, href }) => (
-					<SkillAndIcon iconName={icon} skill={skill} href={href} iconWidth={iconWidth} />
-				))}
-			</div>
-		</div>
-	))
+  allSkills.map(({ skills, title, iconWidth }, i) => (
+    <div>
+      <h6 class="font-medium font-mono pt-6 pb-2 fs-base text-center">
+        {title}
+      </h6>
+      <div class="flex flex-wrap gap-8 justify-center">
+        {skills.map(({ skill, icon, href }, j) => (
+          <SkillAndIcon
+            index={i * 3 + j}
+            iconName={icon}
+            skill={skill}
+            href={href}
+            iconWidth={iconWidth}
+          />
+        ))}
+      </div>
+    </div>
+  ))
 }

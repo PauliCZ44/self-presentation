@@ -1,96 +1,103 @@
 ---
-import Icon from 'astro-icon'
+import { Icon } from "astro-icon/components";
 const links = [
-	{
-		name: 'Facebook',
-		href: 'https://www.facebook.com/pavel.stastny.9',
-		icon: 'simple-icons:facebook',
-	},
-	{
-		name: 'LinkedIn',
-		href: 'https://www.linkedin.com/in/pavel-stastny-155539150',
-		icon: 'simple-icons:linkedin',
-	},
-	{
-		name: 'GitHub',
-		href: 'https://github.com/PauliCZ44',
-		icon: 'simple-icons:github',
-	},
-	{
-		name: 'FCC',
-		href: 'https://www.freecodecamp.org/paulicz44',
-		icon: 'simple-icons:freecodecamp',
-	},
-]
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/pavel.stastny.9",
+    icon: "simple-icons:facebook",
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/pavel-stastny-155539150",
+    icon: "simple-icons:linkedin",
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/PauliCZ44",
+    icon: "simple-icons:github",
+  },
+  {
+    name: "FCC",
+    href: "https://www.freecodecamp.org/paulicz44",
+    icon: "simple-icons:freecodecamp",
+  },
+];
 ---
 
 <footer id="footer" class="pt-16 pb-8">
-	<div class="container px-6 sm:px-20 mx-auto text-gray-300">
-		<div class="font-sans text-sm font-semibold flex gap-x-10 gap-y-8 sm:gap-x-32 flex-wrap">
-			<div class="">
-				<p class="fs-base font-bold text-gray-50 mb-11">Links</p>
-				<div class="flex flex-col gap-2">
-					{
-						links.map((l) => (
-							<a
-								href={l.href}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="flex items-center leading-relaxed group-link"
-								role="button"
-							>
-								<Icon name={l.icon} height="1rem" width="1rem" />
-								<span class="ml-2 link">{l.name}</span>
-							</a>
-						))
-					}
-				</div>
-			</div>
-			<div class="max-w-[70ch]">
-				<p class="fs-base font-bold text-gray-50 mb-11">About this page</p>
-				<p class="leading-relaxed opacity-80">
-					Page is made ♥ Astro ♥. Even if my favourite tech stack is React/Typescript, I have chosen
-					raw speed over my DX. That is why this page uses only mix of tailwind, scss and good old
-					vanilla javascript.
-				</p>
-				<div class="mt-8">
-					<div class="flex flex-col items-start leading-relaxed">
-						<div class="flex gap-6 items-center">
-							<span> My CV:</span>
-							<a
-								class="link--btn link flex items-center"
-								href="/assets/CV_23.pdf"
-								download="PavelŠťastný"
-								target="_blank"
-								class="ml-2 flex items-center group-link"
-								role="button"
-							>
-								<span class="flex">
-									DOWNLOAD! <Icon
-										eight="1rem"
-										width="1rem"
-										class="ml-2"
-										name="lucide:download"
-									/></span
-								>
-							</a>
-						</div>
-						<div class="flex items-center mt-4">
-							<Icon height="1rem" width="1rem" class="mr-3 mt-0.5" name="lucide:mail" />
-							<span>stastnyp@seznam.cz</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<p class="text-right text-xs text-zinc-600 opacity-90 self-end flex-1">
-				&copy; Copyright {new Date().getFullYear()} Pavel Šťastný. All Rights Reserved.
-			</p>
-		</div>
+  <div class="container px-6 sm:px-20 mx-auto text-gray-300">
+    <div
+      class="font-sans text-sm font-semibold flex gap-x-10 gap-y-8 sm:gap-x-32 flex-wrap"
+    >
+      <div class="">
+        <p class="fs-base font-bold text-gray-50 mb-11">Links</p>
+        <div class="flex flex-col gap-2">
+          {
+            links.map((l) => (
+              <a
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center leading-relaxed group-link"
+                role="button"
+              >
+                <Icon name={l.icon} height="1rem" width="1rem" />
+                <span class="ml-2 link">{l.name}</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <div class="max-w-[70ch]">
+        <p class="fs-base font-bold text-gray-50 mb-11">About this page</p>
+        <p class="leading-relaxed opacity-80">
+          Page is made ♥ Astro ♥. Even if my favourite tech stack is
+          React/Typescript, I have chosen raw speed over my DX. That is why this
+          page uses only mix of tailwind, scss and good old vanilla javascript.
+        </p>
+        <div class="mt-8">
+          <div class="flex flex-col items-start leading-relaxed">
+            <div class="flex gap-6 items-center">
+              <span> My CV:</span>
+              <a
+                class="link--btn link flex items-center"
+                href="/assets/CV_23.pdf"
+                download="PavelŠťastný"
+                target="_blank"
+                class="ml-2 flex items-center group-link"
+                role="button"
+              >
+                <span class="flex">
+                  DOWNLOAD! <Icon
+                    eight="1rem"
+                    width="1rem"
+                    class="ml-2"
+                    name="lucide:download"
+                  /></span
+                >
+              </a>
+            </div>
+            <div class="flex items-center mt-4">
+              <Icon
+                height="1rem"
+                width="1rem"
+                class="mr-3 mt-0.5"
+                name="lucide:mail"
+              />
+              <span>stastnyp@seznam.cz</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-right text-xs text-zinc-600 opacity-90 self-end flex-1">
+        &copy; Copyright {new Date().getFullYear()} Pavel Šťastný. All Rights Reserved.
+      </p>
+    </div>
 
-		<style>
-			footer {
-				background-image: var(--gray-bg);
-			}
-		</style>
-	</div>
+    <style>
+      footer {
+        background-image: var(--gray-bg);
+      }
+    </style>
+  </div>
 </footer>

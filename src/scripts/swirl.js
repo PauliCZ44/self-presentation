@@ -101,6 +101,7 @@ function initParticle(i) {
 
 	x = rand(canvas.a.width)
 	y = center[1] + randRange(canvas.a.height / 3)
+	y = center[1] + randRange(rangeY) + randRange(rangeY) * 1.5
 	vx = 0
 	vy = 0
 	life = 0

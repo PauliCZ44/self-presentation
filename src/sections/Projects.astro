@@ -1,79 +1,111 @@
 ---
-import { Image } from 'astro:assets'
-import bang from '@assets/Bangcalc.jpg'
-import cestaky from '@assets/cestaky.jpg'
-import Icon from 'astro-icon'
+import { Image } from "astro:assets";
+import bang from "@assets/Bangcalc.jpg";
+import cestaky from "@assets/cestaky.jpg";
+import { Icon } from "astro-icon/components";
 
 const projects = [
-	{
-		img: bang,
-		title: 'BANG! Calc',
-		href: 'https://bangcalc.netlify.app/',
-		content: `
-				This is a web application where you can calculate travel expenses based on input data such
-				as starting location, destination, price per kilometer, etc. For distance calculation, it utilizes the MapBox
-				directions API, and for obtaining addresses, it uses the MapBox geocoding API.
+  {
+    img: bang,
+    title: "BANG! Score Calculator",
+    href: "https://bangcalc.netlify.app/",
+    content: `
+			This is a calculator for score in board game BANG!. "Bang! is a Wild West-themed social deduction card game designed by Emiliano Sciarra and released in 2002. The scoring system is taken from the Official tournament system. At the end of each game, each player gains an amount of points based on the results of the game. It is not important who eliminated a specific player.
 		`,
-		sourceCode: 'https://github.com/PauliCZ44/Bang-Calc',
-		tech: 'React, Bootstrap.',
-	},
-	{
-		img: cestaky,
-		title: 'Cesťáky',
-		href: 'https://cestaky-app.web.app/',
-		content: `
+    sourceCode: "https://github.com/PauliCZ44/Bang-Calc",
+    tech: "React, Bootstrap.",
+  },
+  {
+    img: cestaky,
+    title: "Cesťáky",
+    href: "https://cestaky-app.web.app/",
+    content: `
 			Web application in which you can calculate travel costs based on the data you enter, such as starting position and finishing position, price per km, etc. The application is created using react and firebase. MapBox directions API is used to calculate the distance. MapBox geocoding API is used to get the addresses.
 		`,
-		sourceCode: 'https://github.com/PauliCZ44/cestaky-app',
-		tech: 'React, Mantine, Firebase.',
-	},
-]
+    sourceCode: "https://github.com/PauliCZ44/cestaky-app",
+    tech: "React, Mantine, Firebase.",
+  },
+];
 ---
 
 <section class="text-white bg-gradient-custom pb-20 pt-10">
-	<div class="row mt text-center">
-		<div class="w-10/12 sm:w-8/12 md:w-6/12 m-auto py-8">
-			<p class="text-sm text-content-secondary">
-				In this section, you can take a look at some of my projects. Some of them are practice
-				projects, while others can be considered 100% functional as intended. Some are older and may show signs of age. I can't actively update all of them, but they reflect part of my journey.
-			</p>
-		</div>
-	</div>
-	<div class="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16 mt-8 w-11/12 xl:w-10/12 mx-auto max-w-5xl justify-items-center">
-		{
-			projects.map((p) => (
-				<div class="flex flex-col gap-3 items-start border-primary-opacity-50 border rounded max-w-md">
-					<a href={p.href}>
-						<Image
-							class="rounded-t"
-							src={p.img}
-							alt={'Image of application: ' + p.title}
-						/>
-					</a>
-					<h3 class="px-6 pt-2 font-mono text-xl font-bold">{p.title}</h3>
-					<p class="px-6 text-justify text-content">
-						<Fragment set:html={p.content} />
-					</p>
-					<div class="px-6">
-						<span class="technologie">Technologies:</span>
-						<b class="text-sm font-semibold">
-							{p.tech}
-						</b>
-					</div>
-					<div class="px-6 pb-6 flex gap-6 justify-end self-end mt-auto">
-						<div data-wenk="Source code">
-							<a class="link--btn link" href={p.sourceCode}>
-								<Icon name="simple-icons:github" height="1.5rem" width="2rem">
-							</a>
-						</div>
-						<div data-wenk="Open demo">
-							<a class="link--btn link" href={p.href}>
-								<Icon name="ic:outline-open-in-new" height="1.5rem" width="2rem">
-							</a>
-						</div>
-					</div>
-				</div>
-			))
-		}
-	</div>
+  <div class="row mt text-center">
+    <div class="w-10/12 sm:w-8/12 md:w-6/12 m-auto py-8">
+      <p class="text-sm text-content-secondary">
+        In this section, you can take a look at some of my projects. Some of
+        them are practice projects, while others can be considered 100%
+        functional as intended. Some are older and may show signs of age. I
+        can't actively update all of them, but they reflect part of my journey.
+      </p>
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16 mt-8 w-11/12 xl:w-10/12 mx-auto max-w-5xl justify-items-center"
+  >
+    {
+      projects.map((p, i) => (
+        <div
+          style={`--offset: ${(i + 2) % 2}`}
+          class="flex flex-col gap-3 items-start border-primary-opacity-50 border rounded max-w-md scroll-reveal-test"
+        >
+          <a href={p.href}>
+            <Image
+              class="rounded-t"
+              src={p.img}
+              alt={"Image of application: " + p.title}
+            />
+          </a>
+          <h3 class="px-6 pt-2 font-mono text-xl font-bold">{p.title}</h3>
+          <p class="px-6 text-justify text-content">
+            <Fragment set:html={p.content} />
+          </p>
+          <div class="px-6">
+            <span class="technologie">Technologies:</span>
+            <b class="text-sm font-semibold">{p.tech}</b>
+          </div>
+          <div class="px-6 pb-6 flex gap-6 justify-end self-end mt-auto">
+            <div data-wenk="Source code">
+              <a class="link--btn link" href={p.sourceCode}>
+                <Icon name="simple-icons:github" height={24} width={32} />
+              </a>
+            </div>
+            <div data-wenk="Open demo">
+              <a class="link--btn link" href={p.href}>
+                <Icon name="ic:outline-open-in-new" height={24} width={32} />
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
 </section>
+
+<style>
+  .scroll-reveal-test {
+    /* Create View Timeline */
+    view-timeline-name: --revealing-image;
+    view-timeline-axis: block;
+
+    /* Attach animation, linked to the  View Timeline */
+    animation: ease reveal both;
+    animation-timeline: --revealing-image;
+
+    /* Tweak range when effect should run*/
+    animation-range: entry calc(5% + 10% * var(--offset, 1)) cover
+      calc(60% + 5% * var(--offset, 1));
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      filter: blur(4px);
+      transform: translateY(calc(200px + 100px * var(--offset))) scale(0.85);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>

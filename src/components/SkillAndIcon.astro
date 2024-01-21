@@ -1,72 +1,109 @@
 ---
 export interface Props {
-	iconName: string
-	skill: string
-	customIcon?: any
-	iconWidth?: string
-	href?: string
+  iconName: string;
+  skill: string;
+  customIcon?: any;
+  iconWidth?: string;
+  href?: string;
+  index?: number;
 }
-import { Icon } from 'astro-icon'
-const { iconName, skill, iconWidth, customIcon, href } = Astro.props
-const size = iconWidth ?? '2.5rem'
+import { Icon } from "astro-icon/components";
+const { iconName, skill, iconWidth, customIcon, href, index = 0 } = Astro.props;
+const size = iconWidth ?? "2.5rem";
 ---
 
-<a class="SaI_wrapper" href={href ? href : undefined} target="_blank">
-	<div class="iconWrapper">
-		{
-			customIcon ? (
-				<div style={{ width: size, height: size }}>{customIcon}</div>
-			) : (
-				<Icon title={skill} alt={skill} name={iconName} width={size} height={size} />
-			)
-		}
-	</div>
-	<span class="skill-name">{skill}</span>
+<a
+  class="SaI_wrapper"
+  href={href ? href : undefined}
+  target="_blank"
+  style={`--stagger-delay: calc(0.15s * ${index})`}
+>
+  <div class="iconWrapper fade-in" data-sal>
+    {
+      customIcon ? (
+        <div style={{ width: size, height: size }}>{customIcon}</div>
+      ) : (
+        <Icon
+          title={skill}
+          alt={skill}
+          name={iconName}
+          width={size}
+          height={size}
+        />
+      )
+    }
+  </div>
+  <span class="skill-name">{skill}</span>
 </a>
 
 <style lang="scss">
-	.SaI_wrapper {
-		--fastTr: all 0.2s ease-in-out;
-		--slowTr: all 3s 0.25s ease-out;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		border-radius: 0.5rem;
-		div > svg {
-			transition: var(--slowTr);
-		}
-		&:hover {
-			.iconWrapper {
-				transition: all 0.1s ease-in;
-				box-shadow: 0px 0px 80px 0px hsl(var(--primary-hsl) / 30%),
-					0px 0px 6px 2px hsl(var(--primary-hsl) / 60%);
-				rotate: -2deg;
-				scale: 1.1;
-			}
-			.skill-name {
-				transition: all 0.1s ease-in;
-				filter: brightness(1.5);
-			}
-			div > svg {
-				transition: var(--fastTr);
-				scale: 1.2;
-				rotate: -5deg;
-			}
-		}
-	}
-	.iconWrapper {
-		transition: var(--slowTr);
-		box-shadow: 0px 0px 80px 0px hsl(var(--primary-hsl) / 30%),
-			0px 0px 5px 0px hsl(var(--primary-hsl) / 40%);
-		border: 1px solid rgb(0 0 0 / 5%);
-		background: rgb(0 0 0 / 5%);
-		border-radius: 0.5rem;
-		padding: 0.625rem;
-	}
-	.skill-name {
-		transition: var(--slowTr);
-		padding-top: 0.25rem;
-		font-size: 0.75rem;
-	}
+  .SaI_wrapper {
+    --fastTr: all 0.2s ease-in-out;
+    --slowTr: all 3s 0.25s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    div > svg {
+      transition: var(--slowTr);
+    }
+    &:hover {
+      .iconWrapper {
+        transition: all 0.1s ease-in;
+        box-shadow:
+          0px 0px 80px 0px hsl(var(--primary-hsl) / 30%),
+          0px 0px 6px 2px hsl(var(--primary-hsl) / 60%);
+        rotate: -2deg;
+        scale: 1.1;
+      }
+      .skill-name {
+        transition: all 0.1s ease-in;
+        filter: brightness(1.5);
+      }
+      div > svg {
+        transition: var(--fastTr);
+        scale: 1.2;
+        rotate: -5deg;
+      }
+    }
+  }
+  .iconWrapper {
+    transition: var(--slowTr);
+    box-shadow:
+      0px 0px 80px 0px hsl(var(--primary-hsl) / 30%),
+      0px 0px 5px 0px hsl(var(--primary-hsl) / 40%);
+    border: 1px solid rgb(0 0 0 / 5%);
+    background: rgb(0 0 0 / 5%);
+    border-radius: 0.5rem;
+    padding: 0.625rem;
+  }
+  .skill-name {
+    transition: var(--slowTr);
+    padding-top: 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  .fade-in {
+    opacity: 0;
+  }
+
+  .fade-in.sal-animate {
+    animation: ease-in-out fadeIn 1s forwards;
+    animation-delay: var(--stagger-delay);
+  }
+
+  @keyframes fadeIn {
+    0% {
+      filter: blur(4px);
+      opacity: 0;
+      scale: 0.95;
+      transform: translateX(-35px);
+    }
+    100% {
+      scale: 1;
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 </style>
