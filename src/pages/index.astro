@@ -7,7 +7,6 @@ import "../global.css";
 import SkillCard from "../components/SkillCard.astro";
 import Projects from "../sections/Projects.astro";
 import SectionHeader from "../components/SectionHeader.astro";
-import ArrowButton from "../components/ArrowButton.astro";
 import TechStack from "../sections/TechStack.astro";
 import Footer from "../sections/Footer.astro";
 import WorkExperience from "src/sections/WorkExperience.astro";
@@ -135,6 +134,7 @@ const SkillCardsContent = [
   let fpsElement: null | HTMLSpanElement = null;
   document.addEventListener("DOMContentLoaded", function () {
     welcomeInConsole();
+    // @ts-ignore
     sal({ once: false });
     console.log(sal);
     // arrowButton = document.getElementById('scroll-to-about')

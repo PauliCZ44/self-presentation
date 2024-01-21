@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import bang from "@assets/Bangcalc.jpg";
-import cestaky from "@assets/cestaky.jpg";
+import bang from "../assets/Bangcalc.jpg";
+import cestaky from "../assets/cestaky.jpg";
 import { Icon } from "astro-icon/components";
 
 const projects = [
@@ -43,34 +43,34 @@ const projects = [
     class="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16 mt-8 w-11/12 xl:w-10/12 mx-auto max-w-5xl justify-items-center"
   >
     {
-      projects.map((p, i) => (
+      projects.map((proj, i) => (
         <div
           style={`--offset: ${(i + 2) % 2}`}
           class="flex flex-col gap-3 items-start border-primary-opacity-50 border rounded max-w-md scroll-reveal-test"
         >
-          <a href={p.href}>
+          <a href={proj.href}>
             <Image
               class="rounded-t"
-              src={p.img}
-              alt={"Image of application: " + p.title}
+              src={proj.img}
+              alt={"Image of application: " + proj.title}
             />
           </a>
-          <h3 class="px-6 pt-2 font-mono text-xl font-bold">{p.title}</h3>
+          <h3 class="px-6 pt-2 font-mono text-xl font-bold">{proj.title}</h3>
           <p class="px-6 text-justify text-content">
-            <Fragment set:html={p.content} />
+            <Fragment set:html={proj.content} />
           </p>
           <div class="px-6">
             <span class="technologie">Technologies:</span>
-            <b class="text-sm font-semibold">{p.tech}</b>
+            <b class="text-sm font-semibold">{proj.tech}</b>
           </div>
           <div class="px-6 pb-6 flex gap-6 justify-end self-end mt-auto">
             <div data-wenk="Source code">
-              <a class="link--btn link" href={p.sourceCode}>
+              <a class="link--btn link" href={proj.sourceCode}>
                 <Icon name="simple-icons:github" height={24} width={32} />
               </a>
             </div>
             <div data-wenk="Open demo">
-              <a class="link--btn link" href={p.href}>
+              <a class="link--btn link" href={proj.href}>
                 <Icon name="ic:outline-open-in-new" height={24} width={32} />
               </a>
             </div>
