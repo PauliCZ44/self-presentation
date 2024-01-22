@@ -65,24 +65,20 @@ const experiences = [
   @keyframes revealText {
     from {
       opacity: 0;
-      filter: blur(2px);
       transform: translateX(-50px) scale(0.85);
     }
     to {
       opacity: 1;
-      filter: blur(0);
       transform: translateY(0) scale(1);
     }
   }
 
   @keyframes revealDot {
     from {
-      filter: blur(2px);
       scale: 0.5;
       box-shadow: inset 0 0 0 black;
     }
     to {
-      filter: blur(0);
       scale: 1;
       box-shadow: inset 0 2px 4px 0 black;
     }
