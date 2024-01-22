@@ -1,39 +1,90 @@
 ---
 const experiences = [
-	{
-		title: 'Front-end developer, YunexTraffic s.r.o.',
-		date: '05/2022 – present',
-		description:
-			'Developing web apps and React components as part of the FE/UX team using React, Typescript etc. Lead UI library developement, and boost code quality in legacy projects through linting, refactoring, and code reviews, all while improving overall user experience with performance in mind.',
-	},
-	{
-		title: 'Web Developer, Papirfly',
-		date: '07/2021 – 04/202',
-		description:
-			'Develop web applications and websites for clients using JavaScript/TypeScript, Angular, CSS (SASS) etc. As the sole front-end developer, I built a single-page application (SPA) using vanilla JavaScript, class-based components, SCSS styles, and REST API integration.',
-	},
-	{
-		title: 'Software tester, TwinSoft s.r.o',
-		date: '11/2017 – 07/2021',
-		description:
-			"Manual and automated testing of a web application, including SQL database interaction. Enhanced the app's UX through valuable feedback.",
-	},
-]
+  {
+    title: "Front-end developer, YunexTraffic s.r.o.",
+    date: "05/2022 – present",
+    description:
+      "Developing web apps and React components as part of the FE/UX team using React, Typescript etc. Lead UI library developement, and boost code quality in legacy projects through linting, refactoring, and code reviews, all while improving overall user experience with performance in mind.",
+  },
+  {
+    title: "Web Developer, Papirfly",
+    date: "07/2021 – 04/202",
+    description:
+      "Develop web applications and websites for clients using JavaScript/TypeScript, Angular, CSS (SASS) etc. As the sole front-end developer, I built a single-page application (SPA) using vanilla JavaScript, class-based components, SCSS styles, and REST API integration.",
+  },
+  {
+    title: "Software tester, TwinSoft s.r.o",
+    date: "11/2017 – 07/2021",
+    description:
+      "Manual and automated testing of a web application, including SQL database interaction. Enhanced the app's UX through valuable feedback.",
+  },
+];
 ---
 
 <div class="py-24 w-full bg-gradient-custom">
-	<ol
-		class="max-w-xl w-10/12 sm:w-8/12 md:w-6/12 m-auto border-l-4 pl-8 blue-border flex flex-col gap-8"
-	>
-		{
-			experiences.map(({ description, title, date }) => (
-				<li class="relative pl-4">
-					<div class="border-primary border-2 w-8 h-8 bg-primary shadow-inner shadow-black rounded-full -left-12 translate-x-[-2px] top-1/2 -translate-y-1/2 absolute" />
-					<h4 class="text-lg font-medium">{title}</h4>
-					<h6 class="text-base text-content">{date}</h6>
-					<p class="text-sm text-content-secondary">{description}</p>
-				</li>
-			))
-		}
-	</ol>
+  <ol
+    class="max-w-xl w-10/12 sm:w-8/12 md:w-6/12 m-auto border-l-4 pl-8 blue-border flex flex-col gap-8"
+  >
+    {
+      experiences.map(({ description, title, date }) => (
+        <li class="relative pl-4">
+          <div class="reavel-dot border-primary border-2 w-8 h-8 bg-primary shadow-inner shadow-black rounded-full -left-12 translate-x-[-2px] top-1/2 -translate-y-1/2 absolute" />
+          <h4 class="text-lg font-medium reveal-text">{title}</h4>
+          <h6 class="text-base text-content reveal-text">{date}</h6>
+          <p class="text-sm text-content-secondary reveal-text">
+            {description}
+          </p>
+        </li>
+      ))
+    }
+  </ol>
 </div>
+
+<style>
+  .reveal-text,
+  .reavel-dot {
+    /* Create View Timeline */
+    view-timeline-name: --revealing-text;
+    view-timeline-axis: block;
+
+    /* Attach animation, linked to the  View Timeline */
+    animation: ease revealText both;
+    animation-timeline: --revealing-text;
+
+    /* Tweak range when effect should run*/
+    animation-range: entry 5% cover 45%;
+  }
+  .reavel-dot {
+    view-timeline-name: --revealing-dot;
+    view-timeline-axis: block;
+    animation: ease revealDot both;
+    animation-timeline: --revealing-dot;
+    animation-range: entry 5% cover 45%;
+  }
+
+  @keyframes revealText {
+    from {
+      opacity: 0;
+      filter: blur(2px);
+      transform: translateX(-50px) scale(0.85);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes revealDot {
+    from {
+      filter: blur(2px);
+      scale: 0.5;
+      box-shadow: inset 0 0 0 black;
+    }
+    to {
+      filter: blur(0);
+      scale: 1;
+      box-shadow: inset 0 2px 4px 0 black;
+    }
+  }
+</style>

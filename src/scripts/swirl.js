@@ -1,7 +1,9 @@
 import { createNoise3D } from 'simplex-noise'
 import { debounce, throttle } from './utils'
 import { CONFIG } from '../constants'
+import { isTouchDevice } from './canvasCursor'
 
+const IS_TOUCH = isTouchDevice()
 const { PI, cos, sin, abs } = Math
 const TAU = 2 * PI
 
@@ -338,7 +340,9 @@ function draw(currentDelta) {
 	drawParticles()
 	renderGlow()
 	renderToScreen()
-	drawCursor()
+	if (!IS_TOUCH) {
+		drawCursor()
+	}
 
 	previousDelta = currentDelta;
 }

@@ -2,26 +2,26 @@
 // props of title
 
 export interface Props {
-	title: string
-	id?: string
+  title: string;
+  id?: string;
 }
 
-const { title, id } = Astro.props
+const { title, id } = Astro.props;
 ---
 
 <div class="relative bg-transparent -my-8 z-10" id={id}>
-	<h3 class="fs-xl">{title}</h3>
+  <h3 class="fs-xl sm:fs-xxxl">{title}</h3>
 </div>
 
 <style>
-	h3 {
-		text-align: center;
-		font-weight: 400;
-		font-size: 6.2rem;
-		padding: 1.5rem;
-		clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%);
-		background: var(--gray-bg);
-		/* transition: transform 0.125s ease;
+  h3 {
+    text-align: center;
+    font-weight: 400;
+    /* font-size: 6.2rem; */
+    padding: 1.5rem;
+    clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%);
+    background: var(--gray-bg);
+    /* transition: transform 0.125s ease;
 		transform: translateY(calc(3rem + var(--scrollY) * -0.1px)); */
-	}
+  }
 </style>

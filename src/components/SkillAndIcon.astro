@@ -87,10 +87,15 @@ const size = iconWidth ?? "2.5rem";
   .fade-in {
     opacity: 0;
   }
-
   .fade-in.sal-animate {
-    animation: ease-in-out fadeIn 1s forwards;
+    animation: ease-in-out fadeInMobile 1s forwards;
     animation-delay: var(--stagger-delay);
+  }
+
+  @media (min-width: 640px) {
+    .fade-in.sal-animate {
+      animation: ease-in-out fadeIn 0.7s forwards;
+    }
   }
 
   @keyframes fadeIn {
@@ -102,6 +107,16 @@ const size = iconWidth ?? "2.5rem";
     }
     100% {
       scale: 1;
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes fadeInMobile {
+    0% {
+      opacity: 0;
+      transform: translateX(-35px);
+    }
+    100% {
       transform: translateX(0);
       opacity: 1;
     }

@@ -173,5 +173,15 @@ function draw() {
 	// // averageT = average(times)
 }
 
-window.addEventListener('load', setup)
-window.addEventListener('resize', debounce(resize, 750))
+// Check if device is touch device
+
+export function isTouchDevice() {
+    return ( 'ontouchstart' in window ) || 
+           ( navigator.maxTouchPoints > 0 ) || 
+           ( navigator.msMaxTouchPoints > 0 );
+}
+
+if (!isTouchDevice()) {
+	window.addEventListener('load', setup)
+	window.addEventListener('resize', debounce(resize, 750))
+}
