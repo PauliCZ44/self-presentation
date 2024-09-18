@@ -42,10 +42,9 @@ const { title, id } = Astro.props;
     font-weight: 500;
     padding: 3rem;
     clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%);
-    background: var(--gray-bg);
     text-shadow: 0 0 60px var(--primary), 0 0 20px var(--primary), 0 0 40px var(--primary);
     background-size: 30px 30px;
-    background-color: #040814;
+    background-color: hsl(var(--primaryHue), 66%, 4%);
     background-image: linear-gradient(0deg, transparent calc(50% - var(--lineH)), var(--lineCol) 50%, transparent calc(50% + var(--lineH))), linear-gradient(90deg, transparent calc(50% - var(--lineH)), var(--lineCol) 50%, transparent calc(50% + var(--lineH)));
     transition: all 200ms ease-in-out;
   } 
