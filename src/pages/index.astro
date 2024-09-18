@@ -38,8 +38,6 @@ const SkillCardsContent = [
   <script src="../scripts/swirl.js"></script>
   <script src="../scripts/canvasCursor.js"></script>
 
-  <!-- <div class="absolute top-0 left-0 z-10 hidden">fps: <span id="fps"></span></div> -->
-
   <div
     class="home-warpper relative w-full min-h-[600px] lg:min-h-[63rem]"
     id="home"
@@ -74,7 +72,7 @@ const SkillCardsContent = [
 
   <SectionHeader title={"ABOUT ME"} id="about" />
 
-  <div class="w-full relative bg-gradient-custom" id="skills">
+  <div class="w-full relative bg-gradient-custom pt-10" id="skills">
     <div class="bg-cursor"></div>
     <div class="grid-wrapper-boxes leading-none">
       {
@@ -84,7 +82,7 @@ const SkillCardsContent = [
       }
     </div>
 
-    <div class="pt-4 pb-20 relative">
+    <div class="pt-4 pb-40 relative">
       <h4 class="fs-md text-slate-200 text-center tech-stack">My tech stack</h4>
 
       <section
@@ -95,12 +93,12 @@ const SkillCardsContent = [
     </div>
   </div>
 
-  <SectionHeader title={"WORK EXPERIENCE"} id="work-experience" />
+  <SectionHeader title="WORK EXPERIENCE" id="work-experience" />
 
   <WorkExperience />
 </Layout>
 
-<SectionHeader title={"SOLO PROJECTS"} id="projects" />
+<SectionHeader title="SOLO PROJECTS" id="projects" />
 
 <Projects />
 
@@ -131,7 +129,6 @@ const SkillCardsContent = [
       arrowButton?.classList.remove("invisible");
     }
   });
-  let fpsElement: null | HTMLSpanElement = null;
   document.addEventListener("DOMContentLoaded", function () {
     welcomeInConsole();
     // @ts-ignore
@@ -172,25 +169,7 @@ const SkillCardsContent = [
     });
   }
 
-  /**FPS METER */
-  // let then = Date.now() / 1000;  // get time in seconds
-
-  // let render = function() {
-  // 	let now = Date.now() / 1000;  // get time in seconds
-
-  // 	// compute time since last frame
-  // 	let elapsedTime = now - then;
-  // 	then = now;
-
-  // 	// compute fps
-  // 	let fps = 1 / elapsedTime;
-  // 	if (fpsElement) {
-  // 		fpsElement.innerText = fps.toFixed(2);
-  // 	}
-
-  // 	window.requestAnimationFrame(render);
-  // };
-  // render();
+ 
 </script>
 
 <style is:global>

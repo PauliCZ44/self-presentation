@@ -12,7 +12,7 @@ export async function welcomeInConsole() {
 	)
 	await logAndSleep('%cYou can look at the source code of this website', css)
 	await logAndSleep(
-		'%cPage is made with astro framework. Some of the UI elements were inspired by Hyperplexed coepepens.',
+		'%cPage is made with astro framework. Some of the UI elements were inspired by Hyperplexed codepens.',
 		'font-size: 1.1rem;'
 	)
 	await logAndSleep('%cI hope you like it! 🤩', css)
