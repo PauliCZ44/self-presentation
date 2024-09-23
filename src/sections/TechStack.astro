@@ -45,44 +45,20 @@ const workedWith = [
     icon: "vscode-icons:file-type-astro",
     href: "https://astro.build/",
   },
-  // { skill: 'JQuery', icon: 'devicon:jquery', href: 'https://jquery.com/' },
   { skill: "Express", icon: "express", href: "https://expressjs.com/" },
   { skill: "Node.js", icon: "logos:nodejs-icon", href: "https://nodejs.org/" },
-  {
-    skill: "MongoDB",
-    icon: "vscode-icons:file-type-mongo",
-    href: "https://www.mongodb.com/",
-  },
-  {
-    skill: "Cypress",
-    icon: "vscode-icons:file-type-light-cypress",
-    href: "https://www.cypress.io/",
-  },
   {
     skill: "Playwright",
     icon: "logos:playwright",
     href: "https://playwright.dev/",
   },
-  { skill: "webpack", icon: "logos:webpack", href: "https://webpack.js.org/" },
-  {
-    skill: "SQL",
-    icon: "logos:postgresql",
-    href: "https://www.postgresql.org/",
-  },
   { skill: "Svelte", icon: "logos:svelte-icon", href: "https://svelte.dev/" },
-  { skill: "Angular", icon: "logos:angular-icon", href: "https://angular.io/" },
   {
     skill: "Blazor",
     icon: "blazor",
     href: "https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor",
   },
-  { skill: "Python", icon: "logos:python", href: "https://www.python.org/" },
-  {
-    skill: "C",
-    icon: "logos:c",
-    href: "https://en.wikipedia.org/wiki/C_(programming_language)",
-  },
-  { skill: "Jest", icon: "logos:jest", href: "https://jestjs.io/" },
+  { skill: "Vitest", icon: "logos:vitest", href: "https://vitest.dev/" },
   {
     skill: "MapBox",
     icon: "logos:mapbox-icon",
@@ -93,16 +69,10 @@ const workedWith = [
 // Git, GitLab, Figma, T3Stack, Remix, Sveltekit, Styled Components, Prettier, ESLitn, Backend
 // developement.
 const otherInterests = [
-  { skill: "Git", icon: "logos:git-icon", href: "https://git-scm.com/" },
   { skill: "GitLab", icon: "logos:gitlab", href: "https://gitlab.com/" },
   { skill: "Figma", icon: "logos:figma", href: "https://www.figma.com/" },
   { skill: "T3Stack", icon: "t3", href: "https://create.t3.gg/" },
   { skill: "Remix", icon: "remix", href: "https://remix.run/" },
-  {
-    skill: "Sveltekit",
-    icon: "logos:svelte-icon",
-    href: "https://kit.svelte.dev/",
-  },
   {
     skill: "VSCode",
     icon: "logos:visual-studio-code",
@@ -112,12 +82,12 @@ const otherInterests = [
   { skill: "ESLint", icon: "logos:eslint", href: "https://eslint.org/" },
 ];
 const allSkills = [
-  { skills: mainSkills, title: "Main stack", iconWidth: "2.5rem" },
+  { skills: mainSkills, title: "Main stack", iconWidth: "2.75rem" },
   { skills: workedWith, title: "Worked with", iconWidth: "1.75rem" },
   {
     skills: otherInterests,
     title: "Other interests and tools",
-    iconWidth: "1.75rem",
+    iconWidth: "1.5rem",
   },
 ];
 ---
@@ -131,7 +101,7 @@ const allSkills = [
       <div class="flex flex-wrap gap-8 justify-center">
         {skills.map(({ skill, icon, href }, j) => (
           <SkillAndIcon
-            index={i * 3 + j}
+            index={i / 2 + j}
             iconName={icon}
             skill={skill}
             href={href}

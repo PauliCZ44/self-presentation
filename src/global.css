@@ -104,7 +104,11 @@ html {
 }
 
 .bg-gradient-custom {
-  background-image: linear-gradient(364deg, rgb(8, 10, 24), rgb(11, 20, 44));
+  background-image: linear-gradient(
+    364deg,
+    hsl(var(--baseHue), 85%, 3%),
+    hsl(var(--baseHue), 93%, 5%)
+  );
 }
 
 .square-bg {

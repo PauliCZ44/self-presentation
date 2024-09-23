@@ -10,6 +10,7 @@ import SectionHeader from "../components/SectionHeader.astro";
 import TechStack from "../sections/TechStack.astro";
 import Footer from "../sections/Footer.astro";
 import WorkExperience from "src/sections/WorkExperience.astro";
+import Randomizer from "@components/Randomizer.astro";
 const SkillCardsContent = [
   {
     title: "React Enthusiast",
@@ -37,6 +38,8 @@ const SkillCardsContent = [
 <Layout title="Pavel Šťastný Portfolio">
   <script src="../scripts/swirl.js"></script>
   <script src="../scripts/canvasCursor.js"></script>
+
+  <Randomizer />
 
   <div
     class="home-warpper relative w-full min-h-[600px] lg:min-h-[63rem]"
