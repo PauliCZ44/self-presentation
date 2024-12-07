@@ -1,0 +1,40 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+
+<button data-wenk="Randomize base color" data-wenk-pos="left" data-randomizer class="fixed p-2 bottom-8 right-8 z-20 opacity-60 hover:opacity-90 transition-all duration-200 text-primary">
+    <Icon
+    title={"Randomize color"}
+    name={"lucide:refresh-cw"}
+    width={24}
+    height={24}
+  />
+</button>
+
+<script>
+    // Find all buttons with the `alert` class on the page.
+    const buttons = document.querySelectorAll('[data-randomizer]');
+  
+    // Handle clicks on each button.
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        // Generate a random hue value between 0 and 360.
+        const hue = Math.floor(Math.random() * 360);
+        const htmlElement = window.document.querySelector('html')
+        // Set the hue value as a CSS variable on the `:root` element.
+        htmlElement.style.setProperty('--baseHue', hue);
+        window.document.body.style.setProperty('--baseHue', hue);
+    });
+    });
+  </script>
+
+<style>
+    [data-randomizer] {
+        border-radius: 6px;
+        box-shadow:
+          0px 0px 80px 0px hsl(var(--primary-hsl) / 30%),
+          0px 0px 6px 2px hsl(var(--primary-hsl) / 60%);
+        background: rgba(0,0,0,0.5);
+    }
+</style>

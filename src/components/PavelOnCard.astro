@@ -4,15 +4,6 @@ import me from "../images/me.png";
 ---
 
 <div class="screen">
-  <div class="img-wrapper" data-atropos-offset="1" data-atropos-opacity="1;0.8">
-    <Image
-      class="screen-image"
-      src={me}
-      alt="Pavel Šťastný image"
-      width="700"
-      height="700"
-    />
-  </div>
   <div class="screen-overlay"></div>
   <div class="screen-content">
     <div class="screen-user">
@@ -22,18 +13,32 @@ import me from "../images/me.png";
       <div class="divider" data-atropos-offset="3"></div>
       <p class="title" data-atropos-offset="2">Front-end developer</p>
     </div>
+    <div class="img-wrapper" data-atropos-offset="1" data-atropos-opacity="1;0.8">
+      <Image
+        class="screen-image"
+        src={me}
+        alt="Pavel Šťastný image"
+        width="700"
+        height="700"
+      />
+    </div>
   </div>
 </div>
 
 <script>
   /* -- Text effect -- */
-  const letters = "ABCČDĎEFGHIJKLMNOPQRŘSŠTŤUVWXYZ0123456789";
+  const letters = "ABCČDĎEĚFGHIJKLMNŇOPQRŘSŠTŤUVWXYZŽ#Đ0123456789";
 
   let interval: any = null;
   let lastAnimationTimestamp = 0;
   const screen = document.querySelector(".screen")! as HTMLElement;
   const name = document.querySelector(".name")! as HTMLElement;
-  window.addEventListener("load", handleMouseEnter);
+
+  window.addEventListener("load", () => {
+    setTimeout(()=> {
+      handleMouseEnter()
+    }, 1500)
+  });
 
   function handleMouseEnter() {
     if (Date.now() - lastAnimationTimestamp > 5000) {
@@ -66,7 +71,7 @@ import me from "../images/me.png";
       }
 
       iteration += 1 / 3;
-    }, 40);
+    }, 60);
   }
 
   screen.closest(".atropos")!.addEventListener("mouseenter", handleMouseEnter);
@@ -74,9 +79,10 @@ import me from "../images/me.png";
 
 <style lang="scss">
   .screen {
-    min-width: 36rem;
-    // width: min(38rem, 96vw);
-    // max-height: 80vh;
+    animation: fadeInDown 750ms cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    max-height: 86vh;
+    min-height: 500px;
+    min-width: 450px;
     display: flex;
     border: 3px solid hsl(var(--primary-hsl) / 80%);
     aspect-ratio: 3/4;
@@ -89,6 +95,13 @@ import me from "../images/me.png";
       0px 0px 8px 3px hsl(var(--primary-hsl) / 60%),
       var(--shadow-elevation-medium);
     margin: 30px;
+
+    @media (max-width: 550px) {
+       scale: 0.75
+    }
+    @media (max-width: 400px) {
+       scale: 0.5
+    }
   }
 
   .screen:after,
@@ -145,11 +158,11 @@ import me from "../images/me.png";
 
   .screen {
     .img-wrapper {
-      height: auto;
-      width: calc(100% - 2rem);
-      position: absolute;
-      right: 1rem;
-      bottom: 1rem;
+      // height: auto;
+      // width: calc(100% - 2rem);
+      // position: absolute;
+      // right: 1rem;
+      // bottom: 1rem;
       overflow: hidden;
       border-radius: 0.6rem;
     }
@@ -161,7 +174,7 @@ import me from "../images/me.png";
       transition:
         transform 0.125s ease,
         filter 0.25s ease-in-out;
-      filter: sepia(100%) contrast(130%) brightness(90%) grayscale(60%);
+      filter: contrast(90%) brightness(90%) grayscale(20%);
     }
   }
 
@@ -169,15 +182,14 @@ import me from "../images/me.png";
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-grow: 1;
-    gap: 4rem;
     position: relative;
     z-index: 3;
     margin: 1rem;
-    padding-bottom: 6rem;
     border: 1px solid hsl(var(--primary-hsl) / 50%);
     border-radius: 0.6rem;
+
   }
 
   .screen > .screen-content > .screen-icon {
@@ -214,8 +226,8 @@ import me from "../images/me.png";
     margin-top: 1.5rem;
     line-height: 1.1;
     position: relative;
-    font-size: 4.15rem;
-    font-weight: 500;
+    font-size: 2.95rem;
+    font-weight: 600;
     transform: scaleX(0.9);
     letter-spacing: -3px;
   }

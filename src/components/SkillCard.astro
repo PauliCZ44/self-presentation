@@ -10,7 +10,8 @@ const { title, description, id } = Astro.props;
 
 <div
   style={`animation-delay: ${(id - 1) * 0.1}s`}
-  data-sal
+  data-sal="true"
+  data-sal-once
   class={"atropos skill-card group atropos-initializer-" + id}
   style={`--shadowColorAtropos: '#000'`}
 >
@@ -22,7 +23,7 @@ const { title, description, id } = Astro.props;
           </div>
           <div class="grid">
             <h4
-              class="fs-lg text-gray-50 group-hover:text-white font-medium uppercase text-center"
+              class="fs-md text-gray-50 group-hover:text-white font-semibold uppercase text-center"
               data-atropos-offset="1"
             >
               {title}
@@ -30,7 +31,7 @@ const { title, description, id } = Astro.props;
             <div class="divider"></div>
             <div data-atropos-offset="-1">
               <p
-                class="fs-base text-center text-slate-300 font-normal opacity-80 mb-2 transition-colors transition-opacity group-hover:opacity-90 group-hover:text-slate-100"
+                class="fs-base text-center text-slate-200 font-normal mb-2 transition-colors transition-opacity group-hover:opacity-90 group-hover:text-slate-100"
               >
                 {description}
               </p>
