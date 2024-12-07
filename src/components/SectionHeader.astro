@@ -9,7 +9,7 @@ export interface Props {
 
 const { title, id, size = "fs-xl sm:fs-xxxl" } = Astro.props;
 ---
-<div class="relative x -my-8 z-10" id={id}>
+<div class="relative z-10" id={id}>
   <h3 class={size}>
     <span class="scale-text">
       {title}
