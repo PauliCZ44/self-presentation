@@ -8,7 +8,7 @@ const experiences = [
   },
   {
     title: "Web Developer, Papirfly",
-    date: "07/2021 – 04/202",
+    date: "07/2021 – 04/2022",
     description:
       "Develop web applications and websites for clients using JavaScript/TypeScript, Angular, CSS (SASS) etc. As the sole front-end developer, I built a single-page application (SPA) using vanilla JavaScript, class-based components, SCSS styles, and REST API integration.",
   },
@@ -16,21 +16,21 @@ const experiences = [
     title: "Software tester, TwinSoft s.r.o",
     date: "11/2017 – 07/2021",
     description:
-      "Manual and automated testing of a web application, including SQL database interaction. Enhanced the app's UX through valuable feedback.",
+      "Part-time job at college. Manual and automated testing of a web application, including SQL database interaction. Enhanced the app's UX through valuable feedback.",
   },
 ];
 ---
 
-<div class="pt-24 pb-36 w-full bg-gradient-custom">
+<div class="pt-36 pb-36 w-full bg-gradient-custom">
   <ol
-    class="max-w-xl w-10/12 sm:w-8/12 md:w-6/12 m-auto border-l-4 pl-8 blue-border flex flex-col gap-8"
+    class="max-w-xl w-10/12 sm:w-8/12 md:w-6/12 m-auto border-l-4 pl-8 blue-border flex flex-col gap-24"
   >
     {
       experiences.map(({ description, title, date }) => (
         <li class="relative pl-4">
           <div class="reavel-dot border-primary border-2 w-8 h-8 bg-primary shadow-inner shadow-black rounded-full -left-12 translate-x-[-2px] top-1/2 -translate-y-1/2 absolute" />
-          <h4 class="text-lg font-medium reveal-text">{title}</h4>
-          <h6 class="text-base text-content reveal-text">{date}</h6>
+          <h4 class="text-lg font-bold reveal-text pb-2">{title}</h4>
+          <h6 class="text-base text-content reveal-text pb-2">{date}</h6>
           <p class="text-sm text-content-secondary reveal-text">
             {description}
           </p>

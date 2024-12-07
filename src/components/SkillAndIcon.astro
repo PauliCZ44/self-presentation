@@ -18,7 +18,7 @@ const size = iconWidth ?? "2.5rem";
   target="_blank"
   style={`--stagger-delay: calc(0.12s * ${index})`}
 >
-  <div class="iconWrapper fade-in" data-sal="true">
+  <div class="iconWrapper fade-in" data-sal="true" data-sal-once>
     {
       customIcon ? (
         <div style={{ width: size, height: size }}>{customIcon}</div>
@@ -116,6 +116,7 @@ const size = iconWidth ?? "2.5rem";
       opacity: 0;
       transform: translateX(-35px);
     }
+
     100% {
       transform: translateX(0);
       opacity: 1;

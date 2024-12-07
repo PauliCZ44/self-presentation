@@ -103,6 +103,10 @@ html {
   font-size: 16px;
 }
 
+* {
+  transition: color 250ms ease, border 250ms ease, background-color 250ms ease;
+}
+
 .bg-gradient-custom {
   background-image: linear-gradient(
     364deg,
@@ -136,9 +140,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Source Code Pro", "Courier New", Courier, monospace;
-  letter-spacing: -2px;
+  font-family: "Hubot Sans", "Courier New", Courier, monospace;
   color: #fafafa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 @media (min-width: 1440px) {
@@ -270,4 +275,15 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: rgb(37, 50, 87);
   outline: rgb(11, 20, 44);
+}
+
+@keyframes fadeInDown {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

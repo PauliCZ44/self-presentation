@@ -12,5 +12,3 @@ Add contact form (email)
 Optional:
 
 Create side nav on the first slide, with transitions to new pages with Page Transtion API.
-
-<!-- Implement this in section headers: clip-path: polygon(0 0, 100% 25%, 100% 100%, 0 75%); -->
