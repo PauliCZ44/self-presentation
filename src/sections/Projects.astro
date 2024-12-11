@@ -1,20 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import bang from "../assets/Bangcalc.jpg";
+import drums from "../assets/drums.jpg";
 import cestaky from "../assets/cestaky.jpg";
+import svelte from "../assets/svelte.jpg";
+import pomodoro from "../assets/timer.jpg";
 import { Icon } from "astro-icon/components";
+import type { ImageMetadata } from "astro";
 
-const projects = [
-  {
-    img: bang,
-    title: "BANG! Score Calculator",
-    href: "https://bangcalc.netlify.app/",
-    content: `
-			This is a calculator for score in board game BANG!. "Bang! is a Wild West-themed social deduction card game designed by Emiliano Sciarra and released in 2002. The scoring system is taken from the Official tournament system. At the end of each game, each player gains an amount of points based on the results of the game. It is not important who eliminated a specific player.
-		`,
-    sourceCode: "https://github.com/PauliCZ44/Bang-Calc",
-    tech: "React, Bootstrap.",
-  },
+type Projects = Array<{img: ImageMetadata, title: string, href: string, content: string, tech: string, sourceCode: string, note?: string}>
+
+const projects:  Projects = [
   {
     img: cestaky,
     title: "Cesťáky",
@@ -23,8 +19,47 @@ const projects = [
 			Web application in which you can calculate travel costs based on the data you enter, such as starting position and finishing position, price per km, etc. The application is created using react and firebase. MapBox directions API is used to calculate the distance. MapBox geocoding API is used to get the addresses.
 		`,
     sourceCode: "https://github.com/PauliCZ44/cestaky-app",
-    tech: "React, Mantine, Firebase.",
+    tech: "React, Mantine, Firebase",
   },
+  {
+    img: svelte,
+    title: "Svelte Calculator",
+    href: "https://paulicz44.github.io/Calculator-svelte/",
+    sourceCode: "https://github.com/PauliCZ44/Calculator-svelte",
+    content: `
+    An application created in September 2021 when I started exploring the Svelte framework. Since I wanted to try working with Svelte, I created this small project. It is a simple cleint only app, where I wanted to try new technology.
+    <br/>
+    <br/>
+    <div class="px-6 text-justify text-content">
+      <details class="details inline relative cursor-pointer">
+        <summary class="link"><b>My opinion on SVELTE: </b></summary>
+        <small> 
+          I found working with Svelte very enjoyable, and IMO, it's an excellent technology. I especially appreciate the quick setup and the overall simplicity of the framework. The technical documentation and example tutorials are also outstanding. Compared to React or Angular, Svelte feels much more lightweight. To start a project, you just need to download a template, and you're ready to go. Deployment is also straightforward because Svelte builds a clean JS file that is deployed together with an HTML and CSS file. Simple. Combined with gh-pages, it's a very fast way to develop and deploy your own smaller projects.
+        </small>
+      </details>
+    </div>
+   `,
+    tech: "Svelte 4, Carbon Design System, SASS"
+  },
+  {
+    img: drums,
+    title: "Drum & Beats",
+    href: "https://drumsandbeats.netlify.app/beats",
+    content: `
+			This project was created as a spin-off from the Drum Machine project on freeCodeCamp. In the Beat Maker, you can compose music (beats) and loop them. In the Drum Machine, you can play virtual drums. The applications offer various settings: speed, volume, drum kit, pitch, and appearance. In the Beat Maker, you can export and import settings to share your compositions. Created in December 2021.
+		`,
+    sourceCode: "https://github.com/PauliCZ44/drum-machine",
+    tech: "React, Typescript, Tailwind, DaisyUI, Vite",
+  },
+  {
+    img: pomodoro,
+    title: "Pomodoro timer",
+    href: "https://pomodorosimple.netlify.app/",
+    content: `
+      A Pomodoro timer that helps you track your work and break times. In the timer, you can set intervals, and the timer will notify you with a sound when it’s time to take a break or get back to work. I integrated the Unsplash API to display a different random photo with each load. Additionally, motivational quotes appear to encourage you during work intervals. Sound signals are also a nice addition.`,
+    sourceCode: "https://github.com/PauliCZ44/pomodoro-timer",
+    tech: "React, Taiwlind, DaysiUI",
+  }
 ];
 ---
 
@@ -39,6 +74,7 @@ const projects = [
       </p>
     </div>
   </div>
+ 
   <div
     class="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16 mt-8 w-11/12 xl:w-10/12 mx-auto max-w-5xl justify-items-center"
   >
@@ -46,7 +82,7 @@ const projects = [
       projects.map((proj, i) => (
         <div
           style={`--offset: ${(i + 2) % 2}`}
-          class="flex flex-col gap-3 items-start border-primary-opacity-50 border rounded max-w-md scroll-reveal-test"
+          class="overflow-hidden image-wrapper flex flex-col gap-3 items-start border-primary-opacity-50 hover:border-primary-opacity-75 border rounded max-w-md scroll-reveal-test"
         >
           <a href={proj.href}>
             <Image
@@ -55,13 +91,13 @@ const projects = [
               alt={"Image of application: " + proj.title}
             />
           </a>
-          <h3 class="px-6 pt-2 font-mono text-xl font-bold">{proj.title}</h3>
-          <p class="px-6 text-justify text-content">
+          <h3 class="px-6 pt-2 font-mono text-2xl font-bold">{proj.title}</h3>
+          <p class="px-6 text-justify text-content-secondary">
             <Fragment set:html={proj.content} />
           </p>
           <div class="px-6">
-            <span class="technologie">Technologies:</span>
-            <b class="text-sm font-semibold">{proj.tech}</b>
+            <span class="opacity-80 text-sm font-semibold">Technologies:</span>
+            <b class="opacity-80 text-sm font-semibold">{proj.tech}</b>
           </div>
           <div class="px-6 pb-6 flex gap-6 justify-end self-end mt-auto">
             <div data-wenk="Source code">
@@ -81,7 +117,21 @@ const projects = [
   </div>
 </section>
 
-<style>
+<style lang="scss">
+  .image-wrapper {
+    img {
+      transition: all 0.155s cubic-bezier(0.37, 0, 0.63, 1);
+    }
+    img:hover {
+      scale: 1.05;
+      rotate: -1deg;
+    }
+    a {
+      overflow: hidden;
+    }
+  }
+  
+
   .scroll-reveal-test {
     /* Create View Timeline */
     view-timeline-name: --revealing-image;
