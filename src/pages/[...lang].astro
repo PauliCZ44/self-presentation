@@ -12,8 +12,10 @@ import Footer from "../sections/Footer.astro";
 import AiConsulting from "../sections/AiConsulting.astro";
 import WorkExperience from "src/sections/WorkExperience.astro";
 import Randomizer from "@components/Randomizer.astro";
-import LanguageSwitcher from "@components/LanguageSwitcher.astro";
+import SiteHeader from "@components/SiteHeader.astro";
+import { Icon } from "astro-icon/components";
 import { useTranslations } from "../i18n";
+import { CONTACT_EMAIL } from "../constants";
 
 // Renders "/" (default locale, no param) and "/cs/".
 export function getStaticPaths() {
@@ -27,13 +29,14 @@ const aboutIcons = [
   "lucide:code-xml",
   "lucide:brain-circuit",
 ];
+const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(t.consulting.emailSubject)}`;
 ---
 
-<Layout title={t.meta.title}>
+<Layout title={t.meta.title} description={t.meta.description}>
   <script src="../scripts/swirl.js"></script>
   <script src="../scripts/canvasCursor.js"></script>
 
-  <LanguageSwitcher />
+  <SiteHeader />
   <Randomizer />
 
   <div
@@ -42,7 +45,7 @@ const aboutIcons = [
   >
     <div class="content--canvas"></div>
     <div
-      class="absolute w-full h-full top-0 left-0 flex items-center justify-center"
+      class="absolute w-full h-full top-0 left-0 flex flex-col items-center justify-center pt-12"
     >
       <!-- <p class="fs-ms text-white fixed top-4 left-4" id="resizer">0</p>
 			<p class="fs-ms text-white fixed top-8 left-4" id="logger"></p> -->
@@ -56,6 +59,20 @@ const aboutIcons = [
           <AtroposWrapper shadowColor="#00000055">
             <PavelOnCard />
           </AtroposWrapper>
+        </div>
+      </div>
+
+      <div class="hero-cta relative z-10 flex flex-col items-center gap-4 px-6 text-center">
+        <p class="fs-base max-w-xl text-balance">{t.hero.tagline}</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href={mailto} class="link--btn hero-btn hero-btn--primary gap-2 px-5">
+            <Icon name="lucide:mail" width="1.25rem" height="1.25rem" aria-hidden="true" />
+            <span>{t.hero.cta}</span>
+          </a>
+          <a href="#ai-consulting" class="link--btn hero-btn gap-2 px-5">
+            <span>{t.hero.secondaryCta}</span>
+            <Icon name="lucide:arrow-down" width="1.25rem" height="1.25rem" aria-hidden="true" />
+          </a>
         </div>
       </div>
     </div>
@@ -87,7 +104,7 @@ const aboutIcons = [
 
     <div class="pt-4 pb-40 relative">
   
-      <SectionHeader title={t.sections.techStack} size="fs-lg sm:fs-xl" id="Mytechstack" />
+      <SectionHeader title={t.sections.techStack} size="fs-lg sm:fs-xl" id="Mytechstack" level={3} />
 
       <section
         class="fs-base font-mono mb-2 text-slate-300 max-w-[70rem] px-6 mx-auto"
@@ -97,24 +114,24 @@ const aboutIcons = [
     </div>
   </div>
 
+  <SectionHeader title={t.sections.aiConsulting} id="ai-consulting" />
+
+  <AiConsulting />
+
   <SectionHeader title={t.sections.workExperience} id="work-experience" />
 
   <WorkExperience />
 
-  <SectionHeader title={t.sections.aiConsulting} id="ai-consulting" />
+  <SectionHeader title={t.sections.soloProjects} id="projects" />
 
-  <AiConsulting />
+  <Projects />
+
+  <SectionHeader title={t.sections.aiProjects} id="ai-projects" />
+
+  <Projects ai />
+
+  <Footer />
 </Layout>
-
-<SectionHeader title={t.sections.soloProjects} id="projects" />
-
-<Projects />
-
-<SectionHeader title={t.sections.aiProjects} id="ai-projects" />
-
-<Projects ai />
-
-<Footer />
 
 <script>
   import Atropos from "atropos";
@@ -125,28 +142,29 @@ const aboutIcons = [
   let arrowButton = document.getElementById("scroll-to-about");
   let scrollFramePending = false;
 
-  function doOnScroll(e: Event) {
-    const scrollTarget = e.target as HTMLElement;
-    document.body.style.setProperty("--scrollY", `${scrollTarget.scrollTop}`);
+  function doOnScroll() {
+    document.body.style.setProperty("--scrollY", `${window.scrollY}`);
     scrollFramePending = false;
   }
-  function handleScroll(e: Event) {
+  function handleScroll() {
     if (scrollFramePending) return;
     scrollFramePending = true;
-    window.requestAnimationFrame(() => doOnScroll(e));
+    window.requestAnimationFrame(doOnScroll);
   }
 
-  document.body.addEventListener("scroll", function (e) {
-    const scrollTarget = e.target as HTMLElement;
-
-    handleScroll(e);
-    // if scrolled 100px from top, hide arrow button
-    if (scrollTarget.scrollTop > 200) {
-      arrowButton?.classList.add("invisible");
-    } else {
-      arrowButton?.classList.remove("invisible");
-    }
-  });
+  window.addEventListener(
+    "scroll",
+    function () {
+      handleScroll();
+      // if scrolled 100px from top, hide arrow button
+      if (window.scrollY > 200) {
+        arrowButton?.classList.add("invisible");
+      } else {
+        arrowButton?.classList.remove("invisible");
+      }
+    },
+    { passive: true },
+  );
   document.addEventListener("DOMContentLoaded", function () {
     welcomeInConsole();
     // @ts-ignore
@@ -190,14 +208,36 @@ const aboutIcons = [
 
 <style is:global>
   html,
-  body,
-  .content--canvas {
-    overflow-x: hidden;
-    overflow-y: auto;
+  body {
     margin: 0;
+    overflow-x: clip;
+    background-color: black;
+  }
+
+  html {
+    scroll-padding-top: 4rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  .content--canvas {
+    overflow: hidden;
     width: 100%;
     height: 100%;
     background-color: black;
+  }
+
+  .hero-btn {
+    background: rgb(0 0 0 / 0.5);
+    font-weight: 600;
+  }
+  .hero-btn--primary {
+    border-color: hsl(var(--primary-hsl) / 90%);
+    box-shadow: 0 0 10px 2px hsl(var(--primary-hsl) / 50%);
   }
 
   .home-warpper {

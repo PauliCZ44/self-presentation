@@ -41,7 +41,7 @@ const projects:  Projects = [
     ${tp.items.svelte.content}
     <br/>
     <br/>
-    <div class="px-6 text-justify text-content">
+    <div class="px-6 text-content">
       <details class="details inline relative cursor-pointer">
         <summary class="link"><b>${tp.svelteOpinionLabel}</b></summary>
         <small> 
@@ -66,7 +66,7 @@ const projects:  Projects = [
     href: "https://pomodorosimple.netlify.app/",
     content: tp.items.pomodoro.content,
     sourceCode: "https://github.com/PauliCZ44/pomodoro-timer",
-    tech: "React, Taiwlind, DaysiUI",
+    tech: "React, Tailwind, DaisyUI",
   },
   {
     img: pedikura,
@@ -111,22 +111,30 @@ const visibleProjects = projects.filter((proj) => !!proj.ai === ai);
             />
           </a>
           <h3 class="px-6 pt-2 font-mono text-2xl font-bold">{proj.title}</h3>
-          <div class="px-6 text-justify text-content-secondary" set:html={proj.content} />
+          <div class="px-6 text-content-secondary" set:html={proj.content} />
           <div class="px-6">
-            <span class="opacity-80 text-sm font-semibold">{tp.technologies}</span>
+            <span class="opacity-80 text-sm font-semibold">{tp.technologies}</span>{" "}
             <b class="opacity-80 text-sm font-semibold">{proj.tech}</b>
           </div>
           <div class="px-6 pb-6 flex gap-6 justify-end self-end mt-auto">
             {proj.sourceCode && (
               <div data-wenk={tp.sourceCode}>
-                <a class="link--btn link" href={proj.sourceCode}>
-                  <Icon name="simple-icons:github" height={24} width={32} />
+                <a
+                  class="link--btn link"
+                  href={proj.sourceCode}
+                  aria-label={`${tp.sourceCode}: ${proj.title}`}
+                >
+                  <Icon name="simple-icons:github" height={24} width={32} aria-hidden="true" />
                 </a>
               </div>
             )}
             <div data-wenk={tp.openDemo}>
-              <a class="link--btn link" href={proj.href}>
-                <Icon name="ic:outline-open-in-new" height={24} width={32} />
+              <a
+                class="link--btn link"
+                href={proj.href}
+                aria-label={`${tp.openDemo}: ${proj.title}`}
+              >
+                <Icon name="ic:outline-open-in-new" height={24} width={32} aria-hidden="true" />
               </a>
             </div>
           </div>

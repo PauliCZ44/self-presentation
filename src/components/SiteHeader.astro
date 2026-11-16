@@ -1,0 +1,44 @@
+---
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { useTranslations } from "../i18n";
+
+const t = useTranslations(Astro.currentLocale);
+const links = [
+  { href: "#about", label: t.nav.about },
+  { href: "#ai-consulting", label: t.nav.consulting },
+  { href: "#work-experience", label: t.nav.experience },
+  { href: "#projects", label: t.nav.projects },
+  { href: "#contact", label: t.nav.contact },
+];
+---
+
+<header class="site-header fixed inset-x-0 top-0 z-30">
+  <div class="flex items-center justify-between gap-4 px-4 py-2">
+    <nav aria-label={t.nav.label} class="nav-scroll min-w-0 overflow-x-auto">
+      <ul class="flex items-center gap-5 whitespace-nowrap font-mono text-sm uppercase">
+        {
+          links.map(({ href, label }) => (
+            <li>
+              <a href={href} class="nav-link link relative block py-1 opacity-75 hover:opacity-100">
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <LanguageSwitcher />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: rgb(0 0 0 / 0.6);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid hsl(var(--primary-hsl) / 35%);
+  }
+
+  .nav-scroll {
+    scrollbar-width: none;
+  }
+</style>

@@ -1,10 +1,24 @@
 export const en = {
   meta: {
     title: "Pavel Šťastný Portfolio",
+    description:
+      "Pavel Šťastný, front-end & AI engineer. I help teams build AI into their products and ship faster with AI-assisted workflows.",
   },
   hero: {
     role: "Front-end & AI engineer",
     imageAlt: "Pavel Šťastný image",
+    tagline:
+      "I develop with AI and help others work more efficiently or bring AI into their products.",
+    cta: "Email me",
+    secondaryCta: "What I offer",
+  },
+  nav: {
+    label: "Sections",
+    about: "About",
+    consulting: "AI consulting",
+    experience: "Experience",
+    projects: "Projects",
+    contact: "Contact",
   },
   sections: {
     about: "ABOUT ME",
@@ -46,7 +60,7 @@ export const en = {
         approach:
           "Built custom AI skills and agents encoding the team's conventions, plus shared prompts and guidelines for linting, refactoring and code review.",
         result:
-          "Faster delivery of routine work, more consistent code and quicker onboarding. [add measured numbers]",
+          "Faster delivery of routine work, more consistent code and quicker onboarding.",
       },
       {
         title: "AI-assisted website delivery",
@@ -88,6 +102,7 @@ export const en = {
   ],
   techStack: {
     main: "Main stack",
+    ai: "AI & agents",
     workedWith: "Worked with",
     other: "Other interests and tools",
   },
@@ -113,7 +128,7 @@ export const en = {
   ],
   projects: {
     introHandwritten:
-      "In this section, you can take a look at some of my projects, all written by hand without AI assistance. Some of them are practice projects, while others can be considered 100% functional as intended. Some are older and may show signs of age. I can't actively update all of them, but they reflect part of my journey.",
+      "Projects written by hand, without AI. Some are practice projects, others are fully functional, and together they show part of my journey.",
     introAi:
       "Projects built with the help of AI tools, or generated almost entirely by them. I guide the direction, review the result and ship it. It is a great way to deliver a working website in a very short time.",
     imageAlt: "Image of application:",
@@ -156,8 +171,6 @@ export const en = {
     aboutPage: "About this page",
     aboutPageText:
       "Page is made with ♥ Astro ♥. Even if my favourite tech stack is React/Typescript, I have chosen raw speed over my DX. That is why this page uses only mix of tailwind, scss and good old vanilla javascript. Page started as hand crafted portfolio, now I am doing updates and improvements with AI.",
-    cv: "My CV:",
-    download: "DOWNLOAD!",
     rights: "All Rights Reserved.",
   },
   randomizer: {

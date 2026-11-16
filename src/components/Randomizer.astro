@@ -6,7 +6,7 @@ const t = useTranslations(Astro.currentLocale);
 ---
 
 
-<div class="fixed bottom-8 right-8 z-20">
+<div class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-20">
   <!-- wenk.css sets position: relative on [data-wenk], so the fixed positioning lives on the wrapper -->
   <button data-wenk={t.randomizer.tooltip} data-wenk-pos="left" data-randomizer class="p-2 opacity-60 hover:opacity-90 transition-all duration-200 text-primary">
     <Icon

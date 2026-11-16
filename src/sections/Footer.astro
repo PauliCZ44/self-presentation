@@ -1,14 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
 import { useTranslations } from "../i18n";
+import { CONTACT_EMAIL } from "../constants";
 
 const t = useTranslations(Astro.currentLocale);
 const links = [
-  {
-    name: "Facebook",
-    href: "https://www.facebook.com/pavel.stastny.9",
-    icon: "simple-icons:facebook",
-  },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/pavel-stastny-155539150",
@@ -42,9 +38,8 @@ const links = [
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex items-center leading-relaxed group-link"
-                role="button"
               >
-                <Icon name={l.icon} height="1rem" width="1rem" />
+                <Icon name={l.icon} height="1rem" width="1rem" aria-hidden="true" />
                 <span class="ml-2 link">{l.name}</span>
               </a>
             ))
@@ -57,40 +52,22 @@ const links = [
           {t.footer.aboutPageText}
         </p>
         <div class="mt-8">
-          <div class="flex flex-col items-start leading-relaxed">
-            <div class="flex gap-6 items-center">
-              <span> {t.footer.cv}</span>
-              <a
-                class="link--btn link flex items-center"
-                href="/assets/CV_23.pdf"
-                download="PavelŠťastný"
-                target="_blank"
-                class="ml-2 flex items-center group-link"
-                role="button"
-              >
-                <span class="flex">
-                  {t.footer.download} <Icon
-                    eight="1rem"
-                    width="1rem"
-                    class="ml-2"
-                    name="lucide:download"
-                  /></span
-                >
-              </a>
-            </div>
-            <div class="flex items-center mt-4">
-              <Icon
-                height="1rem"
-                width="1rem"
-                class="mr-3 mt-0.5"
-                name="lucide:mail"
-              />
-              <span>stas<p class="hidden">giberrish</p>tnyp@sez<p class="hidden">giberrish</p>nam.cz</span>
-            </div>
-          </div>
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            class="inline-flex items-center leading-relaxed group-link"
+          >
+            <Icon
+              height="1rem"
+              width="1rem"
+              class="mr-3 mt-0.5"
+              name="lucide:mail"
+              aria-hidden="true"
+            />
+            <span class="link relative">{CONTACT_EMAIL}</span>
+          </a>
         </div>
       </div>
-      <p class="text-right text-xs text-zinc-600 opacity-90 self-end flex-1">
+      <p class="text-right text-xs text-zinc-400 self-end flex-1">
         &copy; Copyright {new Date().getFullYear()} Pavel Šťastný. {t.footer.rights}
       </p>
     </div>

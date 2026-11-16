@@ -4,17 +4,19 @@
 export interface Props {
   title: string;
   id?: string;
-  size?: string
+  size?: string;
+  level?: 2 | 3;
 }
 
-const { title, id, size = "fs-xl sm:fs-xxxl" } = Astro.props;
+const { title, id, size = "fs-xl sm:fs-xxxl", level = 2 } = Astro.props;
+const Tag = level === 3 ? "h3" : "h2";
 ---
 <div class="relative z-10" id={id}>
-  <h3 class={size}>
+  <Tag class:list={["section-title", size]}>
     <span class="scale-text">
       {title}
     </span>
-  </h3>
+  </Tag>
 </div>
   
 <style>
@@ -35,11 +37,12 @@ const { title, id, size = "fs-xl sm:fs-xxxl" } = Astro.props;
     transform-origin: 50% 50%;
     color: inherit;
   }
-  h3 {
+  .section-title {
     color: hsla(var(--baseHue), 75%, 85%, 1);
     --lineCol: hsla(var(--baseHue), 50%, 50%, 0.2);
     --lineH: 1px;
     text-align: center;
+    text-wrap: balance;
     font-weight: 800  ;
     padding: 0.5em;
     text-shadow: 0 0 30px var(--primary), 0 0 10px var(--primary), 0 0 20px var(--primary);
@@ -49,7 +52,7 @@ const { title, id, size = "fs-xl sm:fs-xxxl" } = Astro.props;
     transition: all 200ms ease-in-out;
   } 
 
-  h3:hover {
+  .section-title:hover {
     color: hsla(var(--baseHue), 75%, 88%, 1);
     --lineCol: hsla(var(--baseHue), 50%, 50%, 0.26);
     text-shadow: 0 0 70px var(--primary),0 0 30px var(--primary),0 0 50px var(--primary), 0 0 15px var(--primary), 0 0 5px var(--primary)

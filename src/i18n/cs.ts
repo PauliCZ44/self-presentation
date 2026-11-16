@@ -3,10 +3,24 @@ import type { Dictionary } from "./en";
 export const cs: Dictionary = {
   meta: {
     title: "Pavel Šťastný Portfolio",
+    description:
+      "Pavel Šťastný, front-end a AI inženýr. Pomáhám týmům zapojit AI do produktů a vyvíjet rychleji díky pracovním postupům s podporou AI.",
   },
   hero: {
     role: "Front-end & AI inženýr",
     imageAlt: "Fotka Pavla Šťastného",
+    tagline:
+      "Vyvíjím s pomocí AI a pomáhám ostatním pracovat efektivněji nebo zapojit AI do jejich produktů.",
+    cta: "Napište mi",
+    secondaryCta: "Co nabízím",
+  },
+  nav: {
+    label: "Sekce",
+    about: "O mně",
+    consulting: "AI konzultace",
+    experience: "Zkušenosti",
+    projects: "Projekty",
+    contact: "Kontakt",
   },
   sections: {
     about: "O MNĚ",
@@ -48,7 +62,7 @@ export const cs: Dictionary = {
         approach:
           "Vytvořil jsem vlastní AI skills a agenty zakódující konvence týmu a sdílené prompty a pravidla pro linting, refaktoring a code review.",
         result:
-          "Rychlejší dodávka rutinní práce, jednotnější kód a rychlejší onboarding. [doplnit naměřená čísla]",
+          "Rychlejší dodávka rutinní práce, jednotnější kód a rychlejší onboarding.",
       },
       {
         title: "Web dodaný s pomocí AI",
@@ -90,6 +104,7 @@ export const cs: Dictionary = {
   ],
   techStack: {
     main: "Hlavní technologie",
+    ai: "AI a agenti",
     workedWith: "Zkušenosti s",
     other: "Další zájmy a nástroje",
   },
@@ -115,7 +130,7 @@ export const cs: Dictionary = {
   ],
   projects: {
     introHandwritten:
-      "Tady najdete několik mých projektů, všechny psané ručně bez pomoci AI. Některé jsou cvičné, jiné jsou plně funkční, tak jak byly zamýšlené. Některé jsou starší a je na nich znát, že už mají nějaký ten rok za sebou. Nestíhám je všechny aktivně udržovat, ale ukazují kus mé cesty.",
+      "Projekty psané ručně bez AI. Některé jsou cvičné, jiné plně funkční a společně ukazují kus mé cesty.",
     introAi:
       "Projekty vytvořené s pomocí AI nástrojů nebo jimi téměř celé vygenerované. Určuji směr, kontroluji výsledek a nasazuji ho. Je to skvělý způsob, jak dodat funkční web ve velmi krátkém čase.",
     imageAlt: "Obrázek aplikace:",
@@ -158,8 +173,6 @@ export const cs: Dictionary = {
     aboutPage: "O této stránce",
     aboutPageText:
       "Stránka je postavená na ♥ Astru ♥. I když je mým oblíbeným stackem React/TypeScript, dal jsem přednost čisté rychlosti před vlastním pohodlím při vývoji. Proto web používá jen mix Tailwindu, SCSS a dobrého starého vanilla JavaScriptu.",
-    cv: "Moje CV:",
-    download: "STÁHNOUT!",
     rights: "Všechna práva vyhrazena.",
   },
   randomizer: {
