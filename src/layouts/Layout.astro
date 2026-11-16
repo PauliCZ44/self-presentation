@@ -5,13 +5,36 @@ export interface Props {
 import { CONFIG } from '../constants'
 
 const { title } = Astro.props
+const lang = Astro.currentLocale ?? 'en'
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<script is:inline>
+			// Static hosting cannot read Accept-Language, so first-time visitors on "/" are sent to "/cs/" based on the browser language.
+			// An explicit choice made via the language switcher (localStorage) wins over sniffing.
+			;(function () {
+				if (location.pathname !== '/') return
+				var wanted = null
+				try {
+					wanted = localStorage.getItem('lang')
+				} catch (e) {}
+				if (!wanted) {
+					var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]
+					for (var i = 0; i < prefs.length; i++) {
+						var code = String(prefs[i]).toLowerCase().split('-')[0]
+						if (code === 'cs' || code === 'en') {
+							wanted = code
+							break
+						}
+					}
+				}
+				if (wanted === 'cs') location.replace('/cs/' + location.search + location.hash)
+			})()
+		</script>
 		<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png" />

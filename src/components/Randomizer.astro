@@ -1,16 +1,22 @@
 ---
 import { Icon } from "astro-icon/components";
+import { useTranslations } from "../i18n";
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 
-<button data-wenk="Randomize base color" data-wenk-pos="left" data-randomizer class="fixed p-2 bottom-8 right-8 z-20 opacity-60 hover:opacity-90 transition-all duration-200 text-primary">
+<div class="fixed bottom-8 right-8 z-20">
+  <!-- wenk.css sets position: relative on [data-wenk], so the fixed positioning lives on the wrapper -->
+  <button data-wenk={t.randomizer.tooltip} data-wenk-pos="left" data-randomizer class="p-2 opacity-60 hover:opacity-90 transition-all duration-200 text-primary">
     <Icon
-    title={"Randomize color"}
-    name={"lucide:refresh-cw"}
-    width={24}
-    height={24}
-  />
-</button>
+      title={t.randomizer.title}
+      name={"lucide:refresh-cw"}
+      width={24}
+      height={24}
+    />
+  </button>
+</div>
 
 <script>
     // Find all buttons with the `alert` class on the page.

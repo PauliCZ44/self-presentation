@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@iconify-json/circle-flags':
+        specifier: ^1.2.14
+        version: 1.2.14
       '@iconify-json/devicon':
         specifier: ^1.2.81
         version: 1.2.81
@@ -426,6 +429,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@iconify-json/circle-flags@1.2.14':
+    resolution: {integrity: sha512-svZ6j9ZaHc69eWdO5cY0wiaEo0A9kiiXM8diPx/0JkcBmKhW6Mt5e3OBOSkGBhOOwqV3q6q7DBbDGIwg6Nzz8g==}
 
   '@iconify-json/devicon@1.2.81':
     resolution: {integrity: sha512-C815snprA4Rboj2Lg8Q/YrnD8ATWsi9vnvZq93SAeyvGaI0TeSqIL2wy5W4VAaHeBF5tC1tJr283vIhOJ9DfBg==}
@@ -2054,6 +2060,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.28.1':
     optional: true
+
+  '@iconify-json/circle-flags@1.2.14':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify-json/devicon@1.2.81':
     dependencies:

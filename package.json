@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@iconify-json/circle-flags": "^1.2.14",
     "@iconify-json/devicon": "^1.2.81",
     "@iconify-json/ic": "^1.2.4",
     "@iconify-json/logos": "^1.2.20",

@@ -1,0 +1,121 @@
+export const en = {
+  meta: {
+    title: "Pavel Šťastný Portfolio",
+  },
+  hero: {
+    role: "Front-end developer",
+    imageAlt: "Pavel Šťastný image",
+  },
+  sections: {
+    about: "ABOUT ME",
+    techStack: "My tech stack",
+    workExperience: "WORK EXPERIENCE",
+    soloProjects: "SOLO PROJECTS",
+    aiProjects: "AI PROJECTS",
+  },
+  skillCards: [
+    {
+      title: "React Enthusiast",
+      description:
+        "I'm passionate Front-end developer, mainly focused on developing React/Typescript applications.",
+    },
+    {
+      title: "Quality oriented",
+      description:
+        "My main goal is to create a great user experience and make the apps accessible, efficient, and user-friendly.",
+    },
+    {
+      title: "Professional",
+      description:
+        "I write clean, readable, and maintainable code that adheres to the best industry standards.",
+    },
+    {
+      title: "AI-powered",
+      description:
+        "I use AI to the fullest in my daily work and can integrate it into your products and systems, from smart features to automated workflows.",
+    },
+  ],
+  techStack: {
+    main: "Main stack",
+    workedWith: "Worked with",
+    other: "Other interests and tools",
+  },
+  experience: [
+    {
+      title: "Front-end developer, YunexTraffic s.r.o.",
+      date: "05/2022 – present",
+      description:
+        "Developing web apps and React components as part of the FE/UX team using React, Typescript etc. Lead UI library development, and boost code quality in legacy projects through linting, refactoring, and code reviews, all while improving overall user experience with performance in mind. I use AI daily for coding, build custom skills and custom agents, and help the team speed up development with them.",
+    },
+    {
+      title: "Web Developer, Papirfly",
+      date: "07/2021 – 04/2022",
+      description:
+        "Develop web applications and websites for clients using JavaScript/TypeScript, Angular, CSS (SASS) etc. As the sole front-end developer, I built a single-page application (SPA) using vanilla JavaScript, class-based components, SCSS styles, and REST API integration.",
+    },
+    {
+      title: "Software tester, TwinSoft s.r.o",
+      date: "11/2017 – 07/2021",
+      description:
+        "Part-time job at college. Manual and automated testing of a web application, including SQL database interaction. Enhanced the app's UX through valuable feedback.",
+    },
+  ],
+  projects: {
+    introHandwritten:
+      "In this section, you can take a look at some of my projects, all written by hand without AI assistance. Some of them are practice projects, while others can be considered 100% functional as intended. Some are older and may show signs of age. I can't actively update all of them, but they reflect part of my journey.",
+    introAi:
+      "Projects built with the help of AI tools, or generated almost entirely by them. I guide the direction, review the result and ship it. It is a great way to deliver a working website in a very short time.",
+    imageAlt: "Image of application:",
+    technologies: "Technologies:",
+    sourceCode: "Source code",
+    openDemo: "Open demo",
+    svelteOpinionLabel: "My opinion on SVELTE: ",
+    items: {
+      bang: {
+        content:
+          "This is a calculator for score in board game BANG!. Bang! is a Wild West-themed social deduction card game designed by Emiliano Sciarra and released in 2002. The scoring system is taken from the Official tournament system. At the end of each game, each player gains an amount of points based on the results of the game. It is not important who eliminated a specific player.",
+      },
+      cestaky: {
+        content:
+          "Web application in which you can calculate travel costs based on the data you enter, such as starting position and finishing position, price per km, etc. The application is created using react and firebase. MapBox directions API is used to calculate the distance. MapBox geocoding API is used to get the addresses.",
+      },
+      svelte: {
+        content:
+          "An application created in September 2021 when I started exploring the Svelte framework. Since I wanted to try working with Svelte, I created this small project. It is a simple client-only app, where I wanted to try new technology.",
+        opinion:
+          "I found working with Svelte very enjoyable, and IMO, it's an excellent technology. I especially appreciate the quick setup and the overall simplicity of the framework. The technical documentation and example tutorials are also outstanding. Compared to React or Angular, Svelte feels much more lightweight. To start a project, you just need to download a template, and you're ready to go. Deployment is also straightforward because Svelte builds a clean JS file that is deployed together with an HTML and CSS file. Simple. Combined with gh-pages, it's a very fast way to develop and deploy your own smaller projects.",
+      },
+      drums: {
+        content:
+          "This project was created as a spin-off from the Drum Machine project on freeCodeCamp. In the Beat Maker, you can compose music (beats) and loop them. In the Drum Machine, you can play virtual drums. The applications offer various settings: speed, volume, drum kit, pitch, and appearance. In the Beat Maker, you can export and import settings to share your compositions. Created in December 2021.",
+      },
+      pomodoro: {
+        content:
+          "A Pomodoro timer that helps you track your work and break times. In the timer, you can set intervals, and the timer will notify you with a sound when it’s time to take a break or get back to work. I integrated the Unsplash API to display a different random photo with each load. Additionally, motivational quotes appear to encourage you during work intervals. Sound signals are also a nice addition.",
+      },
+      pedikura: {
+        content:
+          "A presentation website for a mobile pedicure service, built with the help of AI and ready within a single day. It is deployed on Cloudflare Pages, so there are no costs for the domain or web hosting.",
+        tech: "AI-assisted development, Cloudflare Pages",
+      },
+    },
+  },
+  footer: {
+    links: "Links",
+    aboutPage: "About this page",
+    aboutPageText:
+      "Page is made with ♥ Astro ♥. Even if my favourite tech stack is React/Typescript, I have chosen raw speed over my DX. That is why this page uses only mix of tailwind, scss and good old vanilla javascript.",
+    cv: "My CV:",
+    download: "DOWNLOAD!",
+    rights: "All Rights Reserved.",
+  },
+  randomizer: {
+    tooltip: "Randomize base color",
+    title: "Randomize color",
+  },
+  languageSwitcher: {
+    label: "Language",
+  },
+};
+
+export type Dictionary = typeof en;

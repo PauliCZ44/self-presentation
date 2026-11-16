@@ -1,24 +1,7 @@
 ---
-const experiences = [
-  {
-    title: "Front-end developer, YunexTraffic s.r.o.",
-    date: "05/2022 – present",
-    description:
-      "Developing web apps and React components as part of the FE/UX team using React, Typescript etc. Lead UI library developement, and boost code quality in legacy projects through linting, refactoring, and code reviews, all while improving overall user experience with performance in mind.",
-  },
-  {
-    title: "Web Developer, Papirfly",
-    date: "07/2021 – 04/2022",
-    description:
-      "Develop web applications and websites for clients using JavaScript/TypeScript, Angular, CSS (SASS) etc. As the sole front-end developer, I built a single-page application (SPA) using vanilla JavaScript, class-based components, SCSS styles, and REST API integration.",
-  },
-  {
-    title: "Software tester, TwinSoft s.r.o",
-    date: "11/2017 – 07/2021",
-    description:
-      "Part-time job at college. Manual and automated testing of a web application, including SQL database interaction. Enhanced the app's UX through valuable feedback.",
-  },
-];
+import { useTranslations } from "../i18n";
+
+const experiences = useTranslations(Astro.currentLocale).experience;
 ---
 
 <div class="pt-36 pb-36 w-full bg-gradient-custom">

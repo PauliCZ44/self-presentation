@@ -11,34 +11,22 @@ import TechStack from "../sections/TechStack.astro";
 import Footer from "../sections/Footer.astro";
 import WorkExperience from "src/sections/WorkExperience.astro";
 import Randomizer from "@components/Randomizer.astro";
-const SkillCardsContent = [
-  {
-    title: "React Enthusiast",
-    description:
-      "I'm passionate Front-end developer, mainly focused on developing React/Typescript applications.",
-  },
-  {
-    title: "Quality oriented",
-    description:
-      "My main goal is to create a great user experience and make the apps accessible, efficient, and user-friendly.",
-  },
-  {
-    title: "Professional",
-    description:
-      "I write clean, readable, and maintainable code that adheres to the best industry standards.",
-  },
-  {
-    title: "Continuous learner",
-    description:
-      "I'm always learning and keeping up with the latest technologies and trends to make sure my work stays current.",
-  },
-] as const;
+import LanguageSwitcher from "@components/LanguageSwitcher.astro";
+import { useTranslations } from "../i18n";
+
+// Renders "/" (default locale, no param) and "/cs/".
+export function getStaticPaths() {
+  return [{ params: { lang: undefined } }, { params: { lang: "cs" } }];
+}
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
-<Layout title="Pavel Šťastný Portfolio">
+<Layout title={t.meta.title}>
   <script src="../scripts/swirl.js"></script>
   <script src="../scripts/canvasCursor.js"></script>
 
+  <LanguageSwitcher />
   <Randomizer />
 
   <div
@@ -73,13 +61,13 @@ const SkillCardsContent = [
 		</div> -->
   </div>
 
-  <SectionHeader title={"ABOUT ME"} id="about" />
+  <SectionHeader title={t.sections.about} id="about" />
 
   <div class="w-full relative bg-gradient-custom pt-16" id="skills">
     <div class="bg-cursor"></div>
     <div class="grid-wrapper-boxes leading-none">
       {
-        SkillCardsContent.map(({ title, description }, index) => (
+        t.skillCards.map(({ title, description }, index) => (
           <SkillCard id={index + 1} title={title} description={description} />
         ))
       }
@@ -87,7 +75,7 @@ const SkillCardsContent = [
 
     <div class="pt-4 pb-40 relative">
   
-      <SectionHeader title="My tech stack" size="fs-lg sm:fs-xl" id="Mytechstack" />
+      <SectionHeader title={t.sections.techStack} size="fs-lg sm:fs-xl" id="Mytechstack" />
 
       <section
         class="fs-base font-mono mb-2 text-slate-300 max-w-[70rem] px-6 mx-auto"
@@ -97,16 +85,16 @@ const SkillCardsContent = [
     </div>
   </div>
 
-  <SectionHeader title="WORK EXPERIENCE" id="work-experience" />
+  <SectionHeader title={t.sections.workExperience} id="work-experience" />
 
   <WorkExperience />
 </Layout>
 
-<SectionHeader title="SOLO PROJECTS" id="projects" />
+<SectionHeader title={t.sections.soloProjects} id="projects" />
 
 <Projects />
 
-<SectionHeader title="AI PROJECTS" id="ai-projects" />
+<SectionHeader title={t.sections.aiProjects} id="ai-projects" />
 
 <Projects ai />
 

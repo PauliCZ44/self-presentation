@@ -1,6 +1,9 @@
 ---
 import SkillAndIcon from "../components/SkillAndIcon.astro";
 import blazor from "../icons/blazor.svg";
+import { useTranslations } from "../i18n";
+
+const t = useTranslations(Astro.currentLocale);
 
 const mainSkills = [
   { skill: "React", icon: "logos:react", href: "https://reactjs.org/" },
@@ -82,11 +85,11 @@ const otherInterests = [
   { skill: "ESLint", icon: "logos:eslint", href: "https://eslint.org/" },
 ];
 const allSkills = [
-  { skills: mainSkills, title: "Main stack", iconWidth: "2.75rem" },
-  { skills: workedWith, title: "Worked with", iconWidth: "1.75rem" },
+  { skills: mainSkills, title: t.techStack.main, iconWidth: "2.75rem" },
+  { skills: workedWith, title: t.techStack.workedWith, iconWidth: "1.75rem" },
   {
     skills: otherInterests,
-    title: "Other interests and tools",
+    title: t.techStack.other,
     iconWidth: "1.5rem",
   },
 ];
