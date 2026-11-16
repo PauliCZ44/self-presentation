@@ -13,7 +13,8 @@
   --color-heading: var(--color-zinc-50);
 
   --font-sans: "Mona Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono:
+    "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-display: "Hubot Sans";
 }
 

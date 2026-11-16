@@ -5,11 +5,24 @@ import drums from "../assets/drums.jpg";
 import cestaky from "../assets/cestaky.jpg";
 import svelte from "../assets/svelte.jpg";
 import pomodoro from "../assets/timer.jpg";
+import pedikura from "../assets/pedikura.jpg";
 import { Icon } from "astro-icon/components";
 
-type Projects = Array<{img: ImageMetadata, title: string, href: string, content: string, tech: string, sourceCode: string, note?: string}>
+type Projects = Array<{img: ImageMetadata, title: string, href: string, content: string, tech: string, sourceCode?: string, note?: string, ai?: boolean}>
+
+const { ai = false } = Astro.props;
 
 const projects:  Projects = [
+  {
+    img: bang,
+    title: "BANG! Score Calculator",
+    href: "https://bangcalc.netlify.app/",
+    content: `
+      This is a calculator for score in board game BANG!. Bang! is a Wild West-themed social deduction card game designed by Emiliano Sciarra and released in 2002. The scoring system is taken from the Official tournament system. At the end of each game, each player gains an amount of points based on the results of the game. It is not important who eliminated a specific player.
+    `,
+    sourceCode: "https://github.com/PauliCZ44/Bang-Calc",
+    tech: "React, Bootstrap",
+  },
   {
     img: cestaky,
     title: "Cesťáky",
@@ -58,19 +71,43 @@ const projects:  Projects = [
       A Pomodoro timer that helps you track your work and break times. In the timer, you can set intervals, and the timer will notify you with a sound when it’s time to take a break or get back to work. I integrated the Unsplash API to display a different random photo with each load. Additionally, motivational quotes appear to encourage you during work intervals. Sound signals are also a nice addition.`,
     sourceCode: "https://github.com/PauliCZ44/pomodoro-timer",
     tech: "React, Taiwlind, DaysiUI",
-  }
+  },
+  {
+    img: pedikura,
+    title: "Nožky od Marušky",
+    href: "https://simova-mobilni-pedikura.pages.dev/",
+    content: `
+      A presentation website for a mobile pedicure service, built with the help of AI and ready within a single day. It is deployed on Cloudflare Pages, so there are no costs for the domain or web hosting.
+    `,
+    tech: "AI-assisted development, Cloudflare Pages",
+    ai: true,
+  },
 ];
+
+const visibleProjects = projects.filter((proj) => !!proj.ai === ai);
 ---
 
 <section class="text-white bg-gradient-custom py-36">
   <div class="row mt text-center">
     <div class="w-10/12 sm:w-8/12 md:w-6/12 m-auto pb-8">
-      <p class="text-content-secondary">
-        In this section, you can take a look at some of my projects. Some of
-        them are practice projects, while others can be considered 100%
-        functional as intended. Some are older and may show signs of age. I
-        can't actively update all of them, but they reflect part of my journey.
-      </p>
+      {
+        ai ? (
+          <p class="text-content-secondary">
+            Projects built with the help of AI tools, or generated almost
+            entirely by them. I guide the direction, review the result and ship
+            it. It is a great way to deliver a working website in a very short
+            time.
+          </p>
+        ) : (
+          <p class="text-content-secondary">
+            In this section, you can take a look at some of my projects, all
+            written by hand without AI assistance. Some of them are practice
+            projects, while others can be considered 100% functional as
+            intended. Some are older and may show signs of age. I can't
+            actively update all of them, but they reflect part of my journey.
+          </p>
+        )
+      }
     </div>
   </div>
  
@@ -78,7 +115,7 @@ const projects:  Projects = [
     class="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16 mt-8 w-11/12 xl:w-10/12 mx-auto max-w-5xl justify-items-center"
   >
     {
-      projects.map((proj, i) => (
+      visibleProjects.map((proj, i) => (
         <div
           style={`--offset: ${(i + 2) % 2}`}
           class="overflow-hidden image-wrapper flex flex-col gap-3 items-start border-primary-opacity-50 hover:border-primary-opacity-75 border rounded-sm max-w-md scroll-reveal-test"
@@ -97,11 +134,13 @@ const projects:  Projects = [
             <b class="opacity-80 text-sm font-semibold">{proj.tech}</b>
           </div>
           <div class="px-6 pb-6 flex gap-6 justify-end self-end mt-auto">
-            <div data-wenk="Source code">
-              <a class="link--btn link" href={proj.sourceCode}>
-                <Icon name="simple-icons:github" height={24} width={32} />
-              </a>
-            </div>
+            {proj.sourceCode && (
+              <div data-wenk="Source code">
+                <a class="link--btn link" href={proj.sourceCode}>
+                  <Icon name="simple-icons:github" height={24} width={32} />
+                </a>
+              </div>
+            )}
             <div data-wenk="Open demo">
               <a class="link--btn link" href={proj.href}>
                 <Icon name="ic:outline-open-in-new" height={24} width={32} />
