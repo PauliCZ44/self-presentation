@@ -6,7 +6,6 @@ import cestaky from "../assets/cestaky.jpg";
 import svelte from "../assets/svelte.jpg";
 import pomodoro from "../assets/timer.jpg";
 import { Icon } from "astro-icon/components";
-import type { ImageMetadata } from "astro";
 
 type Projects = Array<{img: ImageMetadata, title: string, href: string, content: string, tech: string, sourceCode: string, note?: string}>
 
@@ -63,7 +62,7 @@ const projects:  Projects = [
 ];
 ---
 
-<section class="text-white bg-gradient-custom py-36"
+<section class="text-white bg-gradient-custom py-36">
   <div class="row mt text-center">
     <div class="w-10/12 sm:w-8/12 md:w-6/12 m-auto pb-8">
       <p class="text-content-secondary">
@@ -82,19 +81,17 @@ const projects:  Projects = [
       projects.map((proj, i) => (
         <div
           style={`--offset: ${(i + 2) % 2}`}
-          class="overflow-hidden image-wrapper flex flex-col gap-3 items-start border-primary-opacity-50 hover:border-primary-opacity-75 border rounded max-w-md scroll-reveal-test"
+          class="overflow-hidden image-wrapper flex flex-col gap-3 items-start border-primary-opacity-50 hover:border-primary-opacity-75 border rounded-sm max-w-md scroll-reveal-test"
         >
           <a href={proj.href}>
             <Image
-              class="rounded-t"
+              class="rounded-t-sm"
               src={proj.img}
               alt={"Image of application: " + proj.title}
             />
           </a>
           <h3 class="px-6 pt-2 font-mono text-2xl font-bold">{proj.title}</h3>
-          <p class="px-6 text-justify text-content-secondary">
-            <Fragment set:html={proj.content} />
-          </p>
+          <div class="px-6 text-justify text-content-secondary" set:html={proj.content} />
           <div class="px-6">
             <span class="opacity-80 text-sm font-semibold">Technologies:</span>
             <b class="opacity-80 text-sm font-semibold">{proj.tech}</b>

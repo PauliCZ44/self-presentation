@@ -1,3 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-opacity-10: hsl(var(--primary-hsl) / 10%);
+  --color-primary-opacity-25: hsl(var(--primary-hsl) / 20%);
+  --color-primary-opacity-50: hsl(var(--primary-hsl) / 50%);
+  --color-primary-opacity-66: hsl(var(--primary-hsl) / 66%);
+  --color-primary-opacity-75: hsl(var(--primary-hsl) / 70%);
+  --color-primary-opacity-90: hsl(var(--primary-hsl) / 90%);
+  --color-content: var(--color-zinc-100);
+  --color-content-secondary: var(--color-zinc-300);
+  --color-heading: var(--color-zinc-50);
+
+  --font-sans: "Mona Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: "Hubot Sans";
+}
+
 :root {
   --fs-sm: clamp(0.75rem, -0.07vw + 0.77rem, 0.71rem);
   --fs-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
@@ -8,14 +27,17 @@
   --fs-xxxl: clamp(4.16rem, 20.14vw + -0.87rem, 15.24rem);
 
   --shadow-color: 0deg 0% 3%;
-  --shadow-elevation-low: 0.4px 0.4px 0.6px hsl(var(--shadow-color) / 0.47),
+  --shadow-elevation-low:
+    0.4px 0.4px 0.6px hsl(var(--shadow-color) / 0.47),
     0.7px 0.7px 1.1px -1.4px hsl(var(--shadow-color) / 0.44),
     1.7px 1.7px 2.6px -2.8px hsl(var(--shadow-color) / 0.4);
-  --shadow-elevation-medium: 0.4px 0.4px 0.6px hsl(var(--shadow-color) / 0.5),
+  --shadow-elevation-medium:
+    0.4px 0.4px 0.6px hsl(var(--shadow-color) / 0.5),
     1.3px 1.3px 2px -0.9px hsl(var(--shadow-color) / 0.47),
     3.5px 3.4px 5.3px -1.9px hsl(var(--shadow-color) / 0.44),
     8.7px 8.4px 13.1px -2.8px hsl(var(--shadow-color) / 0.42);
-  --shadow-elevation-high: 0.4px 0.4px 0.6px hsl(var(--shadow-color) / 0.46),
+  --shadow-elevation-high:
+    0.4px 0.4px 0.6px hsl(var(--shadow-color) / 0.46),
     2.4px 2.4px 3.7px -0.4px hsl(var(--shadow-color) / 0.45),
     4.7px 4.5px 7px -0.8px hsl(var(--shadow-color) / 0.44),
     8px 7.7px 12px -1.2px hsl(var(--shadow-color) / 0.42),
@@ -24,7 +46,8 @@
     32.2px 31.2px 48.4px -2.4px hsl(var(--shadow-color) / 0.39),
     47.9px 46.3px 71.9px -2.8px hsl(var(--shadow-color) / 0.37);
 
-  --gray-bg: linear-gradient(
+  --gray-bg:
+    linear-gradient(
       17deg,
       rgba(41, 41, 41, 0.02) 0%,
       rgba(41, 41, 41, 0.02) 48%,
@@ -104,7 +127,10 @@ html {
 }
 
 * {
-  transition: color 250ms ease, border 250ms ease, background-color 250ms ease;
+  transition:
+    color 250ms ease,
+    border 250ms ease,
+    background-color 250ms ease;
 }
 
 .bg-gradient-custom {
@@ -120,7 +146,8 @@ html {
   --lineCol: hsla(var(--baseHue), 50%, 50%, 0.2);
   --lineH: 1px;
   background-size: 30px 30px;
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       45deg,
       transparent calc(50% - var(--lineH)),
       var(--lineCol) 50%,
@@ -190,7 +217,9 @@ h6 {
 
 .link,
 .group-link {
-  transition: color 150ms ease-in-out, filter 150ms ease-in-out;
+  transition:
+    color 150ms ease-in-out,
+    filter 150ms ease-in-out;
 }
 
 .link--btn {
