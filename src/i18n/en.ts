@@ -104,7 +104,7 @@ export const en = {
     links: "Links",
     aboutPage: "About this page",
     aboutPageText:
-      "Page is made with ♥ Astro ♥. Even if my favourite tech stack is React/Typescript, I have chosen raw speed over my DX. That is why this page uses only mix of tailwind, scss and good old vanilla javascript.",
+      "Page is made with ♥ Astro ♥. Even if my favourite tech stack is React/Typescript, I have chosen raw speed over my DX. That is why this page uses only mix of tailwind, scss and good old vanilla javascript. Page started as hand crafted portfolio, now I am doing updates and improvements with AI.",
     cv: "My CV:",
     download: "DOWNLOAD!",
     rights: "All Rights Reserved.",

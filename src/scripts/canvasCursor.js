@@ -25,6 +25,14 @@ let center;
 let tick;
 let gradient;
 let animationFrameId;
+let isInView = true;
+
+// Blur is rendered on a small offscreen canvas, then scaled up: far fewer pixels to filter.
+const GLOW_SCALE = 0.25;
+const GLOW_EXTENT = 510;
+const glowCanvas = document.createElement("canvas");
+glowCanvas.width = glowCanvas.height = GLOW_EXTENT * 2 * GLOW_SCALE;
+const glowCtx = glowCanvas.getContext("2d");
 
 function setup() {
   createCanvas();
@@ -48,6 +56,11 @@ function setup() {
     attributes: true,
     attributeFilter: ["style"],
   });
+
+  new IntersectionObserver(([entry]) => {
+    isInView = entry.isIntersecting;
+    resumeAnimation();
+  }).observe(container);
 
   gradient = ctx.b.createLinearGradient(
     -15,
@@ -159,16 +172,26 @@ function drawCursor() {
   circle.velocityY *= circle.friction;
   circle.x += circle.velocityX;
   circle.y += circle.velocityY;
+  glowCtx.clearRect(0, 0, glowCanvas.width, glowCanvas.height);
+  glowCtx.save();
+  glowCtx.filter = "blur(30px) brightness(150%) hue-rotate(33deg)";
+  glowCtx.scale(GLOW_SCALE, GLOW_SCALE);
+  glowCtx.translate(GLOW_EXTENT - circle.x, GLOW_EXTENT - circle.y);
+  glowCtx.beginPath();
+  glowCtx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+  glowCtx.fillStyle = gradient;
+  glowCtx.fill();
+  glowCtx.restore();
+
   ctx.b.save();
-  ctx.b.filter = "blur(120px) brightness(150%) hue-rotate(33deg)";
   ctx.b.globalCompositeOperation = "lighter";
-
-  // Draw semi-transparent white circle at mouse position
-  ctx.b.beginPath();
-  ctx.b.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
-
-  ctx.b.fillStyle = gradient;
-  ctx.b.fill();
+  ctx.b.drawImage(
+    glowCanvas,
+    circle.x - GLOW_EXTENT,
+    circle.y - GLOW_EXTENT,
+    GLOW_EXTENT * 2,
+    GLOW_EXTENT * 2,
+  );
   ctx.b.restore();
 }
 
@@ -180,7 +203,7 @@ function drawCursor() {
 // let averageT = average(times.length > 0 ? times : [123])
 
 function draw() {
-  if (document.hidden) {
+  if (document.hidden || !isInView) {
     animationFrameId = undefined;
     return;
   }
@@ -200,7 +223,7 @@ function draw() {
 }
 
 function resumeAnimation() {
-  if (!document.hidden && animationFrameId === undefined) {
+  if (!document.hidden && isInView && animationFrameId === undefined) {
     animationFrameId = window.requestAnimationFrame(draw);
   }
 }
