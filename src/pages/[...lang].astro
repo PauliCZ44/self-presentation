@@ -9,36 +9,34 @@ import Projects from "../sections/Projects.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import TechStack from "../sections/TechStack.astro";
 import Footer from "../sections/Footer.astro";
+import AiConsulting from "../sections/AiConsulting.astro";
 import WorkExperience from "src/sections/WorkExperience.astro";
 import Randomizer from "@components/Randomizer.astro";
-const SkillCardsContent = [
-  {
-    title: "React Enthusiast",
-    description:
-      "I'm passionate Front-end developer, mainly focused on developing React/Typescript applications.",
-  },
-  {
-    title: "Quality oriented",
-    description:
-      "My main goal is to create a great user experience and make the apps accessible, efficient, and user-friendly.",
-  },
-  {
-    title: "Professional",
-    description:
-      "I write clean, readable, and maintainable code that adheres to the best industry standards.",
-  },
-  {
-    title: "Continuous learner",
-    description:
-      "I'm always learning and keeping up with the latest technologies and trends to make sure my work stays current.",
-  },
-] as const;
+import SiteHeader from "@components/SiteHeader.astro";
+import { Icon } from "astro-icon/components";
+import { useTranslations } from "../i18n";
+import { CONTACT_EMAIL } from "../constants";
+
+// Renders "/" (default locale, no param) and "/cs/".
+export function getStaticPaths() {
+  return [{ params: { lang: undefined } }, { params: { lang: "cs" } }];
+}
+
+const t = useTranslations(Astro.currentLocale);
+const aboutIcons = [
+  "lucide:atom",
+  "lucide:gem",
+  "lucide:code-xml",
+  "lucide:brain-circuit",
+];
+const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(t.consulting.emailSubject)}`;
 ---
 
-<Layout title="Pavel Šťastný Portfolio">
+<Layout title={t.meta.title} description={t.meta.description}>
   <script src="../scripts/swirl.js"></script>
   <script src="../scripts/canvasCursor.js"></script>
 
+  <SiteHeader />
   <Randomizer />
 
   <div
@@ -47,7 +45,7 @@ const SkillCardsContent = [
   >
     <div class="content--canvas"></div>
     <div
-      class="absolute w-full h-full top-0 left-0 flex items-center justify-center"
+      class="absolute w-full h-full top-0 left-0 flex flex-col items-center justify-center pt-12"
     >
       <!-- <p class="fs-ms text-white fixed top-4 left-4" id="resizer">0</p>
 			<p class="fs-ms text-white fixed top-8 left-4" id="logger"></p> -->
@@ -63,6 +61,20 @@ const SkillCardsContent = [
           </AtroposWrapper>
         </div>
       </div>
+
+      <div class="hero-cta relative z-10 flex flex-col items-center gap-4 px-6 text-center">
+        <p class="fs-base max-w-xl text-balance">{t.hero.tagline}</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href={mailto} class="link--btn hero-btn hero-btn--primary gap-2 px-5">
+            <Icon name="lucide:mail" width="1.25rem" height="1.25rem" aria-hidden="true" />
+            <span>{t.hero.cta}</span>
+          </a>
+          <a href="#ai-consulting" class="link--btn hero-btn gap-2 px-5">
+            <span>{t.hero.secondaryCta}</span>
+            <Icon name="lucide:arrow-down" width="1.25rem" height="1.25rem" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
     </div>
 
     <!-- // Absoulute positinoed and center on the page -->
@@ -73,21 +85,26 @@ const SkillCardsContent = [
 		</div> -->
   </div>
 
-  <SectionHeader title={"ABOUT ME"} id="about" />
+  <SectionHeader title={t.sections.about} id="about" />
 
   <div class="w-full relative bg-gradient-custom pt-16" id="skills">
     <div class="bg-cursor"></div>
     <div class="grid-wrapper-boxes leading-none">
       {
-        SkillCardsContent.map(({ title, description }, index) => (
-          <SkillCard id={index + 1} title={title} description={description} />
+        t.skillCards.map(({ title, description }, index) => (
+          <SkillCard
+            id={index + 1}
+            title={title}
+            description={description}
+            icon={aboutIcons[index]}
+          />
         ))
       }
     </div>
 
     <div class="pt-4 pb-40 relative">
   
-      <SectionHeader title="My tech stack" size="fs-lg sm:fs-xl" id="Mytechstack" />
+      <SectionHeader title={t.sections.techStack} size="fs-lg sm:fs-xl" id="Mytechstack" level={3} />
 
       <section
         class="fs-base font-mono mb-2 text-slate-300 max-w-[70rem] px-6 mx-auto"
@@ -97,16 +114,24 @@ const SkillCardsContent = [
     </div>
   </div>
 
-  <SectionHeader title="WORK EXPERIENCE" id="work-experience" />
+  <SectionHeader title={t.sections.aiConsulting} id="ai-consulting" />
+
+  <AiConsulting />
+
+  <SectionHeader title={t.sections.workExperience} id="work-experience" />
 
   <WorkExperience />
+
+  <SectionHeader title={t.sections.soloProjects} id="projects" />
+
+  <Projects />
+
+  <SectionHeader title={t.sections.aiProjects} id="ai-projects" />
+
+  <Projects ai />
+
+  <Footer />
 </Layout>
-
-<SectionHeader title="SOLO PROJECTS" id="projects" />
-
-<Projects />
-
-<Footer />
 
 <script>
   import Atropos from "atropos";
@@ -115,24 +140,31 @@ const SkillCardsContent = [
   import sal from "sal.js";
 
   let arrowButton = document.getElementById("scroll-to-about");
+  let scrollFramePending = false;
 
-  function doOnScroll(e: Event) {
-    document.body.style.setProperty("--scrollY", `${e?.target?.scrollTop}`);
+  function doOnScroll() {
+    document.body.style.setProperty("--scrollY", `${window.scrollY}`);
+    scrollFramePending = false;
   }
-  function handleScroll(e: Event) {
-    // use requestAnimationFrame to throttle scroll callbacks
-    window.requestAnimationFrame(() => doOnScroll(e));
+  function handleScroll() {
+    if (scrollFramePending) return;
+    scrollFramePending = true;
+    window.requestAnimationFrame(doOnScroll);
   }
 
-  document.body.addEventListener("scroll", function (e) {
-    handleScroll(e);
-    // if scrolled 100px from top, hide arrow button
-    if (e?.target?.scrollTop > 200) {
-      arrowButton?.classList.add("invisible");
-    } else {
-      arrowButton?.classList.remove("invisible");
-    }
-  });
+  window.addEventListener(
+    "scroll",
+    function () {
+      handleScroll();
+      // if scrolled 100px from top, hide arrow button
+      if (window.scrollY > 200) {
+        arrowButton?.classList.add("invisible");
+      } else {
+        arrowButton?.classList.remove("invisible");
+      }
+    },
+    { passive: true },
+  );
   document.addEventListener("DOMContentLoaded", function () {
     welcomeInConsole();
     // @ts-ignore
@@ -143,15 +175,15 @@ const SkillCardsContent = [
     document.body.style.setProperty("--windowWidth", `${window.innerWidth}`);
   });
 
-  window.addEventListener("resize", function (e) {
-    debounce(() => {
+  const updateViewportVars = debounce(() => {
       document.body.style.setProperty(
         "--windowHeight",
         `${window.innerHeight}`
       );
       document.body.style.setProperty("--windowWidth", `${window.innerWidth}`);
     }, 100);
-  });
+
+  window.addEventListener("resize", updateViewportVars);
 
   // // selecet scroll-to-about button
   // const scrollToAboutButton = document.getElementById('scroll-to-about')
@@ -160,31 +192,52 @@ const SkillCardsContent = [
   // 	aboutSection?.scrollIntoView({ behavior: 'smooth' })
   // })
 
-  const cardCount = 4;
-  for (let i = 0; i <= cardCount; i++) {
+  document.querySelectorAll<HTMLElement>(".skill-card").forEach((el) => {
     Atropos({
-      el: `.atropos-initializer-${i}`,
+      el,
       activeOffset: 10,
       shadowScale: 1.05,
       rotateXMax: 10,
       rotateYMax: 10,
       rotateTouch: "scroll-y",
     });
-  }
+  });
 
  
 </script>
 
 <style is:global>
   html,
-  body,
-  .content--canvas {
-    overflow-x: hidden;
-    overflow-y: auto;
+  body {
     margin: 0;
+    overflow-x: clip;
+    background-color: black;
+  }
+
+  html {
+    scroll-padding-top: 4rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  .content--canvas {
+    overflow: hidden;
     width: 100%;
     height: 100%;
     background-color: black;
+  }
+
+  .hero-btn {
+    background: rgb(0 0 0 / 0.5);
+    font-weight: 600;
+  }
+  .hero-btn--primary {
+    border-color: hsl(var(--primary-hsl) / 90%);
+    box-shadow: 0 0 10px 2px hsl(var(--primary-hsl) / 50%);
   }
 
   .home-warpper {

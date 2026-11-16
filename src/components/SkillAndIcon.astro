@@ -16,6 +16,7 @@ const size = iconWidth ?? "2.5rem";
   class="SaI_wrapper"
   href={href ? href : undefined}
   target="_blank"
+  rel="noopener noreferrer"
   style={`--stagger-delay: calc(0.12s * ${index})`}
 >
   <div class="iconWrapper fade-in" data-sal="true" data-sal-once>
@@ -24,8 +25,7 @@ const size = iconWidth ?? "2.5rem";
         <div style={{ width: size, height: size }}>{customIcon}</div>
       ) : (
         <Icon
-          title={skill}
-          alt={skill}
+          aria-hidden="true"
           name={iconName}
           width={size}
           height={size}

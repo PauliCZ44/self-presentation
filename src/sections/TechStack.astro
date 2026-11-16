@@ -1,6 +1,8 @@
 ---
 import SkillAndIcon from "../components/SkillAndIcon.astro";
-import blazor from "../icons/blazor.svg";
+import { useTranslations } from "../i18n";
+
+const t = useTranslations(Astro.currentLocale);
 
 const mainSkills = [
   { skill: "React", icon: "logos:react", href: "https://reactjs.org/" },
@@ -25,16 +27,25 @@ const mainSkills = [
     href: "https://tailwindcss.com/",
   },
   {
-    skill: "Bootstrap",
-    icon: "logos:bootstrap",
-    href: "https://getbootstrap.com/",
-  },
-  {
     skill: "Storybook",
     icon: "logos:storybook-icon",
     href: "https://storybook.js.org/",
   },
   { skill: "Vite", icon: "logos:vitejs", href: "https://vitejs.dev/" },
+];
+const aiSkills = [
+  { skill: "Claude", icon: "logos:claude-icon", href: "https://claude.ai/" },
+  { skill: "ChatGPT", icon: "simple-icons:openai", href: "https://chatgpt.com/" },
+  {
+    skill: "GitHub Copilot",
+    icon: "simple-icons:githubcopilot",
+    href: "https://github.com/features/copilot",
+  },
+  {
+    skill: "MCP",
+    icon: "simple-icons:modelcontextprotocol",
+    href: "https://modelcontextprotocol.io/",
+  },
 ];
 // From this list generate key-pair values: Blazor, Python, C, JQuery, Express, Node.js, MongoDB, webpack, Svelte, SQL, Angular (not interested), Next.js, Jest, MapBox, Mantine.
 const workedWith = [
@@ -53,11 +64,6 @@ const workedWith = [
     href: "https://playwright.dev/",
   },
   { skill: "Svelte", icon: "logos:svelte-icon", href: "https://svelte.dev/" },
-  {
-    skill: "Blazor",
-    icon: "blazor",
-    href: "https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor",
-  },
   { skill: "Vitest", icon: "logos:vitest", href: "https://vitest.dev/" },
   {
     skill: "MapBox",
@@ -71,8 +77,6 @@ const workedWith = [
 const otherInterests = [
   { skill: "GitLab", icon: "logos:gitlab", href: "https://gitlab.com/" },
   { skill: "Figma", icon: "logos:figma", href: "https://www.figma.com/" },
-  { skill: "T3Stack", icon: "t3", href: "https://create.t3.gg/" },
-  { skill: "Remix", icon: "remix", href: "https://remix.run/" },
   {
     skill: "VSCode",
     icon: "logos:visual-studio-code",
@@ -82,11 +86,12 @@ const otherInterests = [
   { skill: "ESLint", icon: "logos:eslint", href: "https://eslint.org/" },
 ];
 const allSkills = [
-  { skills: mainSkills, title: "Main stack", iconWidth: "2.75rem" },
-  { skills: workedWith, title: "Worked with", iconWidth: "1.75rem" },
+  { skills: mainSkills, title: t.techStack.main, iconWidth: "2.75rem" },
+  { skills: aiSkills, title: t.techStack.ai, iconWidth: "2.75rem" },
+  { skills: workedWith, title: t.techStack.workedWith, iconWidth: "1.75rem" },
   {
     skills: otherInterests,
-    title: "Other interests and tools",
+    title: t.techStack.other,
     iconWidth: "1.5rem",
   },
 ];
@@ -95,9 +100,9 @@ const allSkills = [
 {
   allSkills.map(({ skills, title, iconWidth }, i) => (
     <div>
-      <h6 class="font-bold font-mono pt-20 pb-6 fs-base text-center">
+      <h4 class="font-bold font-mono pt-20 pb-6 fs-base text-center">
         {title}
-      </h6>
+      </h4>
       <div class="flex flex-wrap gap-8 justify-center">
         {skills.map(({ skill, icon, href }, j) => (
           <SkillAndIcon

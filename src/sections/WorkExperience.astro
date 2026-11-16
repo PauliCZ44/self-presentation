@@ -1,24 +1,7 @@
 ---
-const experiences = [
-  {
-    title: "Front-end developer, YunexTraffic s.r.o.",
-    date: "05/2022 – present",
-    description:
-      "Developing web apps and React components as part of the FE/UX team using React, Typescript etc. Lead UI library developement, and boost code quality in legacy projects through linting, refactoring, and code reviews, all while improving overall user experience with performance in mind.",
-  },
-  {
-    title: "Web Developer, Papirfly",
-    date: "07/2021 – 04/2022",
-    description:
-      "Develop web applications and websites for clients using JavaScript/TypeScript, Angular, CSS (SASS) etc. As the sole front-end developer, I built a single-page application (SPA) using vanilla JavaScript, class-based components, SCSS styles, and REST API integration.",
-  },
-  {
-    title: "Software tester, TwinSoft s.r.o",
-    date: "11/2017 – 07/2021",
-    description:
-      "Part-time job at college. Manual and automated testing of a web application, including SQL database interaction. Enhanced the app's UX through valuable feedback.",
-  },
-];
+import { useTranslations } from "../i18n";
+
+const experiences = useTranslations(Astro.currentLocale).experience;
 ---
 
 <div class="pt-36 pb-36 w-full bg-gradient-custom">
@@ -29,8 +12,8 @@ const experiences = [
       experiences.map(({ description, title, date }) => (
         <li class="relative pl-4">
           <div class="reavel-dot border-primary border-2 w-8 h-8 bg-primary shadow-inner shadow-black rounded-full -left-12 translate-x-[-2px] top-1/2 -translate-y-1/2 absolute" />
-          <h4 class="text-lg font-bold reveal-text pb-2">{title}</h4>
-          <h6 class="text-base text-content reveal-text pb-2">{date}</h6>
+          <h3 class="text-lg font-bold reveal-text pb-2">{title}</h3>
+          <p class="text-base text-content reveal-text pb-2 uppercase font-['Hubot_Sans'] tracking-[0.5px]">{date}</p>
           <p class="text-sm text-content-secondary reveal-text">
             {description}
           </p>

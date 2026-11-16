@@ -1,23 +1,26 @@
 ---
 import { Image } from "astro:assets";
 import me from "../images/me.png";
+import { useTranslations } from "../i18n";
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div class="screen">
   <div class="screen-overlay"></div>
   <div class="screen-content">
     <div class="screen-user">
-      <span class="name" data-value="PAVEL ŠŤASTNÝ" data-atropos-offset="2"
-        >P??EL Š?T?N?A</span
+      <h1 class="name" aria-label="Pavel Šťastný" data-value="PAVEL ŠŤASTNÝ" data-atropos-offset="2"
+        >P??EL Š?T?N?A</h1
       >
       <div class="divider" data-atropos-offset="3"></div>
-      <p class="title" data-atropos-offset="2">Front-end developer</p>
+      <p class="title" data-atropos-offset="2">{t.hero.role}</p>
     </div>
     <div class="img-wrapper" data-atropos-offset="1" data-atropos-opacity="1;0.8">
       <Image
         class="screen-image"
         src={me}
-        alt="Pavel Šťastný image"
+        alt={t.hero.imageAlt}
         width="700"
         height="700"
       />
@@ -80,7 +83,8 @@ import me from "../images/me.png";
 <style lang="scss">
   .screen {
     animation: fadeInDown 750ms cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-    max-height: 86vh;
+    max-height: 70vh;
+    max-height: 70svh;
     min-height: 500px;
     min-width: 450px;
     display: flex;
@@ -97,10 +101,10 @@ import me from "../images/me.png";
     margin: 30px;
 
     @media (max-width: 550px) {
-       scale: 0.75
+       zoom: 0.75
     }
     @media (max-width: 400px) {
-       scale: 0.5
+       zoom: 0.5
     }
   }
 
