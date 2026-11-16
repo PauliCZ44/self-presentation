@@ -5,7 +5,7 @@ export const cs: Dictionary = {
     title: "Pavel Šťastný Portfolio",
   },
   hero: {
-    role: "Front-end vývojář",
+    role: "Front-end & AI inženýr",
     imageAlt: "Fotka Pavla Šťastného",
   },
   sections: {
@@ -14,6 +14,57 @@ export const cs: Dictionary = {
     workExperience: "PRACOVNÍ ZKUŠENOSTI",
     soloProjects: "SAMOSTATNÉ PROJEKTY",
     aiProjects: "AI PROJEKTY",
+    aiConsulting: "AI INŽENÝRSTVÍ A KONZULTACE",
+  },
+  consulting: {
+    intro:
+      "Pomáhám týmům zapojit AI do jejich produktů a vyvíjet rychleji díky pracovním postupům s podporou AI. S AI pracuji denně, takže vím, co je připravené do produkce a co je jen demo.",
+    services: [
+      {
+        title: "Agenti a automatizace",
+        description:
+          "Vlastní agenti, skills a MCP servery, které automatizují opakující se práci a propojují AI s vašimi interními nástroji.",
+      },
+      {
+        title: "Vývoj urychlený AI",
+        description:
+          "Nastavení AI pracovních postupů pro váš tým: nástroje, konvence, code review a onboarding.",
+      },
+      {
+        title: "AI audit a strategie",
+        description:
+          "Zjištění, kde se AI skutečně vyplatí a kde ne. Včetně nákladů, rizik a ochrany dat.",
+      },
+    ],
+    caseStudiesTitle: "Vybrané práce",
+    problem: "Problém",
+    approach: "Postup",
+    result: "Výsledek",
+    caseStudies: [
+      {
+        title: "AI workflow pro front-end tým",
+        problem:
+          "Produktový tým spravující velkou React aplikaci ztrácel čas opakujícími se úkoly, nejednotným stylem kódu a pomalým code review.",
+        approach:
+          "Vytvořil jsem vlastní AI skills a agenty zakódující konvence týmu a sdílené prompty a pravidla pro linting, refaktoring a code review.",
+        result:
+          "Rychlejší dodávka rutinní práce, jednotnější kód a rychlejší onboarding. [doplnit naměřená čísla]",
+      },
+      {
+        title: "Web dodaný s pomocí AI",
+        problem:
+          "Malá firma potřebovala rychle profesionální web bez nákladů na hosting.",
+        approach:
+          "Řídil jsem AI nástroje při návrhu i implementaci, zkontroloval každý výstup a nasadil na Cloudflare Pages.",
+        result:
+          "Produkční web dodaný během jediného dne bez nákladů na hosting.",
+      },
+    ],
+    ctaTitle: "Máte AI projekt nebo nápad?",
+    ctaText:
+      "Napište mi stručně, čeho chcete dosáhnout. Ozvu se vám s dalšími kroky.",
+    ctaButton: "Napište mi",
+    emailSubject: "Poptávka AI konzultace",
   },
   skillCards: [
     {

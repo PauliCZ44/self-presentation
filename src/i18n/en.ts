@@ -3,7 +3,7 @@ export const en = {
     title: "Pavel Šťastný Portfolio",
   },
   hero: {
-    role: "Front-end developer",
+    role: "Front-end & AI engineer",
     imageAlt: "Pavel Šťastný image",
   },
   sections: {
@@ -12,6 +12,57 @@ export const en = {
     workExperience: "WORK EXPERIENCE",
     soloProjects: "SOLO PROJECTS",
     aiProjects: "AI PROJECTS",
+    aiConsulting: "AI ENGINEERING & CONSULTING",
+  },
+  consulting: {
+    intro:
+      "I help teams build AI into their products and ship faster with AI-assisted workflows. I work with AI every day, so I know what is production-ready and what is just a demo.",
+    services: [
+      {
+        title: "Agents & automation",
+        description:
+          "Custom agents, skills and MCP servers that automate repetitive work and connect AI to your internal tools.",
+      },
+      {
+        title: "AI-accelerated development",
+        description:
+          "Setting up AI coding workflows for your team: tooling, conventions, reviews and onboarding.",
+      },
+      {
+        title: "AI audit & strategy",
+        description:
+          "Finding where AI actually pays off, and where it does not. Includes cost, risk and data-privacy considerations.",
+      },
+    ],
+    caseStudiesTitle: "Selected work",
+    problem: "Problem",
+    approach: "Approach",
+    result: "Result",
+    caseStudies: [
+      {
+        title: "AI workflows for a front-end team",
+        problem:
+          "A product team maintaining a large React codebase lost time on repetitive tasks, inconsistent code style and slow reviews.",
+        approach:
+          "Built custom AI skills and agents encoding the team's conventions, plus shared prompts and guidelines for linting, refactoring and code review.",
+        result:
+          "Faster delivery of routine work, more consistent code and quicker onboarding. [add measured numbers]",
+      },
+      {
+        title: "AI-assisted website delivery",
+        problem:
+          "A small business needed a professional website quickly and with no hosting costs.",
+        approach:
+          "Directed AI tools for design and implementation, reviewed every output and deployed on Cloudflare Pages.",
+        result:
+          "A production website delivered within a single day with zero hosting cost.",
+      },
+    ],
+    ctaTitle: "Have an AI project or idea?",
+    ctaText:
+      "Tell me briefly what you are trying to achieve. I will get back to you with next steps.",
+    ctaButton: "Email me",
+    emailSubject: "AI consulting inquiry",
   },
   skillCards: [
     {

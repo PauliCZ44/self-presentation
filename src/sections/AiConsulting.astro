@@ -1,0 +1,300 @@
+---
+import { Icon } from "astro-icon/components";
+import SkillCard from "../components/SkillCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { useTranslations } from "../i18n";
+import { CONTACT_EMAIL } from "../constants";
+
+const t = useTranslations(Astro.currentLocale);
+const c = t.consulting;
+const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(c.emailSubject)}`;
+const serviceIcons = [
+  "lucide:bot",
+  "lucide:rocket",
+  "lucide:search-check",
+];
+// Continue after the About cards so every card gets a unique Atropos id.
+const cardIdOffset = t.skillCards.length;
+---
+
+<section class="consulting bg-gradient-custom">
+  <p class="consulting-intro">{c.intro}</p>
+
+  <div class="grid-wrapper-boxes leading-none">
+    {
+      c.services.map(({ title, description }, i) => (
+        <SkillCard
+          id={cardIdOffset + i + 1}
+          title={title}
+          description={description}
+          icon={serviceIcons[i]}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<SectionHeader
+  title={c.caseStudiesTitle}
+  size="fs-lg sm:fs-xl"
+  id="selected-work"
+/>
+
+<section class="consulting consulting--work bg-gradient-custom">
+  <div class="case-list">
+    {
+      c.caseStudies.map(({ title, problem, approach, result }, i) => (
+        <article class="screen-like-box case-box">
+          <div class="case-inner">
+            <span class="case-index">#{String(i + 1).padStart(2, "0")}</span>
+            <h4 class="fs-md case-title">{title}</h4>
+            <div class="divider" />
+            <ol class="case-steps">
+              {[
+                [c.problem, problem],
+                [c.approach, approach],
+                [c.result, result],
+              ].map(([label, text], j) => (
+                <li class:list={["case-step", { "case-step--result": j === 2 }]}>
+                  <span class="case-dot" aria-hidden="true" />
+                  <h5 class="case-label">{label}</h5>
+                  <p class="case-text">{text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="screen-like-box case-box cta-box">
+    <div class="case-inner cta-inner">
+      <h4 class="fs-lg cta-title">{c.ctaTitle}</h4>
+      <div class="divider" />
+      <p class="cta-text">{c.ctaText}</p>
+      <a href={mailto} class="link--btn link cta-button">
+        <Icon name="lucide:mail" width="1.25rem" height="1.25rem" />
+        <span>{c.ctaButton}</span>
+      </a>
+      <a href={mailto} class="cta-email">{CONTACT_EMAIL}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .consulting {
+    --text-secondary: #d4d4d8;
+    --mono: "Source Code Pro", ui-monospace, monospace;
+    position: relative;
+    padding-block: 6rem 4rem;
+  }
+  .consulting--work {
+    padding-block: 6rem 10rem;
+  }
+
+  .consulting-intro {
+    width: min(42rem, 88%);
+    margin-inline: auto;
+    text-align: center;
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  @media (min-width: 769px) {
+    .grid-wrapper-boxes > :global(:last-child:nth-child(odd)) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc((100% - var(--fs-md) * 1.5) / 2);
+    }
+  }
+
+  .case-list {
+    display: grid;
+    gap: 3rem;
+    width: min(72rem, 94%);
+    margin: 0 auto 5rem;
+  }
+
+  /* Reuses the global .screen-like-box frame from SkillCard. */
+  .case-box {
+    margin: 0;
+    height: auto;
+    transition: box-shadow 250ms ease;
+  }
+  .case-box:hover {
+    box-shadow:
+      0 0 18px 4px hsl(var(--primary-hsl) / 35%),
+      var(--shadow-elevation-medium);
+  }
+
+  .case-inner {
+    position: relative;
+    margin: 1rem;
+    padding: calc(var(--fs-md) * 1.25) calc(var(--fs-md) * 1.25)
+      calc(var(--fs-md) * 1.5);
+    border: 1px solid hsl(var(--primary-hsl) / 50%);
+    border-radius: 0.6rem;
+  }
+
+  .case-index {
+    display: block;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-family: var(--mono);
+    font-weight: 700;
+    color: hsla(var(--baseHue), 75%, 85%, 0.5);
+  }
+  @media (min-width: 768px) {
+    .case-index {
+      position: absolute;
+      top: 1rem;
+      left: 1.25rem;
+      margin: 0;
+    }
+  }
+
+  .case-title {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+
+  .case-inner .divider {
+    margin: 0 auto 2.5rem;
+  }
+
+  .case-steps {
+    --dot: 1.125rem;
+    position: relative;
+    display: grid;
+    gap: 2rem;
+    padding-left: 2rem;
+  }
+  .case-steps::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--dot) / 2 - 1px);
+    top: 0.25rem;
+    bottom: 0.25rem;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--primary-hsl) / 70%),
+      hsl(var(--primary-hsl) / 20%)
+    );
+  }
+
+  .case-step {
+    position: relative;
+  }
+
+  .case-dot {
+    position: absolute;
+    left: -2rem;
+    top: 0.1rem;
+    width: var(--dot);
+    height: var(--dot);
+    border-radius: 999px;
+    background: var(--primary);
+    border: 2px solid var(--primary);
+    box-shadow: inset 0 2px 4px 0 black;
+  }
+  .case-step--result .case-dot {
+    background: hsla(var(--baseHue), 75%, 85%, 1);
+    box-shadow:
+      0 0 12px 2px var(--primary),
+      0 0 4px var(--primary);
+  }
+
+  .case-label {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.5rem;
+    color: hsla(var(--baseHue), 75%, 85%, 1);
+  }
+
+  .case-text {
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .case-step--result .case-text {
+    color: #f4f4f5;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .case-steps {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      padding-left: 0;
+      padding-top: 2.25rem;
+    }
+    .case-steps::before {
+      left: 0;
+      right: 0;
+      top: calc(var(--dot) / 2 - 1px);
+      bottom: auto;
+      width: auto;
+      height: 2px;
+      background: linear-gradient(
+        to right,
+        hsl(var(--primary-hsl) / 70%),
+        hsl(var(--primary-hsl) / 20%)
+      );
+    }
+    .case-dot {
+      left: 0;
+      top: -2.25rem;
+    }
+  }
+
+  .cta-box {
+    width: min(48rem, 94%);
+    margin-inline: auto;
+  }
+  .cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .cta-title {
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    color: hsla(var(--baseHue), 75%, 85%, 1);
+    text-shadow:
+      0 0 30px var(--primary),
+      0 0 10px var(--primary);
+  }
+  .cta-text {
+    max-width: 34rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+  }
+  .cta-button {
+    position: relative;
+    gap: 0.6rem;
+    padding: 0.9rem 2.25rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background-color: hsl(var(--primary-hsl) / 20%);
+  }
+  .cta-button:hover {
+    background-color: hsl(var(--primary-hsl) / 35%);
+  }
+  .cta-email {
+    margin-top: 1rem;
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: hsla(var(--baseHue), 75%, 85%, 0.7);
+  }
+  .cta-email:hover {
+    color: hsla(var(--baseHue), 75%, 85%, 1);
+  }
+</style>

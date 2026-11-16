@@ -1,15 +1,18 @@
 ---
+import { Icon } from "astro-icon/components";
+
 export interface Props {
   title: string;
   description: string;
   id: number;
+  icon?: string;
 }
 
-const { title, description, id } = Astro.props;
+const { title, description, id, icon } = Astro.props;
 ---
 
 <div
-  style={`animation-delay: ${(id - 1) * 0.1}s`}
+  style={`animation-delay: ${((id - 1) % 4) * 0.1}s`}
   data-sal="true"
   data-sal-once
   class={"atropos skill-card group atropos-initializer-" + id}
@@ -22,6 +25,13 @@ const { title, description, id } = Astro.props;
           <div class="box-overlay bg-gradient-custom transition-all opacity-20">
           </div>
           <div class="grid">
+            {
+              icon && (
+                <div class="skill-card-icon" data-atropos-offset="3">
+                  <Icon name={icon} width="2.5rem" height="2.5rem" />
+                </div>
+              )
+            }
             <h4
               class="fs-md text-gray-50 group-hover:text-white font-semibold uppercase text-center"
               data-atropos-offset="1"
@@ -51,6 +61,12 @@ const { title, description, id } = Astro.props;
     z-index: 0;
     left: 0px;
     top: 0px;
+  }
+
+  .skill-card-icon {
+    margin-bottom: -1rem;
+    color: hsla(var(--baseHue), 75%, 85%, 1);
+    filter: drop-shadow(0 0 8px var(--primary));
   }
 
   [data-sal].skill-card {
